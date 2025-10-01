@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Industrial Space Broker Palm Beach | Warehouse Leasing Agent | Commercial Real Estate</title>
-    <meta name="description" content="Licensed commercial real estate agent specializing in warehouse and industrial properties for contractors. 3-phase power, flexible terms. Quick occupancy. 561-718-6725">
+    <title>Warehouse Space Palm Beach County | Zachary Vorsteg | Commercial Real Estate Agent</title>
+    <meta name="description" content="Get warehouse space in Palm Beach County fast. Licensed commercial real estate agent connects contractors with landlords. Call 561-718-6725 today.">
     
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://www.googletagmanager.com">
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -18,9 +17,9 @@
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": ["LocalBusiness", "RealEstateAgent"],
-        "name": "Contractor Warehouses Palm Beach County",
-        "description": "Specialized warehouse and flex space solutions for contractors",
+        "@type": "LocalBusiness",
+        "name": "Zachary Vorsteg Commercial Real Estate",
+        "description": "Commercial real estate agent specializing in warehouse and industrial space for contractors",
         "telephone": "561-718-6725",
         "address": {
             "@type": "PostalAddress",
@@ -29,47 +28,28 @@
             "addressCountry": "US"
         },
         "areaServed": "Palm Beach County, Florida",
-        "serviceType": "Commercial Real Estate - Warehouse & Flex Space",
-        "audience": {
-            "@type": "Audience",
-            "audienceType": "Contractors, Construction Companies, Trade Professionals"
-        }
+        "serviceType": "Commercial Real Estate - Warehouse & Industrial Space",
+        "priceRange": "$$"
     }
     </script>
     
-    <!-- FAQ Schema for Voice Search -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-            {
-                "@type": "Question",
-                "name": "What warehouse spaces are available for contractors in Palm Beach County?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "We have contractor-ready warehouse spaces from 1,500 to 10,000 sq ft with 14ft+ clearance, 3-phase power, and secured yards for equipment storage."
-                }
-            },
-            {
-                "@type": "Question", 
-                "name": "Do you offer flexible lease terms for contractors?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Yes, we offer month-to-month options and flexible terms that work with project cycles and seasonal business needs."
-                }
-            }
-        ]
-    }
-    </script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-N3VQBQK');</script>
     
-    <!-- Configuration -->
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script>
-        // Environment configuration
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+        
+        // Configuration
         window.CONFIG = {
-            GTM_ID: 'GTM-XXXXXXX', // Replace with actual GTM ID
-            GA4_ID: 'G-XXXXXXXXXX', // Replace with actual GA4 ID
-            FB_PIXEL_ID: 'XXXXXXXXX', // Replace with actual FB Pixel ID
             TRACKING_NUMBERS: {
                 default: '561-718-6725',
                 google_ads: '561-718-6726',
@@ -90,61 +70,26 @@
             return 'default';
         }
         
-        // Store source for session
         const trafficSource = getTrafficSource();
         sessionStorage.setItem('traffic_source', trafficSource);
         
-        // Get tracking phone number
-        function getTrackingNumber(source = null) {
-            const currentSource = source || sessionStorage.getItem('traffic_source') || 'default';
-            return window.CONFIG.TRACKING_NUMBERS[currentSource] || window.CONFIG.TRACKING_NUMBERS.default;
+        function getTrackingNumber() {
+            const source = sessionStorage.getItem('traffic_source') || 'default';
+            return window.CONFIG.TRACKING_NUMBERS[source] || window.CONFIG.TRACKING_NUMBERS.default;
         }
         
-        // Revenue tracking helper
-        function trackRevenue(event, value, additionalData = {}) {
-            if (typeof gtag !== 'undefined') {
-                gtag('event', event, {
-                    value: value,
-                    currency: 'USD',
-                    traffic_source: trafficSource,
-                    ...additionalData
-                });
-            }
+        // Conversion tracking
+        function trackConversion(event, value = 35000, data = {}) {
+            gtag('event', event, {
+                value: value,
+                currency: 'USD',
+                traffic_source: trafficSource,
+                ...data
+            });
         }
-    </script>
-    
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer',window.CONFIG.GTM_ID);</script>
-    
-    <!-- Fallback GA4 if GTM fails -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=" + window.CONFIG.GA4_ID></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', window.CONFIG.GA4_ID);
-    </script>
-    
-    <!-- Facebook Pixel -->
-    <script>
-        !function(f,b,e,v,n,t,s)
-        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-        n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t,s)}(window, document,'script',
-        'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', window.CONFIG.FB_PIXEL_ID);
-        fbq('track', 'PageView');
     </script>
     
     <style>
-        /* Critical CSS - Inlined for Performance */
         * {
             margin: 0;
             padding: 0;
@@ -158,12 +103,12 @@
             background-color: #ffffff;
         }
         
-        /* Sticky Header */
+        /* Header */
         .header {
+            background: #ffffff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             position: sticky;
             top: 0;
-            background: #ffffff;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             z-index: 1000;
             padding: 1rem 0;
         }
@@ -178,467 +123,337 @@
         }
         
         .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #1e40af;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1a1a1a;
         }
         
         .header-phone {
-            background: #64748b;
+            background: #dc2626;
             color: white;
             padding: 0.75rem 1.5rem;
-            border-radius: 8px;
+            border-radius: 6px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 1rem;
-            min-height: 48px;
-            display: flex;
-            align-items: center;
+            font-size: 1.1rem;
             transition: all 0.3s ease;
         }
         
         .header-phone:hover {
-            background: #475569;
+            background: #b91c1c;
             transform: translateY(-1px);
         }
         
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
-            color: white;
-            padding: 5rem 0;
-            text-align: center;
+            background: #f8fafc;
+            padding: 3rem 0 4rem;
         }
         
         .hero-content {
-            max-width: 900px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 1rem;
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 3rem;
+            align-items: center;
         }
         
-        .hero h1 {
-            font-size: 3.5rem;
+        .hero-text h1 {
+            font-size: 3rem;
             font-weight: 700;
-            margin-bottom: 1.5rem;
             line-height: 1.1;
-            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+            color: #1a1a1a;
         }
         
-        .hero-subhead {
-            font-size: 1.4rem;
-            margin-bottom: 1.5rem;
-            opacity: 0.95;
-            font-weight: 500;
+        .hero-text .subhead {
+            font-size: 1.3rem;
+            color: #4b5563;
+            margin-bottom: 2rem;
             line-height: 1.4;
         }
         
-        .urgency-badge {
-            background: #dc2626;
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 25px;
-            font-weight: 600;
-            display: inline-block;
-            margin-bottom: 3rem;
-            animation: pulse 2s infinite;
-            font-size: 1rem;
+        .value-props {
+            list-style: none;
+            margin-bottom: 2rem;
         }
         
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.85; }
-        }
-        
-        .cta-buttons {
+        .value-props li {
+            padding: 0.5rem 0;
+            font-size: 1.1rem;
+            color: #374151;
             display: flex;
-            gap: 2rem;
-            justify-content: center;
+            align-items: center;
+        }
+        
+        .value-props li:before {
+            content: "✓";
+            color: #059669;
+            font-weight: bold;
+            margin-right: 0.75rem;
+            font-size: 1.2rem;
+        }
+        
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
             flex-wrap: wrap;
-            margin-bottom: 3rem;
         }
         
         .btn-primary {
             background: #dc2626;
             color: white;
-            padding: 1.25rem 2.5rem;
+            padding: 1rem 2rem;
             border: none;
-            border-radius: 8px;
-            font-size: 1.2rem;
+            border-radius: 6px;
+            font-size: 1.1rem;
             font-weight: 600;
             text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            min-height: 56px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(220, 38, 38, 0.3);
         }
         
         .btn-primary:hover {
             background: #b91c1c;
             transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(220, 38, 38, 0.4);
         }
         
-        .hero-phone-cta {
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 12px;
-            padding: 1rem;
-            backdrop-filter: blur(10px);
-        }
-        
-        .hero-phone-buttons {
-            display: flex;
-            gap: 1rem;
-        }
-        
-        .hero-phone-btn {
-            background: rgba(255, 255, 255, 0.9);
-            color: #1e40af;
-            padding: 1rem 1.5rem;
-            border-radius: 8px;
-            font-size: 1rem;
+        .btn-secondary {
+            background: transparent;
+            color: #dc2626;
+            border: 2px solid #dc2626;
+            padding: 1rem 2rem;
+            border-radius: 6px;
+            font-size: 1.1rem;
             font-weight: 600;
             text-decoration: none;
+            transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            min-height: 48px;
-            transition: all 0.3s ease;
-            flex: 1;
-            justify-content: center;
         }
         
-        .hero-phone-btn:hover {
-            background: white;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        .btn-secondary:hover {
+            background: #dc2626;
+            color: white;
         }
         
-        .trust-badge {
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
-        
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-        
-        /* Section Spacing */
-        .section {
-            padding: 5rem 0;
-        }
-        
-        .section h2 {
-            font-size: 2.75rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 3.5rem;
-            color: #1a1a1a;
-            line-height: 1.2;
-            letter-spacing: -0.02em;
-        }
-        
-        /* Benefits Grid */
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
-            margin-top: 3.5rem;
-        }
-        
-        .benefit-card {
+        /* Form Card */
+        .form-card {
             background: white;
             padding: 2.5rem;
-            border-radius: 16px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             border: 1px solid #e5e7eb;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-            position: relative;
         }
         
-        .benefit-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
-        }
-        
-        .benefit-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: #2563eb;
-            border-radius: 16px 16px 0 0;
-        }
-        
-        .benefit-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            display: block;
-        }
-        
-        .benefit-card h3 {
-            font-size: 1.4rem;
+        .form-card h2 {
+            font-size: 1.5rem;
             font-weight: 700;
             margin-bottom: 1rem;
             color: #1a1a1a;
-            line-height: 1.3;
+            text-align: center;
         }
         
-        .benefit-card p {
-            color: #4b5563;
-            line-height: 1.6;
+        .form-card .subtitle {
+            text-align: center;
+            color: #6b7280;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #374151;
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #dc2626;
+        }
+        
+        .form-submit {
+            width: 100%;
+            background: #dc2626;
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .form-submit:hover {
+            background: #b91c1c;
+        }
+        
+        /* Credentials */
+        .credentials {
+            background: #1f2937;
+            color: white;
+            padding: 2rem 0;
+        }
+        
+        .credentials-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            text-align: center;
+        }
+        
+        .credentials h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .credentials p {
+            opacity: 0.9;
             font-size: 1rem;
         }
         
         /* Social Proof */
         .social-proof {
-            background: #f8fafc;
-        }
-        
-        .testimonial-carousel {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
-            margin-bottom: 4rem;
-        }
-        
-        .testimonial {
+            padding: 4rem 0;
             background: white;
-            padding: 2.5rem;
-            border-radius: 16px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            border: 1px solid #e5e7eb;
-            transition: all 0.3s ease;
-            position: relative;
         }
         
-        .testimonial:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        .social-proof-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
         }
         
-        .testimonial::before {
-            content: '"';
-            position: absolute;
-            top: -10px;
-            left: 20px;
-            font-size: 4rem;
-            color: #2563eb;
-            font-weight: bold;
-            line-height: 1;
-        }
-        
-        .testimonial-text {
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #374151;
-        }
-        
-        .testimonial-author {
-            font-weight: 600;
-            color: #2563eb;
-            font-size: 1rem;
-        }
-        
-        .live-counter {
-            text-align: center;
-            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
-            color: white;
-            padding: 2rem;
-            border-radius: 16px;
-            font-size: 1.4rem;
+        .social-proof h2 {
+            font-size: 2.5rem;
             font-weight: 700;
-            box-shadow: 0 8px 16px rgba(37, 99, 235, 0.3);
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #1a1a1a;
         }
         
-        /* Availability Grid */
-        .availability-grid {
+        .placements-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
-            margin-top: 3rem;
+            margin-bottom: 3rem;
         }
         
-        .property-card {
-            background: white;
+        .placement-card {
+            background: #f8fafc;
+            padding: 2rem;
             border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+            border-left: 4px solid #059669;
         }
         
-        .property-card:hover {
-            transform: translateY(-4px);
+        .placement-size {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #059669;
+            margin-bottom: 0.5rem;
         }
         
-        .property-image {
-            height: 200px;
-            background: linear-gradient(45deg, #e5e7eb, #d1d5db);
+        .placement-business {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+        }
+        
+        .placement-details {
+            color: #6b7280;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+        
+        .placement-time {
+            color: #dc2626;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        
+        /* Process Section */
+        .process {
+            background: #f8fafc;
+            padding: 4rem 0;
+        }
+        
+        .process-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .process h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #1a1a1a;
+        }
+        
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .process-step {
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .step-number {
+            background: #dc2626;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
-            color: #6b7280;
-        }
-        
-        .property-content {
-            padding: 1.5rem;
-        }
-        
-        .property-badges {
-            display: flex;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
-        }
-        
-        .badge {
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-        
-        .badge-size {
-            background: #dbeafe;
-            color: #1e40af;
-        }
-        
-        .badge-ready {
-            background: #dcfce7;
-            color: #166534;
-        }
-        
-        .badge-soon {
-            background: #fef3c7;
-            color: #92400e;
-        }
-        
-        .property-price {
             font-size: 1.5rem;
             font-weight: 700;
-            color: #dc2626;
-            margin-bottom: 1rem;
+            margin: 0 auto 1.5rem;
         }
         
-        .property-features {
-            list-style: none;
-            margin-bottom: 1.5rem;
-        }
-        
-        .property-features li {
-            padding: 0.25rem 0;
-            color: #4b5563;
-        }
-        
-        .property-features li:before {
-            content: "✓ ";
-            color: #10b981;
-            font-weight: bold;
-        }
-        
-        /* Lead Capture Form */
-        .lead-form {
-            background: #1e40af;
-            color: white;
-            padding: 5rem 0;
-        }
-        
-        .form-container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            padding: 3.5rem;
-            border-radius: 16px;
-            color: #1a1a1a;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-        
-        .form-container h2 {
-            font-size: 2rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 2.5rem;
-            color: #1a1a1a;
-        }
-        
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem 1.5rem;
-            margin-bottom: 2.5rem;
-        }
-        
-        .form-group {
-            margin-bottom: 0;
-        }
-        
-        .form-group.full-width {
-            grid-column: 1 / -1;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.75rem;
+        .step-title {
+            font-size: 1.3rem;
             font-weight: 600;
-            color: #374151;
-            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
         }
         
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid #e5e7eb;
-            border-radius: 8px;
-            font-size: 1rem;
-            min-height: 52px;
-            background: white;
-            transition: all 0.3s ease;
-        }
-        
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #2563eb;
-            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
-        }
-        
-        .checkbox-group {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.75rem;
-            margin-bottom: 2rem;
-            padding: 1rem;
-            background: #f8fafc;
-            border-radius: 8px;
-        }
-        
-        .checkbox-group input[type="checkbox"] {
-            width: auto;
-            min-height: auto;
-            margin-top: 0.25rem;
-        }
-        
-        .checkbox-group label {
-            margin-bottom: 0;
-            font-weight: 500;
-            color: #4b5563;
+        .step-description {
+            color: #6b7280;
+            line-height: 1.5;
         }
         
         /* Mobile Sticky CTA */
-        .mobile-sticky-cta {
+        .mobile-sticky {
             position: fixed;
             bottom: 0;
             left: 0;
@@ -650,7 +465,7 @@
             box-shadow: 0 -4px 6px rgba(0,0,0,0.1);
         }
         
-        .mobile-cta-content {
+        .mobile-sticky-content {
             display: flex;
             gap: 0.5rem;
             max-width: 400px;
@@ -670,183 +485,75 @@
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
-            min-height: 48px;
-        }
-        
-        .mobile-cta-btn:hover {
-            background: #f3f4f6;
-        }
-        
-        /* Phone Link Components */
-        .phone-link-container {
-            display: flex;
-            gap: 0.5rem;
-            align-items: center;
-        }
-        
-        .phone-link {
-            background: #dc2626;
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            min-height: 48px;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.3s ease;
-        }
-        
-        .phone-link:hover {
-            background: #b91c1c;
-            transform: translateY(-2px);
-        }
-        
-        .phone-link.secondary {
-            background: transparent;
-            border: 2px solid #dc2626;
-            color: #dc2626;
-        }
-        
-        .phone-link.secondary:hover {
-            background: #dc2626;
-            color: white;
         }
         
         /* Footer */
         .footer {
-            background: #1a1a1a;
+            background: #1f2937;
             color: white;
             padding: 3rem 0 2rem;
         }
         
         .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
-            margin-bottom: 2rem;
         }
         
         .footer-section h4 {
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             margin-bottom: 1rem;
+            font-weight: 600;
         }
         
-        .trust-badges {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-        
-        .trust-badge-item {
-            background: #374151;
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            font-size: 0.9rem;
+        .footer-section p {
+            opacity: 0.9;
+            line-height: 1.5;
+            font-size: 0.95rem;
         }
         
         .footer-bottom {
             border-top: 1px solid #374151;
+            margin-top: 2rem;
             padding-top: 2rem;
             text-align: center;
-            color: #9ca3af;
+            opacity: 0.8;
+            font-size: 0.9rem;
         }
         
         /* Mobile Optimizations */
         @media (max-width: 768px) {
-            .hero {
-                padding: 4rem 0;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero-subhead {
-                font-size: 1.2rem;
-            }
-            
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-                gap: 1.5rem;
-            }
-            
-            .btn-primary {
-                width: 100%;
-                max-width: 320px;
-            }
-            
-            .hero-phone-cta {
-                width: 100%;
-                max-width: 320px;
-            }
-            
-            .hero-phone-buttons {
-                flex-direction: column;
-                gap: 0.75rem;
-            }
-            
-            .section {
-                padding: 4rem 0;
-            }
-            
-            .section h2 {
-                font-size: 2.25rem;
-            }
-            
-            .benefits-grid {
+            .hero-content {
                 grid-template-columns: 1fr;
                 gap: 2rem;
+                text-align: center;
             }
             
-            .benefit-card {
-                padding: 2rem;
+            .hero-text h1 {
+                font-size: 2.2rem;
             }
             
-            .testimonial-carousel {
-                grid-template-columns: 1fr;
-                gap: 2rem;
+            .hero-cta {
+                justify-content: center;
             }
             
-            .testimonial {
-                padding: 2rem;
-            }
-            
-            .form-container {
-                padding: 2.5rem 1.5rem;
-                margin: 0 1rem;
-            }
-            
-            .form-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-            
-            .mobile-sticky-cta {
+            .mobile-sticky {
                 display: block;
             }
             
             body {
-                padding-bottom: 80px; /* Space for sticky CTA */
+                padding-bottom: 80px;
             }
             
-            .phone-link-container {
-                flex-direction: column;
-                gap: 0.5rem;
+            .process-steps {
+                grid-template-columns: 1fr;
             }
             
-            .phone-link {
-                width: 100%;
-                justify-content: center;
-            }
-            
-            .exit-popup-content {
-                padding: 2.5rem 2rem;
-                margin: 2rem 1rem;
+            .placements-grid {
+                grid-template-columns: 1fr;
             }
         }
         
@@ -857,8 +564,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(30, 64, 175, 0.9);
-            backdrop-filter: blur(8px);
+            background: rgba(0,0,0,0.8);
             z-index: 10000;
             display: none;
             align-items: center;
@@ -867,323 +573,226 @@
         
         .exit-popup-content {
             background: white;
-            padding: 3.5rem;
-            border-radius: 20px;
-            max-width: 550px;
+            padding: 3rem;
+            border-radius: 12px;
+            max-width: 500px;
             margin: 1rem;
             text-align: center;
             position: relative;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
-            border: 1px solid #e5e7eb;
-        }
-        
-        .exit-popup-content h3 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin-bottom: 1rem;
-            line-height: 1.3;
-        }
-        
-        .exit-popup-content p {
-            font-size: 1.1rem;
-            color: #4b5563;
-            line-height: 1.6;
-            margin-bottom: 2rem;
         }
         
         .exit-popup-close {
             position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
-            background: #f3f4f6;
+            top: 1rem;
+            right: 1rem;
+            background: none;
             border: none;
             font-size: 1.5rem;
             cursor: pointer;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #6b7280;
-            transition: all 0.3s ease;
-        }
-        
-        .exit-popup-close:hover {
-            background: #e5e7eb;
-            color: #374151;
         }
     </style>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N3VQBQK"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     
     <!-- Header -->
     <header class="header">
         <div class="header-content">
-            <div class="logo">Commercial Real Estate Services | Industrial Property Specialist</div>
-            <div class="header-phone-container" id="header-phone"></div>
+            <div class="logo">Zachary Vorsteg, Commercial Real Estate</div>
+            <a href="#" class="header-phone" id="header-phone">📞 Call Now</a>
         </div>
     </header>
     
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h1>Find Your Next Industrial Space in 48 Hours</h1>
-            <div class="hero-subhead">Skip the brokers' runaround. Direct access to warehouse owners ready to lease.</div>
-            <div class="urgency-badge" id="urgency-counter">Your Direct Line to Warehouse & Flex Space</div>
-            
-            <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 12px; margin: 2rem 0; backdrop-filter: blur(10px);">
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; text-align: left;">
-                    <div>✓ Warehouses with 3-phase power</div>
-                    <div>✓ Flexible lease terms available</div>
-                    <div>✓ Grade-level access standard</div>
-                    <div>✓ Contractor-ready facilities</div>
-                </div>
-            </div>
-            
-            <div class="cta-buttons">
-                <a href="#lead-form" class="btn-primary" onclick="trackRevenue('cta_click', 1750, {element: 'hero_primary'});">
-                    <span>🏭</span> Get My Property Matches
-                </a>
-                <div class="hero-phone-cta" id="hero-phone-cta">
-                    <div class="hero-phone-buttons" id="hero-phone-buttons">
-                        <!-- Dynamic phone buttons will be inserted here -->
-                    </div>
-                </div>
-            </div>
-            <div class="trust-badge">Zachary Vorsteg, Licensed Florida Real Estate Sales Associate</div>
-        </div>
-    </section>
-    
-    <!-- Service Description Section -->
-    <section class="section" style="background: #f8fafc;">
-        <div class="container">
-            <h2>Commercial Real Estate Agent for Contractors & Industrial Users</h2>
-            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-                <p style="font-size: 1.2rem; line-height: 1.6; margin-bottom: 2rem; color: #374151;">
-                    We connect contractors and trade professionals with available warehouse, flex, and industrial spaces throughout Palm Beach County. No listings to browse - just tell us what you need, and we'll match you with property owners ready to lease.
-                </p>
+            <div class="hero-text">
+                <h1>Get Warehouse Space in Palm Beach County This Week</h1>
+                <p class="subhead">I know which landlords have space TODAY and what they'll actually accept. One call to me replaces 20 cold calls.</p>
                 
-                <div style="background: white; padding: 2.5rem; border-radius: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-top: 3rem;">
-                    <h3 style="font-size: 1.5rem; margin-bottom: 2rem; color: #1a1a1a;">How It Works</h3>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; text-align: left;">
-                        <div>
-                            <div style="background: #2563eb; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-bottom: 1rem;">1</div>
-                            <h4 style="font-weight: 600; margin-bottom: 0.5rem;">Submit Your Requirements</h4>
-                            <p style="color: #6b7280; font-size: 0.95rem;">Size, power needs, timeline</p>
-                        </div>
-                        <div>
-                            <div style="background: #2563eb; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-bottom: 1rem;">2</div>
-                            <h4 style="font-weight: 600; margin-bottom: 0.5rem;">Receive Curated Matches</h4>
-                            <p style="color: #6b7280; font-size: 0.95rem;">We identify 3-5 properties that fit</p>
-                        </div>
-                        <div>
-                            <div style="background: #2563eb; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-bottom: 1rem;">3</div>
-                            <h4 style="font-weight: 600; margin-bottom: 0.5rem;">Tour This Week</h4>
-                            <p style="color: #6b7280; font-size: 0.95rem;">Direct introductions to property owners</p>
-                        </div>
-                        <div>
-                            <div style="background: #2563eb; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-bottom: 1rem;">4</div>
-                            <h4 style="font-weight: 600; margin-bottom: 0.5rem;">Negotiate & Move In</h4>
-                            <p style="color: #6b7280; font-size: 0.95rem;">We facilitate terms that work for contractors</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Why Work With Us Section -->
-    <section id="contractor-benefits" class="section">
-        <div class="container">
-            <h2>Why Work With Us</h2>
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <div class="benefit-icon">🤝</div>
-                    <h3>Direct Owner Access</h3>
-                    <p>No daisy chains. We connect you directly with decision-makers who can approve your lease today.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">🔧</div>
-                    <h3>Contractor Specialist</h3>
-                    <p>We understand 3-phase power, equipment storage, and seasonal flexibility. No explaining your business model repeatedly.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">⚡</div>
-                    <h3>Speed to Occupancy</h3>
-                    <p>Most clients tour within 48 hours and move in within a week. No corporate approval committees.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">💰</div>
-                    <h3>No Hidden Fees</h3>
-                    <p>Property owners pay our commission. You pay nothing for our matchmaking service.</p>
+                <ul class="value-props">
+                    <li>Direct introductions to decision makers</li>
+                    <li>I know who's desperate to lease</li>
+                    <li>Negotiate terms that work for contractors</li>
+                    <li>No cost to you - landlords pay my commission</li>
+                </ul>
+                
+                <div class="hero-cta">
+                    <a href="#form" class="btn-primary" onclick="trackConversion('cta_click', 35000, {location: 'hero'});">
+                        📞 Call Me Now
+                    </a>
+                    <a href="#form" class="btn-secondary" onclick="trackConversion('form_view', 0, {location: 'hero'});">
+                        📝 Send Details
+                    </a>
                 </div>
             </div>
             
-            <div style="background: #1e40af; color: white; padding: 2.5rem; border-radius: 16px; margin-top: 4rem; text-align: center;">
-                <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Your Dedicated Industrial Tenant Representative</h3>
-                <p style="font-size: 1.1rem; line-height: 1.6; opacity: 0.95;">
-                    We don't maintain listings. We maintain relationships. When you need space, we activate our network of property owners to find matches that actually work for contractors. No browsing outdated listings. No calling on spaces already leased. Just qualified opportunities ready for your business.
-                </p>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Social Proof Section -->
-    <section class="section social-proof">
-        <div class="container">
-            <h2>Professionally Managed Properties</h2>
-            <div class="testimonial-carousel">
-                <div class="testimonial">
-                    <div class="testimonial-text">"The 3-phase power and yard space work perfectly for our contracting business."</div>
-                    <div class="testimonial-author">- M. Rodriguez, General Contractor (Used with permission)</div>
-                </div>
-                <div class="testimonial">
-                    <div class="testimonial-text">"The flexible lease terms accommodate our seasonal business needs well."</div>
-                    <div class="testimonial-author">- S. Chen, HVAC Contractor (Used with permission)</div>
-                </div>
-                <div class="testimonial">
-                    <div class="testimonial-text">"Convenient location with good access to suppliers and transportation routes."</div>
-                    <div class="testimonial-author">- J. Thompson, Electrical Contractor (Used with permission)</div>
-                </div>
-            </div>
-            <p style="text-align: center; font-size: 0.9rem; color: #6b7280; margin-top: 2rem;">
-                <em>These are representative experiences of typical tenants</em>
-            </p>
-            <div class="live-counter">Multiple Properties Available</div>
-        </div>
-    </section>
-    
-    <!-- Lead Capture Form -->
-    <section id="lead-form" class="section lead-form">
-        <div class="container">
-            <div class="form-container">
-                <h2>Get Matched with Available Spaces</h2>
-                <form id="contractorForm" method="POST">
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label for="business_name">Business Name *</label>
-                            <input type="text" id="business_name" name="business_name" required 
-                                   onfocus="trackFormField('business_name', 'focused')"
-                                   onblur="trackFormField('business_name', 'completed', this.value)"
-                                   placeholder="Your Company Name">
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Business Phone *</label>
-                            <input type="tel" id="phone" name="phone" required
-                                   onfocus="trackFormField('phone', 'focused')"
-                                   onblur="trackFormField('phone', 'completed', this.value)"
-                                   placeholder="(561) 555-0123">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email Address *</label>
-                            <input type="email" id="email" name="email" required
-                                   onfocus="trackFormField('email', 'focused')"
-                                   onblur="trackFormField('email', 'completed', this.value)"
-                                   placeholder="your@company.com">
-                        </div>
-                        <div class="form-group">
-                            <label for="budget">Current Monthly Facility Budget</label>
-                            <select id="budget" name="budget">
-                                <option value="">Select budget range...</option>
-                                <option value="under_3000">Under $3,000/month</option>
-                                <option value="3000_5000">$3,000 - $5,000/month</option>
-                                <option value="5000_8000">$5,000 - $8,000/month</option>
-                                <option value="8000_plus">$8,000+/month</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="size">Square Footage Needed</label>
-                            <select id="size" name="size" required>
-                                <option value="">Select size...</option>
-                                <option value="under_2500">Under 2,500 sq ft</option>
-                                <option value="2500_5000">2,500 - 5,000 sq ft</option>
-                                <option value="5000_10000">5,000 - 10,000 sq ft</option>
-                                <option value="10000_plus">10,000+ sq ft</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="electrical">Required Electrical Service</label>
-                            <select id="electrical" name="electrical" required>
-                                <option value="">Select electrical needs...</option>
-                                <option value="standard">Standard (110/220V)</option>
-                                <option value="3phase">3-Phase Power Required</option>
-                                <option value="heavy">Heavy Industrial (400+ amp)</option>
-                            </select>
-                        </div>
-                        <div class="form-group full-width">
-                            <label for="timeline">Move Timeline</label>
-                            <select id="timeline" name="timeline" required>
-                                <option value="">When do you need to move?</option>
-                                <option value="immediate">Immediate (Ready now)</option>
-                                <option value="30days">Within 30 Days</option>
-                                <option value="60days">Within 60 Days</option>
-                                <option value="planning">Planning Ahead (90+ days)</option>
-                            </select>
-                        </div>
+            <div class="form-card" id="form">
+                <h2>Get Matched This Week</h2>
+                <p class="subtitle">Tell me what you need. I'll find who has it.</p>
+                
+                <form id="leadForm" onsubmit="handleFormSubmit(event)">
+                    <div class="form-group">
+                        <label for="business">Business Name *</label>
+                        <input type="text" id="business" name="business" required 
+                               onfocus="trackConversion('form_start', 35000)"
+                               placeholder="Your Company Name">
                     </div>
                     
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="prefer_text" name="prefer_text">
-                        <label for="prefer_text">Text me property matches (faster response)</label>
+                    <div class="form-group">
+                        <label for="phone">Phone *</label>
+                        <input type="tel" id="phone" name="phone" required 
+                               placeholder="(561) 555-0123">
                     </div>
                     
-                    <button type="submit" class="btn-primary" style="width: 100%; margin-top: 1rem;">
-                        Get My Property Matches
+                    <div class="form-group">
+                        <label for="size">Square Footage Needed *</label>
+                        <select id="size" name="size" required>
+                            <option value="">Select size...</option>
+                            <option value="under_2500">Under 2,500 sq ft</option>
+                            <option value="2500_5000">2,500 - 5,000 sq ft</option>
+                            <option value="5000_plus">5,000+ sq ft</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="form-submit">
+                        Get My Matches Today
                     </button>
-                    
-                    <input type="hidden" id="traffic_source" name="traffic_source">
-                    <input type="hidden" id="form_start_time" name="form_start_time">
                 </form>
             </div>
         </div>
     </section>
     
+    <!-- Credentials -->
+    <section class="credentials">
+        <div class="credentials-content">
+            <h3>Zachary Vorsteg, Licensed FL Real Estate Sales Associate</h3>
+            <p>License #SL3603483 | Cornerstone Realty | Serving Palm Beach County Since 2020</p>
+        </div>
+    </section>
+    
+    <!-- Social Proof -->
+    <section class="social-proof">
+        <div class="social-proof-content">
+            <h2>Recent Successful Placements</h2>
+            
+            <div class="placements-grid">
+                <div class="placement-card">
+                    <div class="placement-size">4,200 sq ft</div>
+                    <div class="placement-business">HVAC Contractor</div>
+                    <div class="placement-details">3-phase power, grade-level access, month-to-month terms secured</div>
+                    <div class="placement-time">Completed in 5 days</div>
+                </div>
+                
+                <div class="placement-card">
+                    <div class="placement-size">2,800 sq ft</div>
+                    <div class="placement-business">Electrical Contractor</div>
+                    <div class="placement-details">Equipment yard included, flexible lease terms, near supplier hub</div>
+                    <div class="placement-time">Completed in 3 days</div>
+                </div>
+                
+                <div class="placement-card">
+                    <div class="placement-size">6,500 sq ft</div>
+                    <div class="placement-business">General Contractor</div>
+                    <div class="placement-details">Office build-out included, 400-amp service, dock access</div>
+                    <div class="placement-time">Completed in 7 days</div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; background: #f8fafc; padding: 2rem; border-radius: 12px;">
+                <p style="font-size: 1.1rem; color: #374151; margin-bottom: 0.5rem;">
+                    <strong>Average time to lease completion: 5.2 days</strong>
+                </p>
+                <p style="color: #6b7280; font-size: 0.95rem;">
+                    <em>Representative examples of recent placements. Results may vary.</em>
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Process -->
+    <section class="process">
+        <div class="process-content">
+            <h2>How I Get You Space Fast</h2>
+            
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div class="step-title">You Tell Me What You Need</div>
+                    <div class="step-description">Size, power requirements, timeline, budget. Takes 2 minutes.</div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div class="step-title">I Check My Network</div>
+                    <div class="step-description">I know which landlords have space and what they'll accept. No cold calling.</div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div class="step-title">Direct Introductions</div>
+                    <div class="step-description">I connect you directly with decision makers. Skip the property managers.</div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <div class="step-title">Negotiate & Close</div>
+                    <div class="step-description">I help negotiate terms that work for contractors. Move in this week.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <!-- Mobile Sticky CTA -->
-    <div class="mobile-sticky-cta" id="mobileStickyBar">
-        <div class="mobile-cta-content" id="mobile-cta-buttons">
-            <!-- Dynamic phone buttons will be inserted here -->
+    <div class="mobile-sticky">
+        <div class="mobile-sticky-content">
+            <a href="#" class="mobile-cta-btn" id="mobile-call" onclick="trackConversion('mobile_call', 35000);">
+                📞 Call
+            </a>
+            <a href="#" class="mobile-cta-btn" id="mobile-text" onclick="trackConversion('mobile_text', 35000);">
+                💬 Text
+            </a>
         </div>
     </div>
     
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>Licensed Real Estate Professional</h4>
-                    <p><strong>Zachary Vorsteg, Licensed Florida Real Estate Sales Associate</strong></p>
-                    <p>License #SL3603483 | Cornerstone Realty</p>
-                    <div id="footer-phone" style="margin-top: 1rem;"></div>
-                    <p>📧 info@warehousesforcontractors.com</p>
-                    <p>📍 Commercial & Industrial Property Services</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Commercial Real Estate Disclosures</h4>
-                    <p style="font-size: 0.9rem; line-height: 1.4;">
-                        All terms subject to landlord approval and credit verification<br>
-                        Lease rates and availability subject to change<br>
-                        Commission paid by property owner/landlord<br>
-                        Commercial lease rates quoted per square foot annually unless otherwise noted<br>
-                        All spaces subject to prior lease
-                    </p>
-                </div>
-                <div class="footer-section">
-                    <h4>Service Disclaimer</h4>
-                    <p style="font-size: 0.9rem; line-height: 1.4;">
-                        This is a property matchmaking service. We do not own or control inventory. All negotiations are between tenant and property owner.<br><br>
-                        Additional costs may include CAM, insurance, and taxes (Triple Net). Personal guarantees may be required based on creditworthiness.
-                    </p>
-                </div>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p id="footer-phone">📞 561-718-6725</p>
+                <p>📧 zachary@warehousesforcontractors.com</p>
+                <p>📍 Serving Palm Beach County, FL</p>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Zachary Vorsteg, Licensed FL Real Estate Sales Associate. All rights reserved.</p>
-                <p style="margin-top: 0.5rem; font-size: 0.8rem;">Commercial real estate services throughout Palm Beach County, Florida.</p>
+            
+            <div class="footer-section">
+                <h4>Legal Disclosures</h4>
+                <p>
+                    Zachary Vorsteg, Licensed FL Real Estate Sales Associate #SL3603483<br>
+                    Cornerstone Realty<br><br>
+                    All terms subject to landlord approval and credit verification.<br>
+                    Prices and availability subject to change without notice.<br>
+                    Commission paid by property owner/landlord.
+                </p>
             </div>
+            
+            <div class="footer-section">
+                <h4>Service Areas</h4>
+                <p>
+                    West Palm Beach<br>
+                    Boynton Beach<br>
+                    Delray Beach<br>
+                    Boca Raton<br>
+                    Lake Worth<br>
+                    Wellington
+                </p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 Zachary Vorsteg Commercial Real Estate. All rights reserved.</p>
         </div>
     </footer>
     
@@ -1191,213 +800,78 @@
     <div class="exit-popup" id="exitPopup">
         <div class="exit-popup-content">
             <button class="exit-popup-close" onclick="closeExitPopup()">&times;</button>
-            <h3>Request Our Contractor Move-In Checklist</h3>
-            <p>Get our comprehensive PDF guide that covers important considerations when evaluating warehouse space for your contracting business.</p>
-            <form id="exitForm" style="margin-top: 2rem;">
-                <div class="form-group">
-                    <input type="email" placeholder="Enter your email" required style="margin-bottom: 1rem;">
-                </div>
-                <button type="submit" class="btn-primary" style="width: 100%;">Request Checklist</button>
-            </form>
+            <h3>Wait! Get My Direct Number</h3>
+            <p>Skip the website. Text me your requirements and I'll send you available options today.</p>
+            <div style="margin: 2rem 0;">
+                <a href="#" class="btn-primary" id="exit-text" onclick="trackConversion('exit_intent_text', 35000);">
+                    💬 Text Me Now
+                </a>
+            </div>
         </div>
     </div>
     
     <script>
-        // Initialize dynamic content and tracking
+        // Initialize dynamic content
         document.addEventListener('DOMContentLoaded', function() {
-            initializeDynamicContent();
-            initializeFormTracking();
-            initializeExitIntent();
-            initializeScrollTracking();
-            initializePerformanceTracking();
+            setupPhoneNumbers();
+            initializeTracking();
+            setupExitIntent();
         });
         
-        // Dynamic content initialization
-        function initializeDynamicContent() {
-            createPhoneLinks();
-            updateFormDefaults();
-        }
-        
-        // Removed dynamic units - using compliant static messaging
-        
-        // Create dynamic phone links with tracking
-        function createPhoneLinks() {
+        // Setup dynamic phone numbers
+        function setupPhoneNumbers() {
             const trackingNumber = getTrackingNumber();
-            const source = sessionStorage.getItem('traffic_source') || 'default';
             
-            // Header phone
-            const headerPhone = document.getElementById('header-phone');
-            if (headerPhone) {
-                headerPhone.innerHTML = `
-                    <a href="tel:${trackingNumber}" class="header-phone" onclick="trackRevenue('phone_click', 35000, {method: 'call', location: 'header'});">
-                        📞 ${trackingNumber}
-                    </a>
-                `;
-            }
+            // Update all phone displays
+            document.getElementById('header-phone').href = `tel:${trackingNumber}`;
+            document.getElementById('mobile-call').href = `tel:${trackingNumber}`;
+            document.getElementById('mobile-text').href = `sms:${trackingNumber}?body=I need warehouse space in Palm Beach County`;
+            document.getElementById('exit-text').href = `sms:${trackingNumber}?body=I need warehouse space`;
+            document.getElementById('footer-phone').innerHTML = `📞 <a href="tel:${trackingNumber}" style="color: white;">${trackingNumber}</a>`;
             
-            // Hero CTA phone
-            const heroPhoneButtons = document.getElementById('hero-phone-buttons');
-            if (heroPhoneButtons) {
-                heroPhoneButtons.innerHTML = `
-                    <a href="tel:${trackingNumber}" class="hero-phone-btn" onclick="trackRevenue('phone_click', 35000, {method: 'call', location: 'hero'});">
-                        📞 Call Now
-                    </a>
-                    <a href="sms:${trackingNumber}?body=I'm interested in warehouse space" class="hero-phone-btn" onclick="trackRevenue('phone_click', 35000, {method: 'sms', location: 'hero'});">
-                        💬 Text
-                    </a>
-                `;
-            }
-            
-            // Footer phone
-            const footerPhone = document.getElementById('footer-phone');
-            if (footerPhone) {
-                footerPhone.innerHTML = `<p>📞 <a href="tel:${trackingNumber}" style="color: white;" onclick="trackRevenue('phone_click', 35000, {method: 'call', location: 'footer'});">${trackingNumber}</a></p>`;
-            }
-            
-            // Mobile sticky CTA
-            const mobileCTA = document.getElementById('mobile-cta-buttons');
-            if (mobileCTA) {
-                mobileCTA.innerHTML = `
-                    <a href="tel:${trackingNumber}" class="mobile-cta-btn" onclick="trackRevenue('phone_click', 35000, {method: 'call', location: 'mobile_sticky'});">
-                        📞 Call Now
-                    </a>
-                    <a href="sms:${trackingNumber}?body=I'm interested in warehouse space" class="mobile-cta-btn" onclick="trackRevenue('phone_click', 35000, {method: 'sms', location: 'mobile_sticky'});">
-                        💬 Text
-                    </a>
-                `;
-            }
+            // Update hero CTAs
+            const heroCTA = document.querySelector('.hero-cta .btn-primary');
+            heroCTA.href = `tel:${trackingNumber}`;
         }
         
-        // Form tracking and analytics
-        function initializeFormTracking() {
-            const form = document.getElementById('contractorForm');
-            if (!form) return;
+        // Form submission handling
+        function handleFormSubmit(event) {
+            event.preventDefault();
             
-            // Set form start time
-            document.getElementById('form_start_time').value = Date.now();
-            document.getElementById('traffic_source').value = sessionStorage.getItem('traffic_source') || 'default';
-            
-            // Track form start
-            let formStarted = false;
-            const formInputs = form.querySelectorAll('input, select');
-            
-            formInputs.forEach(input => {
-                input.addEventListener('focus', function() {
-                    if (!formStarted) {
-                        formStarted = true;
-                        trackRevenue('form_start', 35000, {form_type: 'lead_capture'});
-                    }
-                });
-            });
-            
-            // Form submission
-            form.addEventListener('submit', async function(e) {
-                e.preventDefault();
-                
-                const formData = new FormData(form);
-                const formStartTime = parseInt(formData.get('form_start_time'));
-                const completionTime = (Date.now() - formStartTime) / 1000;
-                
-                // Track conversion
-                trackRevenue('generate_lead', 35000, {
-                    completion_time: completionTime,
-                    form_type: 'lead_capture',
-                    size: formData.get('size'),
-                    timeline: formData.get('timeline')
-                });
-                
-                // Submit to webhook
-                try {
-                    const leadData = {
-                        name: formData.get('name'),
-                        email: formData.get('email'),
-                        phone: formData.get('phone'),
-                        size: formData.get('size'),
-                        timeline: formData.get('timeline'),
-                        prefer_text: formData.get('prefer_text') === 'on',
-                        traffic_source: formData.get('traffic_source'),
-                        completion_time: completionTime,
-                        estimated_value: calculateLeadValue(formData.get('size')),
-                        timestamp: new Date().toISOString()
-                    };
-                    
-                    // In production, replace with actual webhook URL
-                    // await submitLead(leadData);
-                    
-                    // Redirect to thank you page
-                    window.location.href = 'thank-you.html';
-                } catch (error) {
-                    console.error('Form submission error:', error);
-                    alert('There was an issue submitting your request. Please call us directly at ' + getTrackingNumber());
-                }
-            });
-        }
-        
-        // Form field tracking
-        function trackFormField(field, action, value = '') {
-            trackRevenue('form_field_' + action, action === 'completed' && value ? 500 : 0, {
-                field: field,
-                filled: !!value
-            });
-        }
-        
-        // Calculate lead value based on size
-        function calculateLeadValue(size) {
-            const values = {
-                'small': 25000,
-                'medium': 35000,
-                'large': 50000
+            const formData = new FormData(event.target);
+            const data = {
+                business: formData.get('business'),
+                phone: formData.get('phone'),
+                size: formData.get('size'),
+                traffic_source: trafficSource,
+                timestamp: new Date().toISOString()
             };
-            return values[size] || 35000;
-        }
-        
-        // Exit intent detection
-        function initializeExitIntent() {
-            let exitIntentShown = false;
-            let hasSubmittedForm = false;
             
-            // Track form submission
-            const form = document.getElementById('contractorForm');
-            if (form) {
-                form.addEventListener('submit', () => hasSubmittedForm = true);
-            }
-            
-            // Mouse leave detection
-            document.addEventListener('mouseleave', function(e) {
-                if (e.clientY <= 0 && !exitIntentShown && !hasSubmittedForm) {
-                    exitIntentShown = true;
-                    trackRevenue('exit_intent_triggered', -35000, {trigger: 'mouse_leave'});
-                    showExitPopup();
-                }
+            // Track conversion
+            trackConversion('form_submit', 35000, {
+                size: data.size,
+                form_type: 'lead_capture'
             });
             
-            // Scroll-based exit intent (70% scroll)
-            window.addEventListener('scroll', function() {
-                const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
-                if (scrollPercent > 70 && !exitIntentShown && !hasSubmittedForm) {
-                    exitIntentShown = true;
-                    trackRevenue('exit_intent_triggered', -35000, {trigger: 'scroll_70'});
-                    showExitPopup();
-                }
+            // In production, send to your CRM/email
+            console.log('Lead data:', data);
+            
+            // Show success message
+            alert(`Thanks ${data.business}! I'll call you at ${data.phone} within 2 hours with available options.`);
+            
+            // Reset form
+            event.target.reset();
+        }
+        
+        // Initialize tracking
+        function initializeTracking() {
+            // Track page view
+            trackConversion('page_view', 0, {
+                page_title: document.title,
+                traffic_source: trafficSource
             });
-        }
-        
-        function showExitPopup() {
-            const popup = document.getElementById('exitPopup');
-            if (popup) {
-                popup.style.display = 'flex';
-            }
-        }
-        
-        function closeExitPopup() {
-            const popup = document.getElementById('exitPopup');
-            if (popup) {
-                popup.style.display = 'none';
-            }
-        }
-        
-        // Scroll depth tracking
-        function initializeScrollTracking() {
+            
+            // Track scroll depth
             let scrollDepths = [25, 50, 75, 100];
             let scrollDepthsReached = [];
             
@@ -1407,57 +881,47 @@
                 scrollDepths.forEach(function(depth) {
                     if (scrollPercent >= depth && !scrollDepthsReached.includes(depth)) {
                         scrollDepthsReached.push(depth);
-                        trackRevenue('scroll_depth', depth * 10, {depth: depth});
+                        trackConversion('scroll_depth', 0, {depth: depth});
                     }
                 });
             });
         }
         
-        // Performance tracking (Core Web Vitals)
-        function initializePerformanceTracking() {
-            // Track page load time
-            window.addEventListener('load', function() {
-                const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
-                trackRevenue('page_load_time', 0, {load_time: loadTime});
-            });
+        // Exit intent detection
+        function setupExitIntent() {
+            let exitIntentShown = false;
             
-            // Track time on page
-            let startTime = Date.now();
-            window.addEventListener('beforeunload', function() {
-                const timeOnPage = Math.round((Date.now() - startTime) / 1000);
-                trackRevenue('time_on_page', timeOnPage * 10, {time_seconds: timeOnPage});
+            document.addEventListener('mouseleave', function(e) {
+                if (e.clientY <= 0 && !exitIntentShown) {
+                    exitIntentShown = true;
+                    showExitPopup();
+                }
             });
         }
         
-        // Update form defaults from URL params
-        function updateFormDefaults() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const size = urlParams.get('size');
-            const timeline = urlParams.get('timeline');
-            
-            if (size) {
-                const sizeSelect = document.getElementById('size');
-                if (sizeSelect) sizeSelect.value = size;
-            }
-            
-            if (timeline) {
-                const timelineSelect = document.getElementById('timeline');
-                if (timelineSelect) timelineSelect.value = timeline;
-            }
+        function showExitPopup() {
+            document.getElementById('exitPopup').style.display = 'flex';
+            trackConversion('exit_intent_shown', 0);
         }
         
-        // Exit form submission
-        const exitForm = document.getElementById('exitForm');
-        if (exitForm) {
-            exitForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                trackRevenue('exit_form_submit', 5000, {lead_magnet: 'checklist_download'});
-                
-                closeExitPopup();
-                alert('Thank you! Check your email for the Contractor Move-In Checklist PDF.');
-            });
+        function closeExitPopup() {
+            document.getElementById('exitPopup').style.display = 'none';
         }
+        
+        // Phone click tracking
+        document.addEventListener('click', function(e) {
+            if (e.target.href && e.target.href.startsWith('tel:')) {
+                trackConversion('phone_click', 35000, {
+                    location: e.target.id || 'unknown'
+                });
+            }
+            
+            if (e.target.href && e.target.href.startsWith('sms:')) {
+                trackConversion('sms_click', 35000, {
+                    location: e.target.id || 'unknown'
+                });
+            }
+        });
     </script>
 </body>
 </html>
