@@ -129,7 +129,7 @@
         }
         
         .header-phone {
-            background: #10b981;
+            background: #dc2626;
             color: white;
             padding: 0.75rem 1.5rem;
             border-radius: 8px;
@@ -140,7 +140,7 @@
         }
         
         .header-phone:hover {
-            background: #059669;
+            background: #b91c1c;
             transform: translateY(-1px);
         }
         
@@ -159,19 +159,23 @@
         }
         
         .hero-text h1 {
-            font-size: 48px;
+            font-size: 52px;
             font-weight: 700;
             line-height: 1.1;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
             color: #1a1a1a;
+            letter-spacing: -0.02em;
         }
         
         .hero-text .subhead {
-            font-size: 18px;
+            font-size: 20px;
             color: #4b5563;
-            margin-bottom: 2rem;
-            line-height: 1.4;
+            margin-bottom: 3rem;
+            line-height: 1.5;
             font-weight: 400;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .value-props {
@@ -183,10 +187,10 @@
         }
         
         .value-props li {
-            padding: 0.5rem 0;
+            padding: 0.75rem 0;
             font-size: 18px;
             color: #1a1a1a;
-            font-weight: 700;
+            font-weight: 600;
         }
         
         .hero-cta {
@@ -194,7 +198,7 @@
             gap: 1rem;
             flex-wrap: wrap;
             justify-content: center;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
         }
         
         .btn-primary {
@@ -342,7 +346,7 @@
         
         /* Social Proof */
         .social-proof {
-            padding: 4rem 0;
+            padding: 5rem 0;
             background: white;
         }
         
@@ -353,31 +357,37 @@
         }
         
         .social-proof h2 {
-            font-size: 2.5rem;
+            font-size: 36px;
             font-weight: 700;
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
             color: #1a1a1a;
         }
         
         .placements-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
+            gap: 2.5rem;
+            margin-bottom: 4rem;
         }
         
         .placement-card {
             background: #f8fafc;
-            padding: 2rem;
-            border-radius: 12px;
-            border-left: 4px solid #059669;
+            padding: 2.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #dc2626;
+            transition: all 0.3s ease;
+        }
+        
+        .placement-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
         }
         
         .placement-size {
-            font-size: 1.5rem;
+            font-size: 24px;
             font-weight: 700;
-            color: #059669;
+            color: #dc2626;
             margin-bottom: 0.5rem;
         }
         
@@ -385,25 +395,26 @@
             font-weight: 600;
             margin-bottom: 0.5rem;
             color: #1a1a1a;
+            font-size: 18px;
         }
         
         .placement-details {
             color: #6b7280;
-            font-size: 0.95rem;
+            font-size: 16px;
             line-height: 1.4;
         }
         
         .placement-time {
             color: #dc2626;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 14px;
             margin-top: 0.5rem;
         }
         
         /* Process Section */
         .process {
             background: #f8fafc;
-            padding: 4rem 0;
+            padding: 5rem 0;
         }
         
         .process-content {
@@ -413,26 +424,34 @@
         }
         
         .process h2 {
-            font-size: 2.5rem;
+            font-size: 36px;
             font-weight: 700;
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
             color: #1a1a1a;
         }
         
         .process-steps {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            gap: 3rem;
         }
         
         .process-step {
             text-align: center;
             padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .process-step:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
         }
         
         .step-number {
-            background: #3b82f6;
+            background: #dc2626;
             color: white;
             width: 60px;
             height: 60px;
@@ -440,13 +459,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 24px;
             font-weight: 700;
             margin: 0 auto 1.5rem;
         }
         
         .step-title {
-            font-size: 1.3rem;
+            font-size: 20px;
             font-weight: 600;
             margin-bottom: 1rem;
             color: #1a1a1a;
@@ -455,6 +474,7 @@
         .step-description {
             color: #6b7280;
             line-height: 1.5;
+            font-size: 16px;
         }
         
         /* Mobile Sticky CTA */
@@ -481,7 +501,7 @@
         
         .mobile-cta-btn {
             flex: 1;
-            background: #10b981;
+            background: #dc2626;
             color: white;
             padding: 0.75rem;
             border: none;
@@ -496,15 +516,15 @@
         }
         
         .mobile-cta-btn:hover {
-            background: #059669;
+            background: #b91c1c;
         }
         
         .mobile-cta-btn:nth-child(2) {
-            background: #3b82f6;
+            background: #6b7280;
         }
         
         .mobile-cta-btn:nth-child(2):hover {
-            background: #2563eb;
+            background: #4b5563;
         }
         
         /* Footer */
@@ -546,23 +566,59 @@
         
         /* Mobile Optimizations */
         @media (max-width: 768px) {
+            .hero {
+                padding: 2rem 0 3rem;
+            }
+            
             .hero-text h1 {
                 font-size: 36px;
+                margin-bottom: 1.5rem;
             }
             
             .hero-text .subhead {
-                font-size: 16px;
+                font-size: 18px;
+                margin-bottom: 2rem;
+            }
+            
+            .value-props {
+                margin-bottom: 2rem;
             }
             
             .value-props div {
                 font-size: 16px;
+                padding: 0.5rem 0;
             }
             
             .btn-primary {
                 padding: 1.25rem 2rem;
                 font-size: 18px;
                 width: 100%;
-                max-width: 300px;
+                max-width: 320px;
+            }
+            
+            .form-section {
+                padding: 2rem 0;
+            }
+            
+            .form-card {
+                padding: 2rem;
+                margin: 0 1rem;
+            }
+            
+            .social-proof {
+                padding: 3rem 0;
+            }
+            
+            .social-proof h2 {
+                font-size: 28px;
+            }
+            
+            .process {
+                padding: 3rem 0;
+            }
+            
+            .process h2 {
+                font-size: 28px;
             }
             
             .mobile-sticky {
@@ -575,10 +631,12 @@
             
             .process-steps {
                 grid-template-columns: 1fr;
+                gap: 2rem;
             }
             
             .placements-grid {
                 grid-template-columns: 1fr;
+                gap: 2rem;
             }
         }
         
@@ -747,25 +805,25 @@
             
             <div class="process-steps">
                 <div class="process-step">
-                    <div class="step-number">1</div>
+                    <div class="step-number">📝</div>
                     <div class="step-title">You Tell Me What You Need</div>
                     <div class="step-description">Size, power requirements, timeline, budget. Takes 2 minutes.</div>
                 </div>
                 
                 <div class="process-step">
-                    <div class="step-number">2</div>
+                    <div class="step-number">🔍</div>
                     <div class="step-title">I Check My Network</div>
                     <div class="step-description">I know which landlords have space and what they'll accept. No cold calling.</div>
                 </div>
                 
                 <div class="process-step">
-                    <div class="step-number">3</div>
+                    <div class="step-number">🤝</div>
                     <div class="step-title">Direct Introductions</div>
                     <div class="step-description">I connect you directly with decision makers. Skip the property managers.</div>
                 </div>
                 
                 <div class="process-step">
-                    <div class="step-number">4</div>
+                    <div class="step-number">🏢</div>
                     <div class="step-title">Negotiate & Close</div>
                     <div class="step-description">I help negotiate terms that work for contractors. Move in this week.</div>
                 </div>
