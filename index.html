@@ -499,6 +499,14 @@
             background: #059669;
         }
         
+        .mobile-cta-btn:nth-child(2) {
+            background: #3b82f6;
+        }
+        
+        .mobile-cta-btn:nth-child(2):hover {
+            background: #2563eb;
+        }
+        
         /* Footer */
         .footer {
             background: #1f2937;
@@ -621,35 +629,15 @@
     <section class="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <div style="background: rgba(220, 38, 38, 0.9); color: white; padding: 0.5rem 1rem; border-radius: 20px; display: inline-block; margin-bottom: 1.5rem; font-size: 0.9rem; font-weight: 600;">
-                    🔥 SUMMER SPECIAL - FIRST MONTH FREE
-                </div>
-                <h1>Get The <span style="color: #3b82f6;">Industrial Space</span> You Need This Week</h1>
-                <p class="subhead">Skip the waiting lists. View available properties now in Palm Beach County.<br><strong style="color: #fbbf24;">Move in as fast as 48 hours.</strong></p>
+                <h1>Get Warehouse Space in Palm Beach County This Week</h1>
+                <p class="subhead">I know which landlords have space TODAY and what they'll actually accept. One call to me replaces 20 cold calls.</p>
                 
-                <div style="display: grid; gap: 1rem; margin: 2rem 0;">
-                    <div style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 8px; padding: 1rem; display: flex; align-items: center;">
-                        <div style="background: #10b981; color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; margin-right: 1rem; font-size: 0.8rem;">✓</div>
-                        <div>
-                            <strong>1,000 - 50,000+ sq ft</strong><br>
-                            <span style="color: #cbd5e1; font-size: 0.9rem;">Perfect size for your business</span>
-                        </div>
-                    </div>
-                    <div style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 8px; padding: 1rem; display: flex; align-items: center;">
-                        <div style="background: #10b981; color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; margin-right: 1rem; font-size: 0.8rem;">✓</div>
-                        <div>
-                            <strong>Move-in Ready NOW</strong><br>
-                            <span style="color: #cbd5e1; font-size: 0.9rem;">No construction delays</span>
-                        </div>
-                    </div>
-                    <div style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 8px; padding: 1rem; display: flex; align-items: center;">
-                        <div style="background: #10b981; color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; margin-right: 1rem; font-size: 0.8rem;">✓</div>
-                        <div>
-                            <strong>Flexible Terms</strong><br>
-                            <span style="color: #cbd5e1; font-size: 0.9rem;">Month-to-month available</span>
-                        </div>
-                    </div>
-                </div>
+                <ul class="value-props">
+                    <li>Direct introductions to decision makers</li>
+                    <li>I know who's desperate to lease</li>
+                    <li>Negotiate terms that work for contractors</li>
+                    <li>No cost to you - landlords pay my commission</li>
+                </ul>
                 
                 <div class="hero-cta">
                     <a href="#form" class="btn-primary" onclick="trackConversion('cta_click', 35000, {location: 'hero'});">
@@ -662,8 +650,8 @@
             </div>
             
             <div class="form-card" id="form">
-                <h2>Schedule Your Tour</h2>
-                <p class="subtitle">Get exclusive access to pre-market deals</p>
+                <h2>Get Matched This Week</h2>
+                <p class="subtitle">Tell me what you need. I'll find who has it.</p>
                 
                 <form id="leadForm" onsubmit="handleFormSubmit(event)">
                     <div class="form-group">
@@ -690,7 +678,7 @@
                     </div>
                     
                     <button type="submit" class="form-submit">
-                        GET PROPERTY LIST & SCHEDULE TOUR
+                        Get My Matches Today
                     </button>
                 </form>
             </div>
@@ -780,8 +768,11 @@
     <!-- Mobile Sticky CTA -->
     <div class="mobile-sticky">
         <div class="mobile-sticky-content">
-            <a href="#" class="mobile-cta-btn" id="mobile-call" onclick="trackConversion('mobile_call', 35000);" style="background: #10b981;">
-                📞 Call Now
+            <a href="#" class="mobile-cta-btn" id="mobile-call" onclick="trackConversion('mobile_call', 35000);">
+                📞 Call
+            </a>
+            <a href="#" class="mobile-cta-btn" id="mobile-text" onclick="trackConversion('mobile_text', 35000);">
+                💬 Text
             </a>
         </div>
     </div>
