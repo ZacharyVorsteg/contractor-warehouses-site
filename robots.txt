@@ -1,0 +1,22 @@
+User-agent: *
+Allow: /
+
+# Disallow thank you page from search engines
+Disallow: /thank-you.html
+
+# Allow important pages
+Allow: /index.html
+Allow: /*.css
+Allow: /*.js
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.gif
+Allow: /*.svg
+Allow: /*.webp
+
+# Sitemap location
+Sitemap: https://contractorwarehouses.com/sitemap.xml
+
+# Crawl delay for respectful crawling
+Crawl-delay: 1
