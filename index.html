@@ -129,10 +129,10 @@
         }
         
         .header-phone {
-            background: #dc2626;
+            background: #10b981;
             color: white;
             padding: 0.75rem 1.5rem;
-            border-radius: 6px;
+            border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
             font-size: 1.1rem;
@@ -140,14 +140,15 @@
         }
         
         .header-phone:hover {
-            background: #b91c1c;
+            background: #059669;
             transform: translateY(-1px);
         }
         
         /* Hero Section */
         .hero {
-            background: #f8fafc;
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
             padding: 3rem 0 4rem;
+            color: white;
         }
         
         .hero-content {
@@ -165,12 +166,12 @@
             font-weight: 700;
             line-height: 1.1;
             margin-bottom: 1.5rem;
-            color: #1a1a1a;
+            color: white;
         }
         
         .hero-text .subhead {
             font-size: 1.3rem;
-            color: #4b5563;
+            color: #cbd5e1;
             margin-bottom: 2rem;
             line-height: 1.4;
         }
@@ -183,14 +184,14 @@
         .value-props li {
             padding: 0.5rem 0;
             font-size: 1.1rem;
-            color: #374151;
+            color: #e2e8f0;
             display: flex;
             align-items: center;
         }
         
         .value-props li:before {
             content: "✓";
-            color: #059669;
+            color: #10b981;
             font-weight: bold;
             margin-right: 0.75rem;
             font-size: 1.2rem;
@@ -203,11 +204,11 @@
         }
         
         .btn-primary {
-            background: #dc2626;
+            background: #10b981;
             color: white;
             padding: 1rem 2rem;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             font-size: 1.1rem;
             font-weight: 600;
             text-decoration: none;
@@ -216,19 +217,21 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
         }
         
         .btn-primary:hover {
-            background: #b91c1c;
+            background: #059669;
             transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
         }
         
         .btn-secondary {
             background: transparent;
-            color: #dc2626;
-            border: 2px solid #dc2626;
+            color: #3b82f6;
+            border: 2px solid #3b82f6;
             padding: 1rem 2rem;
-            border-radius: 6px;
+            border-radius: 8px;
             font-size: 1.1rem;
             font-weight: 600;
             text-decoration: none;
@@ -239,7 +242,7 @@
         }
         
         .btn-secondary:hover {
-            background: #dc2626;
+            background: #3b82f6;
             color: white;
         }
         
@@ -291,24 +294,28 @@
         .form-group input:focus,
         .form-group select:focus {
             outline: none;
-            border-color: #dc2626;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
         }
         
         .form-submit {
             width: 100%;
-            background: #dc2626;
+            background: #3b82f6;
             color: white;
             padding: 1rem;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
         }
         
         .form-submit:hover {
-            background: #b91c1c;
+            background: #2563eb;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
         }
         
         /* Credentials */
@@ -427,7 +434,7 @@
         }
         
         .step-number {
-            background: #dc2626;
+            background: #3b82f6;
             color: white;
             width: 60px;
             height: 60px;
@@ -458,7 +465,7 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: #dc2626;
+            background: #1e293b;
             padding: 1rem;
             z-index: 1000;
             display: none;
@@ -474,17 +481,22 @@
         
         .mobile-cta-btn {
             flex: 1;
-            background: white;
-            color: #dc2626;
+            background: #10b981;
+            color: white;
             padding: 0.75rem;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             font-weight: 600;
             text-decoration: none;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-cta-btn:hover {
+            background: #059669;
         }
         
         /* Footer */
@@ -609,15 +621,35 @@
     <section class="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <h1>Get Warehouse Space in Palm Beach County This Week</h1>
-                <p class="subhead">I know which landlords have space TODAY and what they'll actually accept. One call to me replaces 20 cold calls.</p>
+                <div style="background: rgba(220, 38, 38, 0.9); color: white; padding: 0.5rem 1rem; border-radius: 20px; display: inline-block; margin-bottom: 1.5rem; font-size: 0.9rem; font-weight: 600;">
+                    🔥 SUMMER SPECIAL - FIRST MONTH FREE
+                </div>
+                <h1>Get The <span style="color: #3b82f6;">Industrial Space</span> You Need This Week</h1>
+                <p class="subhead">Skip the waiting lists. View available properties now in Palm Beach County.<br><strong style="color: #fbbf24;">Move in as fast as 48 hours.</strong></p>
                 
-                <ul class="value-props">
-                    <li>Direct introductions to decision makers</li>
-                    <li>I know who's desperate to lease</li>
-                    <li>Negotiate terms that work for contractors</li>
-                    <li>No cost to you - landlords pay my commission</li>
-                </ul>
+                <div style="display: grid; gap: 1rem; margin: 2rem 0;">
+                    <div style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 8px; padding: 1rem; display: flex; align-items: center;">
+                        <div style="background: #10b981; color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; margin-right: 1rem; font-size: 0.8rem;">✓</div>
+                        <div>
+                            <strong>1,000 - 50,000+ sq ft</strong><br>
+                            <span style="color: #cbd5e1; font-size: 0.9rem;">Perfect size for your business</span>
+                        </div>
+                    </div>
+                    <div style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 8px; padding: 1rem; display: flex; align-items: center;">
+                        <div style="background: #10b981; color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; margin-right: 1rem; font-size: 0.8rem;">✓</div>
+                        <div>
+                            <strong>Move-in Ready NOW</strong><br>
+                            <span style="color: #cbd5e1; font-size: 0.9rem;">No construction delays</span>
+                        </div>
+                    </div>
+                    <div style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 8px; padding: 1rem; display: flex; align-items: center;">
+                        <div style="background: #10b981; color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; margin-right: 1rem; font-size: 0.8rem;">✓</div>
+                        <div>
+                            <strong>Flexible Terms</strong><br>
+                            <span style="color: #cbd5e1; font-size: 0.9rem;">Month-to-month available</span>
+                        </div>
+                    </div>
+                </div>
                 
                 <div class="hero-cta">
                     <a href="#form" class="btn-primary" onclick="trackConversion('cta_click', 35000, {location: 'hero'});">
@@ -630,8 +662,8 @@
             </div>
             
             <div class="form-card" id="form">
-                <h2>Get Matched This Week</h2>
-                <p class="subtitle">Tell me what you need. I'll find who has it.</p>
+                <h2>Schedule Your Tour</h2>
+                <p class="subtitle">Get exclusive access to pre-market deals</p>
                 
                 <form id="leadForm" onsubmit="handleFormSubmit(event)">
                     <div class="form-group">
@@ -658,7 +690,7 @@
                     </div>
                     
                     <button type="submit" class="form-submit">
-                        Get My Matches Today
+                        GET PROPERTY LIST & SCHEDULE TOUR
                     </button>
                 </form>
             </div>
@@ -748,11 +780,8 @@
     <!-- Mobile Sticky CTA -->
     <div class="mobile-sticky">
         <div class="mobile-sticky-content">
-            <a href="#" class="mobile-cta-btn" id="mobile-call" onclick="trackConversion('mobile_call', 35000);">
-                📞 Call
-            </a>
-            <a href="#" class="mobile-cta-btn" id="mobile-text" onclick="trackConversion('mobile_text', 35000);">
-                💬 Text
+            <a href="#" class="mobile-cta-btn" id="mobile-call" onclick="trackConversion('mobile_call', 35000);" style="background: #10b981;">
+                📞 Call Now
             </a>
         </div>
     </div>
