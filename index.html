@@ -63,12 +63,86 @@
     }
     </script>
     
+    <!-- Configuration -->
+    <script>
+        // Environment configuration
+        window.CONFIG = {
+            GTM_ID: 'GTM-XXXXXXX', // Replace with actual GTM ID
+            GA4_ID: 'G-XXXXXXXXXX', // Replace with actual GA4 ID
+            FB_PIXEL_ID: 'XXXXXXXXX', // Replace with actual FB Pixel ID
+            AVAILABLE_UNITS: 7,
+            TRACKING_NUMBERS: {
+                default: '561-718-6725',
+                google_ads: '561-718-6726',
+                facebook: '561-718-6727',
+                organic: '561-718-6728'
+            }
+        };
+        
+        // UTM and source tracking
+        function getTrafficSource() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const utmSource = urlParams.get('utm_source');
+            const referrer = document.referrer;
+            
+            if (utmSource) return utmSource;
+            if (referrer.includes('google')) return 'organic';
+            if (referrer.includes('facebook')) return 'facebook';
+            return 'default';
+        }
+        
+        // Store source for session
+        const trafficSource = getTrafficSource();
+        sessionStorage.setItem('traffic_source', trafficSource);
+        
+        // Get tracking phone number
+        function getTrackingNumber(source = null) {
+            const currentSource = source || sessionStorage.getItem('traffic_source') || 'default';
+            return window.CONFIG.TRACKING_NUMBERS[currentSource] || window.CONFIG.TRACKING_NUMBERS.default;
+        }
+        
+        // Revenue tracking helper
+        function trackRevenue(event, value, additionalData = {}) {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', event, {
+                    value: value,
+                    currency: 'USD',
+                    traffic_source: trafficSource,
+                    ...additionalData
+                });
+            }
+        }
+    </script>
+    
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
+    })(window,document,'script','dataLayer',window.CONFIG.GTM_ID);</script>
+    
+    <!-- Fallback GA4 if GTM fails -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=" + window.CONFIG.GA4_ID></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', window.CONFIG.GA4_ID);
+    </script>
+    
+    <!-- Facebook Pixel -->
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', window.CONFIG.FB_PIXEL_ID);
+        fbq('track', 'PageView');
+    </script>
     
     <style>
         /* Critical CSS - Inlined for Performance */
@@ -399,7 +473,7 @@
         }
         
         .form-container {
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
             background: white;
             padding: 3rem;
@@ -407,43 +481,15 @@
             color: #1a1a1a;
         }
         
-        .form-step {
-            display: none;
-        }
-        
-        .form-step.active {
-            display: block;
-        }
-        
-        .form-step h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-        
-        .form-options {
+        .form-grid {
             display: grid;
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
             margin-bottom: 2rem;
         }
         
-        .form-option {
-            padding: 1rem;
-            border: 2px solid #e5e7eb;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-        
-        .form-option:hover,
-        .form-option.selected {
-            border-color: #2563eb;
-            background: #eff6ff;
-        }
-        
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 0;
         }
         
         .form-group label {
@@ -453,6 +499,7 @@
         }
         
         .form-group input,
+        .form-group select,
         .form-group textarea {
             width: 100%;
             padding: 0.75rem;
@@ -460,12 +507,15 @@
             border-radius: 6px;
             font-size: 1rem;
             min-height: 48px;
+            background: white;
         }
         
         .form-group input:focus,
+        .form-group select:focus,
         .form-group textarea:focus {
             outline: none;
             border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
         
         .checkbox-group {
@@ -475,20 +525,87 @@
             margin-bottom: 1.5rem;
         }
         
-        .form-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: space-between;
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            min-height: auto;
         }
         
-        .btn-back {
-            background: #6b7280;
-            color: white;
-            padding: 0.75rem 1.5rem;
+        /* Mobile Sticky CTA */
+        .mobile-sticky-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #dc2626;
+            padding: 1rem;
+            z-index: 1000;
+            display: none;
+            box-shadow: 0 -4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .mobile-cta-content {
+            display: flex;
+            gap: 0.5rem;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        .mobile-cta-btn {
+            flex: 1;
+            background: white;
+            color: #dc2626;
+            padding: 0.75rem;
             border: none;
             border-radius: 6px;
-            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
             min-height: 48px;
+        }
+        
+        .mobile-cta-btn:hover {
+            background: #f3f4f6;
+        }
+        
+        /* Phone Link Components */
+        .phone-link-container {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        
+        .phone-link {
+            background: #dc2626;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            min-height: 48px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .phone-link:hover {
+            background: #b91c1c;
+            transform: translateY(-2px);
+        }
+        
+        .phone-link.secondary {
+            background: transparent;
+            border: 2px solid #dc2626;
+            color: #dc2626;
+        }
+        
+        .phone-link.secondary:hover {
+            background: #dc2626;
+            color: white;
         }
         
         /* Footer */
@@ -561,8 +678,26 @@
                 grid-template-columns: 1fr;
             }
             
-            .form-buttons {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .mobile-sticky-cta {
+                display: block;
+            }
+            
+            body {
+                padding-bottom: 80px; /* Space for sticky CTA */
+            }
+            
+            .phone-link-container {
                 flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .phone-link {
+                width: 100%;
+                justify-content: center;
             }
         }
         
@@ -610,7 +745,7 @@
     <header class="header">
         <div class="header-content">
             <div class="logo">ContractorWarehouses.com</div>
-            <a href="tel:561-718-6725" class="header-phone" onclick="gtag('event', 'phone_click', {'event_category': 'contact', 'event_label': 'header'});">📞 561-718-6725</a>
+            <div class="header-phone-container" id="header-phone"></div>
         </div>
     </header>
     
@@ -619,10 +754,10 @@
         <div class="hero-content">
             <h1>Warehouse Space That Works As Hard As You Do</h1>
             <div class="hero-subhead">14ft+ clearance • 3-phase power • Month-to-month available</div>
-            <div class="urgency-badge">Only 7 contractor-ready spaces left this month</div>
+            <div class="urgency-badge" id="urgency-counter">Only <span id="available-units">7</span> contractor-ready spaces left this month</div>
             <div class="cta-buttons">
-                <a href="#lead-form" class="btn-primary" onclick="gtag('event', 'cta_click', {'event_category': 'conversion', 'event_label': 'hero_primary'});">See Available Spaces</a>
-                <a href="tel:561-718-6725" class="btn-secondary" onclick="gtag('event', 'phone_click', {'event_category': 'contact', 'event_label': 'hero_secondary'});">Text for Instant Tour: 561-718-6725</a>
+                <a href="#lead-form" class="btn-primary" onclick="trackRevenue('cta_click', 1750, {element: 'hero_primary'});">See Available Spaces</a>
+                <div class="btn-secondary phone-link-container" id="hero-phone-cta"></div>
             </div>
             <div class="trust-badge">Licensed FL Real Estate • 200+ Contractors Served</div>
         </div>
@@ -709,7 +844,7 @@
                             <li>Secured yard access</li>
                             <li>Grade-level loading</li>
                         </ul>
-                        <a href="#lead-form" class="btn-primary" onclick="gtag('event', 'property_interest', {'event_category': 'conversion', 'event_label': 'small_bay'});">Reserve Tour</a>
+                        <a href="#lead-form" class="btn-primary" onclick="trackRevenue('property_interest', 35000, {property: 'small_bay', size: 'small'});">Reserve Tour</a>
                     </div>
                 </div>
                 
@@ -728,7 +863,7 @@
                             <li>Large secured yard</li>
                             <li>Multiple dock doors</li>
                         </ul>
-                        <a href="#lead-form" class="btn-primary" onclick="gtag('event', 'property_interest', {'event_category': 'conversion', 'event_label': 'medium_bay'});">Reserve Tour</a>
+                        <a href="#lead-form" class="btn-primary" onclick="trackRevenue('property_interest', 35000, {property: 'medium_bay', size: 'medium'});">Reserve Tour</a>
                     </div>
                 </div>
                 
@@ -747,7 +882,7 @@
                             <li>Premium yard space</li>
                             <li>Office build-out ready</li>
                         </ul>
-                        <a href="#lead-form" class="btn-primary" onclick="gtag('event', 'property_interest', {'event_category': 'conversion', 'event_label': 'large_bay'});">Reserve Tour</a>
+                        <a href="#lead-form" class="btn-primary" onclick="trackRevenue('property_interest', 35000, {property: 'large_bay', size: 'large'});">Reserve Tour</a>
                     </div>
                 </div>
             </div>
@@ -758,94 +893,69 @@
     <section id="lead-form" class="section lead-form">
         <div class="container">
             <div class="form-container">
-                <form id="contractorForm" action="thank-you.html" method="POST">
-                    <!-- Step 1: Size Requirements -->
-                    <div class="form-step active" id="step1">
-                        <h3>What size space do you need?</h3>
-                        <div class="form-options">
-                            <div class="form-option" data-value="small" onclick="selectOption(this, 'size')">
-                                <strong>Small Bay</strong><br>
-                                Under 2,500 sq ft<br>
-                                <em>Perfect for specialty trades</em>
-                            </div>
-                            <div class="form-option" data-value="medium" onclick="selectOption(this, 'size')">
-                                <strong>Medium Bay</strong><br>
-                                2,500 - 5,000 sq ft<br>
-                                <em>Ideal for growing contractors</em>
-                            </div>
-                            <div class="form-option" data-value="large" onclick="selectOption(this, 'size')">
-                                <strong>Large Bay</strong><br>
-                                5,000+ sq ft<br>
-                                <em>Built for major operations</em>
-                            </div>
-                        </div>
-                        <div class="form-buttons">
-                            <div></div>
-                            <button type="button" class="btn-primary" onclick="nextStep()" id="step1Next" disabled>Next Step</button>
-                        </div>
-                    </div>
-                    
-                    <!-- Step 2: Timeline -->
-                    <div class="form-step" id="step2">
-                        <h3>What's your timeline?</h3>
-                        <div class="form-options">
-                            <div class="form-option" data-value="immediate" onclick="selectOption(this, 'timeline')">
-                                <strong>Immediate</strong><br>
-                                Ready to move now<br>
-                                <em>Let's get you in this week</em>
-                            </div>
-                            <div class="form-option" data-value="30days" onclick="selectOption(this, 'timeline')">
-                                <strong>Within 30 Days</strong><br>
-                                Planning ahead<br>
-                                <em>Perfect timing for tours</em>
-                            </div>
-                            <div class="form-option" data-value="planning" onclick="selectOption(this, 'timeline')">
-                                <strong>Planning Ahead</strong><br>
-                                Future consideration<br>
-                                <em>We'll keep you updated</em>
-                            </div>
-                        </div>
-                        <div class="form-buttons">
-                            <button type="button" class="btn-back" onclick="prevStep()">Back</button>
-                            <button type="button" class="btn-primary" onclick="nextStep()" id="step2Next" disabled>Next Step</button>
-                        </div>
-                    </div>
-                    
-                    <!-- Step 3: Contact Details -->
-                    <div class="form-step" id="step3">
-                        <h3>Let's connect you with the perfect space</h3>
+                <h2 style="color: white; text-align: center; margin-bottom: 2rem;">Get Your Perfect Warehouse Space</h2>
+                <form id="contractorForm" method="POST">
+                    <div class="form-grid">
                         <div class="form-group">
                             <label for="name">Full Name *</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="company">Company Name *</label>
-                            <input type="text" id="company" name="company" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Phone Number *</label>
-                            <input type="tel" id="phone" name="phone" required>
+                            <input type="text" id="name" name="name" required 
+                                   onfocus="trackFormField('name', 'focused')"
+                                   onblur="trackFormField('name', 'completed', this.value)">
                         </div>
                         <div class="form-group">
                             <label for="email">Email Address *</label>
-                            <input type="email" id="email" name="email" required>
+                            <input type="email" id="email" name="email" required
+                                   onfocus="trackFormField('email', 'focused')"
+                                   onblur="trackFormField('email', 'completed', this.value)">
                         </div>
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="sms_opt_in" name="sms_opt_in">
-                            <label for="sms_opt_in">Yes, text me property updates and tour reminders</label>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone"
+                                   onfocus="trackFormField('phone', 'focused')"
+                                   onblur="trackFormField('phone', 'completed', this.value)">
                         </div>
-                        <div class="form-buttons">
-                            <button type="button" class="btn-back" onclick="prevStep()">Back</button>
-                            <button type="submit" class="btn-primary">Get My Space Match</button>
+                        <div class="form-group">
+                            <label for="size">Space Size Needed</label>
+                            <select id="size" name="size" required>
+                                <option value="">Select size...</option>
+                                <option value="small">Small Bay (Under 2,500 sq ft)</option>
+                                <option value="medium">Medium Bay (2,500-5,000 sq ft)</option>
+                                <option value="large">Large Bay (5,000+ sq ft)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="timeline">Timeline</label>
+                            <select id="timeline" name="timeline" required>
+                                <option value="">Select timeline...</option>
+                                <option value="immediate">Immediate (Ready now)</option>
+                                <option value="30days">Within 30 Days</option>
+                                <option value="planning">Planning Ahead</option>
+                            </select>
                         </div>
                     </div>
                     
-                    <input type="hidden" id="selectedSize" name="size">
-                    <input type="hidden" id="selectedTimeline" name="timeline">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="prefer_text" name="prefer_text">
+                        <label for="prefer_text">Text me instead of calling (faster response)</label>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary" style="width: 100%; margin-top: 1rem;">
+                        Get My Space Match - Free Tour Today
+                    </button>
+                    
+                    <input type="hidden" id="traffic_source" name="traffic_source">
+                    <input type="hidden" id="form_start_time" name="form_start_time">
                 </form>
             </div>
         </div>
     </section>
+    
+    <!-- Mobile Sticky CTA -->
+    <div class="mobile-sticky-cta" id="mobileStickyBar">
+        <div class="mobile-cta-content" id="mobile-cta-buttons">
+            <!-- Dynamic phone buttons will be inserted here -->
+        </div>
+    </div>
     
     <!-- Footer -->
     <footer class="footer">
@@ -853,8 +963,8 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h4>Contact</h4>
-                    <p>📞 <a href="tel:561-718-6725" style="color: white;">561-718-6725</a></p>
-                    <p>📧 info@contractorwarehouses.com</p>
+                    <div id="footer-phone"></div>
+                    <p>📧 info@warehousesforcontractors.com</p>
                     <p>📍 Serving Palm Beach County, FL</p>
                 </div>
                 <div class="footer-section">
@@ -893,150 +1003,268 @@
     </div>
     
     <script>
-        // Multi-step form functionality
-        let currentStep = 1;
-        const totalSteps = 3;
-        let formData = {};
-        
-        function selectOption(element, type) {
-            // Remove selected class from siblings
-            const siblings = element.parentNode.children;
-            for (let sibling of siblings) {
-                sibling.classList.remove('selected');
-            }
-            
-            // Add selected class to clicked element
-            element.classList.add('selected');
-            
-            // Store selection
-            formData[type] = element.dataset.value;
-            
-            // Enable next button
-            const nextButton = document.getElementById(`step${currentStep}Next`);
-            if (nextButton) {
-                nextButton.disabled = false;
-            }
-            
-            // Track event
-            gtag('event', 'form_step_complete', {
-                'event_category': 'form',
-                'event_label': `step_${currentStep}_${type}_${element.dataset.value}`
-            });
-        }
-        
-        function nextStep() {
-            if (currentStep < totalSteps) {
-                document.getElementById(`step${currentStep}`).classList.remove('active');
-                currentStep++;
-                document.getElementById(`step${currentStep}`).classList.add('active');
-                
-                // Track progression
-                gtag('event', 'form_progress', {
-                    'event_category': 'form',
-                    'event_label': `reached_step_${currentStep}`
-                });
-            }
-        }
-        
-        function prevStep() {
-            if (currentStep > 1) {
-                document.getElementById(`step${currentStep}`).classList.remove('active');
-                currentStep--;
-                document.getElementById(`step${currentStep}`).classList.add('active');
-            }
-        }
-        
-        // Form submission
-        document.getElementById('contractorForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Populate hidden fields
-            document.getElementById('selectedSize').value = formData.size;
-            document.getElementById('selectedTimeline').value = formData.timeline;
-            
-            // Track conversion
-            gtag('event', 'form_submit', {
-                'event_category': 'conversion',
-                'event_label': 'main_form_complete'
-            });
-            
-            // In a real implementation, you'd submit to your backend
-            // For now, redirect to thank you page
-            window.location.href = 'thank-you.html';
+        // Initialize dynamic content and tracking
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeDynamicContent();
+            initializeFormTracking();
+            initializeExitIntent();
+            initializeScrollTracking();
+            initializePerformanceTracking();
         });
+        
+        // Dynamic content initialization
+        function initializeDynamicContent() {
+            updateAvailableUnits();
+            createPhoneLinks();
+            updateFormDefaults();
+        }
+        
+        // Update available units from config
+        function updateAvailableUnits() {
+            const unitsElement = document.getElementById('available-units');
+            if (unitsElement) {
+                unitsElement.textContent = window.CONFIG.AVAILABLE_UNITS;
+            }
+        }
+        
+        // Create dynamic phone links with tracking
+        function createPhoneLinks() {
+            const trackingNumber = getTrackingNumber();
+            const source = sessionStorage.getItem('traffic_source') || 'default';
+            
+            // Header phone
+            const headerPhone = document.getElementById('header-phone');
+            if (headerPhone) {
+                headerPhone.innerHTML = `
+                    <a href="tel:${trackingNumber}" class="header-phone" onclick="trackRevenue('phone_click', 35000, {method: 'call', location: 'header'});">
+                        📞 ${trackingNumber}
+                    </a>
+                `;
+            }
+            
+            // Hero CTA phone
+            const heroPhone = document.getElementById('hero-phone-cta');
+            if (heroPhone) {
+                heroPhone.innerHTML = `
+                    <a href="tel:${trackingNumber}" onclick="trackRevenue('phone_click', 35000, {method: 'call', location: 'hero'});">
+                        📞 Call Now
+                    </a>
+                    <a href="sms:${trackingNumber}?body=I'm interested in warehouse space" onclick="trackRevenue('phone_click', 35000, {method: 'sms', location: 'hero'});">
+                        💬 Text
+                    </a>
+                `;
+            }
+            
+            // Footer phone
+            const footerPhone = document.getElementById('footer-phone');
+            if (footerPhone) {
+                footerPhone.innerHTML = `<p>📞 <a href="tel:${trackingNumber}" style="color: white;" onclick="trackRevenue('phone_click', 35000, {method: 'call', location: 'footer'});">${trackingNumber}</a></p>`;
+            }
+            
+            // Mobile sticky CTA
+            const mobileCTA = document.getElementById('mobile-cta-buttons');
+            if (mobileCTA) {
+                mobileCTA.innerHTML = `
+                    <a href="tel:${trackingNumber}" class="mobile-cta-btn" onclick="trackRevenue('phone_click', 35000, {method: 'call', location: 'mobile_sticky'});">
+                        📞 Call Now
+                    </a>
+                    <a href="sms:${trackingNumber}?body=I'm interested in warehouse space" class="mobile-cta-btn" onclick="trackRevenue('phone_click', 35000, {method: 'sms', location: 'mobile_sticky'});">
+                        💬 Text
+                    </a>
+                `;
+            }
+        }
+        
+        // Form tracking and analytics
+        function initializeFormTracking() {
+            const form = document.getElementById('contractorForm');
+            if (!form) return;
+            
+            // Set form start time
+            document.getElementById('form_start_time').value = Date.now();
+            document.getElementById('traffic_source').value = sessionStorage.getItem('traffic_source') || 'default';
+            
+            // Track form start
+            let formStarted = false;
+            const formInputs = form.querySelectorAll('input, select');
+            
+            formInputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    if (!formStarted) {
+                        formStarted = true;
+                        trackRevenue('form_start', 35000, {form_type: 'lead_capture'});
+                    }
+                });
+            });
+            
+            // Form submission
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const formData = new FormData(form);
+                const formStartTime = parseInt(formData.get('form_start_time'));
+                const completionTime = (Date.now() - formStartTime) / 1000;
+                
+                // Track conversion
+                trackRevenue('generate_lead', 35000, {
+                    completion_time: completionTime,
+                    form_type: 'lead_capture',
+                    size: formData.get('size'),
+                    timeline: formData.get('timeline')
+                });
+                
+                // Submit to webhook
+                try {
+                    const leadData = {
+                        name: formData.get('name'),
+                        email: formData.get('email'),
+                        phone: formData.get('phone'),
+                        size: formData.get('size'),
+                        timeline: formData.get('timeline'),
+                        prefer_text: formData.get('prefer_text') === 'on',
+                        traffic_source: formData.get('traffic_source'),
+                        completion_time: completionTime,
+                        estimated_value: calculateLeadValue(formData.get('size')),
+                        timestamp: new Date().toISOString()
+                    };
+                    
+                    // In production, replace with actual webhook URL
+                    // await submitLead(leadData);
+                    
+                    // Redirect to thank you page
+                    window.location.href = 'thank-you.html';
+                } catch (error) {
+                    console.error('Form submission error:', error);
+                    alert('There was an issue submitting your request. Please call us directly at ' + getTrackingNumber());
+                }
+            });
+        }
+        
+        // Form field tracking
+        function trackFormField(field, action, value = '') {
+            trackRevenue('form_field_' + action, action === 'completed' && value ? 500 : 0, {
+                field: field,
+                filled: !!value
+            });
+        }
+        
+        // Calculate lead value based on size
+        function calculateLeadValue(size) {
+            const values = {
+                'small': 25000,
+                'medium': 35000,
+                'large': 50000
+            };
+            return values[size] || 35000;
+        }
         
         // Exit intent detection
-        let exitIntentShown = false;
-        
-        document.addEventListener('mouseleave', function(e) {
-            if (e.clientY <= 0 && !exitIntentShown) {
-                showExitPopup();
+        function initializeExitIntent() {
+            let exitIntentShown = false;
+            let hasSubmittedForm = false;
+            
+            // Track form submission
+            const form = document.getElementById('contractorForm');
+            if (form) {
+                form.addEventListener('submit', () => hasSubmittedForm = true);
             }
-        });
-        
-        // Scroll-based exit intent (70% scroll)
-        window.addEventListener('scroll', function() {
-            const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
-            if (scrollPercent > 70 && !exitIntentShown) {
-                showExitPopup();
-            }
-        });
+            
+            // Mouse leave detection
+            document.addEventListener('mouseleave', function(e) {
+                if (e.clientY <= 0 && !exitIntentShown && !hasSubmittedForm) {
+                    exitIntentShown = true;
+                    trackRevenue('exit_intent_triggered', -35000, {trigger: 'mouse_leave'});
+                    showExitPopup();
+                }
+            });
+            
+            // Scroll-based exit intent (70% scroll)
+            window.addEventListener('scroll', function() {
+                const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+                if (scrollPercent > 70 && !exitIntentShown && !hasSubmittedForm) {
+                    exitIntentShown = true;
+                    trackRevenue('exit_intent_triggered', -35000, {trigger: 'scroll_70'});
+                    showExitPopup();
+                }
+            });
+        }
         
         function showExitPopup() {
-            exitIntentShown = true;
-            document.getElementById('exitPopup').style.display = 'flex';
-            
-            gtag('event', 'exit_intent_shown', {
-                'event_category': 'engagement',
-                'event_label': 'popup_displayed'
-            });
+            const popup = document.getElementById('exitPopup');
+            if (popup) {
+                popup.style.display = 'flex';
+            }
         }
         
         function closeExitPopup() {
-            document.getElementById('exitPopup').style.display = 'none';
+            const popup = document.getElementById('exitPopup');
+            if (popup) {
+                popup.style.display = 'none';
+            }
+        }
+        
+        // Scroll depth tracking
+        function initializeScrollTracking() {
+            let scrollDepths = [25, 50, 75, 100];
+            let scrollDepthsReached = [];
+            
+            window.addEventListener('scroll', function() {
+                const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+                
+                scrollDepths.forEach(function(depth) {
+                    if (scrollPercent >= depth && !scrollDepthsReached.includes(depth)) {
+                        scrollDepthsReached.push(depth);
+                        trackRevenue('scroll_depth', depth * 10, {depth: depth});
+                    }
+                });
+            });
+        }
+        
+        // Performance tracking (Core Web Vitals)
+        function initializePerformanceTracking() {
+            // Track page load time
+            window.addEventListener('load', function() {
+                const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
+                trackRevenue('page_load_time', 0, {load_time: loadTime});
+            });
+            
+            // Track time on page
+            let startTime = Date.now();
+            window.addEventListener('beforeunload', function() {
+                const timeOnPage = Math.round((Date.now() - startTime) / 1000);
+                trackRevenue('time_on_page', timeOnPage * 10, {time_seconds: timeOnPage});
+            });
+        }
+        
+        // Update form defaults from URL params
+        function updateFormDefaults() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const size = urlParams.get('size');
+            const timeline = urlParams.get('timeline');
+            
+            if (size) {
+                const sizeSelect = document.getElementById('size');
+                if (sizeSelect) sizeSelect.value = size;
+            }
+            
+            if (timeline) {
+                const timelineSelect = document.getElementById('timeline');
+                if (timelineSelect) timelineSelect.value = timeline;
+            }
         }
         
         // Exit form submission
-        document.getElementById('exitForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            gtag('event', 'exit_form_submit', {
-                'event_category': 'conversion',
-                'event_label': 'checklist_download'
+        const exitForm = document.getElementById('exitForm');
+        if (exitForm) {
+            exitForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                trackRevenue('exit_form_submit', 5000, {lead_magnet: 'checklist_download'});
+                
+                closeExitPopup();
+                alert('Thank you! Check your email for the Contractor Move-In Checklist PDF.');
             });
-            
-            // Close popup and show success message
-            closeExitPopup();
-            alert('Thank you! Check your email for the Contractor Move-In Checklist PDF.');
-        });
-        
-        // Scroll depth tracking
-        let scrollDepths = [25, 50, 75, 100];
-        let scrollDepthsReached = [];
-        
-        window.addEventListener('scroll', function() {
-            const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
-            
-            scrollDepths.forEach(function(depth) {
-                if (scrollPercent >= depth && !scrollDepthsReached.includes(depth)) {
-                    scrollDepthsReached.push(depth);
-                    gtag('event', 'scroll_depth', {
-                        'event_category': 'engagement',
-                        'event_label': `${depth}_percent`
-                    });
-                }
-            });
-        });
-        
-        // Phone click tracking for all phone links
-        document.querySelectorAll('a[href^="tel:"]').forEach(function(link) {
-            link.addEventListener('click', function() {
-                gtag('event', 'phone_click', {
-                    'event_category': 'contact',
-                    'event_label': 'phone_number_clicked'
-                });
-            });
-        });
+        }
     </script>
 </body>
 </html>

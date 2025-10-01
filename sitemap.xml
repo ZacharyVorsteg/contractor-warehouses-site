@@ -6,7 +6,7 @@
     
     <!-- Main landing page - highest priority -->
     <url>
-        <loc>https://contractorwarehouses.com/</loc>
+        <loc>https://warehousesforcontractors.com/</loc>
         <lastmod>2024-10-01</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
@@ -14,7 +14,7 @@
     
     <!-- Main landing page with index.html -->
     <url>
-        <loc>https://contractorwarehouses.com/index.html</loc>
+        <loc>https://warehousesforcontractors.com/index.html</loc>
         <lastmod>2024-10-01</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>

@@ -19,7 +19,36 @@
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
+    })(window,document,'script','dataLayer',window.CONFIG?.GTM_ID || 'GTM-XXXXXXX');</script>
+    
+    <!-- Configuration for thank you page -->
+    <script>
+        window.CONFIG = window.CONFIG || {
+            GTM_ID: 'GTM-XXXXXXX',
+            GA4_ID: 'G-XXXXXXXXXX',
+            TRACKING_NUMBERS: {
+                default: '561-718-6725',
+                google_ads: '561-718-6726',
+                facebook: '561-718-6727',
+                organic: '561-718-6728'
+            }
+        };
+        
+        function getTrackingNumber() {
+            const source = sessionStorage.getItem('traffic_source') || 'default';
+            return window.CONFIG.TRACKING_NUMBERS[source] || window.CONFIG.TRACKING_NUMBERS.default;
+        }
+        
+        function trackRevenue(event, value, additionalData = {}) {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', event, {
+                    value: value,
+                    currency: 'USD',
+                    ...additionalData
+                });
+            }
+        }
+    </script>
     
     <style>
         * {
@@ -323,7 +352,7 @@
             <div class="contact-methods">
                 <div class="contact-method">
                     <div class="contact-method-icon">📞</div>
-                    <div><a href="tel:561-718-6725" onclick="gtag('event', 'phone_click', {'event_category': 'contact', 'event_label': 'thank_you_page'});">561-718-6725</a></div>
+                    <div><a href="#" id="thank-you-phone" onclick="trackRevenue('phone_click', 35000, {location: 'thank_you_page'});"></a></div>
                     <div style="font-size: 0.9rem; opacity: 0.8;">Call or Text</div>
                 </div>
                 <div class="contact-method">
@@ -356,24 +385,42 @@
     </div>
     
     <script>
-        // Track thank you page view
-        gtag('event', 'page_view', {
-            'page_title': 'Thank You Page',
-            'page_location': window.location.href
+        // Initialize thank you page
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeThankYouPage();
         });
         
-        // Track conversion completion
-        gtag('event', 'conversion', {
-            'event_category': 'form_completion',
-            'event_label': 'contractor_lead_form'
-        });
-        
-        // Enhanced conversion tracking for Google Ads
-        gtag('event', 'conversion', {
-            'send_to': 'AW-CONVERSION_ID/CONVERSION_LABEL',
-            'value': 1.0,
-            'currency': 'USD'
-        });
+        function initializeThankYouPage() {
+            // Set up dynamic phone number
+            const phoneElement = document.getElementById('thank-you-phone');
+            const trackingNumber = getTrackingNumber();
+            
+            if (phoneElement) {
+                phoneElement.href = `tel:${trackingNumber}`;
+                phoneElement.textContent = trackingNumber;
+            }
+            
+            // Track thank you page view
+            trackRevenue('page_view', 0, {
+                page_title: 'Thank You Page',
+                page_location: window.location.href
+            });
+            
+            // Track conversion completion
+            trackRevenue('conversion_complete', 35000, {
+                event_category: 'form_completion',
+                event_label: 'contractor_lead_form'
+            });
+            
+            // Enhanced conversion tracking for Google Ads
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'conversion', {
+                    'send_to': 'AW-CONVERSION_ID/CONVERSION_LABEL',
+                    'value': 35000,
+                    'currency': 'USD'
+                });
+            }
+        }
         
         // Track time on thank you page
         let startTime = Date.now();
