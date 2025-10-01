@@ -146,84 +146,76 @@
         
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            background: #ffffff;
             padding: 3rem 0 4rem;
-            color: white;
+            color: #1a1a1a;
         }
         
         .hero-content {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 1rem;
-            display: grid;
-            grid-template-columns: 1fr 400px;
-            gap: 3rem;
-            align-items: center;
+            text-align: center;
         }
         
         .hero-text h1 {
-            font-size: 3rem;
+            font-size: 48px;
             font-weight: 700;
             line-height: 1.1;
             margin-bottom: 1.5rem;
-            color: white;
+            color: #1a1a1a;
         }
         
         .hero-text .subhead {
-            font-size: 1.3rem;
-            color: #cbd5e1;
+            font-size: 18px;
+            color: #4b5563;
             margin-bottom: 2rem;
             line-height: 1.4;
+            font-weight: 400;
         }
         
         .value-props {
             list-style: none;
             margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .value-props li {
             padding: 0.5rem 0;
-            font-size: 1.1rem;
-            color: #e2e8f0;
-            display: flex;
-            align-items: center;
-        }
-        
-        .value-props li:before {
-            content: "✓";
-            color: #10b981;
-            font-weight: bold;
-            margin-right: 0.75rem;
-            font-size: 1.2rem;
+            font-size: 18px;
+            color: #1a1a1a;
+            font-weight: 700;
         }
         
         .hero-cta {
             display: flex;
             gap: 1rem;
             flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 3rem;
         }
         
         .btn-primary {
-            background: #10b981;
+            background: #dc2626;
             color: white;
-            padding: 1rem 2rem;
+            padding: 1.5rem 3rem;
             border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: 600;
+            border-radius: 6px;
+            font-size: 20px;
+            font-weight: 700;
             text-decoration: none;
             cursor: pointer;
             transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
         }
         
         .btn-primary:hover {
-            background: #059669;
+            background: #b91c1c;
             transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
         }
         
         .btn-secondary {
@@ -246,18 +238,25 @@
             color: white;
         }
         
-        /* Form Card */
+        /* Form Section */
+        .form-section {
+            background: #f8fafc;
+            padding: 3rem 0;
+        }
+        
         .form-card {
             background: white;
             padding: 2.5rem;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
             border: 1px solid #e5e7eb;
+            max-width: 600px;
+            margin: 0 auto;
         }
         
         .form-card h2 {
-            font-size: 1.5rem;
-            font-weight: 700;
+            font-size: 24px;
+            font-weight: 500;
             margin-bottom: 1rem;
             color: #1a1a1a;
             text-align: center;
@@ -267,7 +266,8 @@
             text-align: center;
             color: #6b7280;
             margin-bottom: 2rem;
-            font-size: 0.95rem;
+            font-size: 18px;
+            font-weight: 400;
         }
         
         .form-group {
@@ -300,22 +300,20 @@
         
         .form-submit {
             width: 100%;
-            background: #3b82f6;
+            background: #dc2626;
             color: white;
             padding: 1rem;
             border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: 600;
+            border-radius: 6px;
+            font-size: 20px;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
         }
         
         .form-submit:hover {
-            background: #2563eb;
+            background: #b91c1c;
             transform: translateY(-1px);
-            box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
         }
         
         /* Credentials */
@@ -548,18 +546,23 @@
         
         /* Mobile Optimizations */
         @media (max-width: 768px) {
-            .hero-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-                text-align: center;
-            }
-            
             .hero-text h1 {
-                font-size: 2.2rem;
+                font-size: 36px;
             }
             
-            .hero-cta {
-                justify-content: center;
+            .hero-text .subhead {
+                font-size: 16px;
+            }
+            
+            .value-props div {
+                font-size: 16px;
+            }
+            
+            .btn-primary {
+                padding: 1.25rem 2rem;
+                font-size: 18px;
+                width: 100%;
+                max-width: 300px;
             }
             
             .mobile-sticky {
@@ -630,35 +633,26 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <div class="hero-text">
-                <h1>I'll Connect You With Warehouse Owners in 72 Hours</h1>
-                <p class="subhead">I know which landlords have space TODAY and what they'll actually accept. Plus, I know which ones are flexible on credit requirements and what alternatives they'll accept.</p>
-                
-                <ul class="value-props">
-                    <li>Direct introductions to decision makers in West Palm Beach, Boynton Beach & Delray Beach</li>
-                    <li>I know who's motivated to lease quickly (and who's flexible on credit)</li>
-                    <li>Negotiate terms that work for contractors</li>
-                    <li>No cost to you - landlords pay my commission</li>
-                </ul>
-                
-                <div style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 8px; padding: 1rem; margin: 1.5rem 0; color: #e2e8f0;">
-                    <strong>🕒 Limited availability for new clients this week</strong><br>
-                    <span style="font-size: 0.9rem; opacity: 0.8;">Tours available this week - call for scheduling</span>
-                </div>
-                
-                <div class="hero-cta">
-                    <a href="#form" class="btn-primary" onclick="trackConversion('cta_click', 35000, {location: 'hero'});">
-                        📞 Call Me Now
-                    </a>
-                    <a href="#form" class="btn-secondary" onclick="trackConversion('form_view', 0, {location: 'hero'});">
-                        📝 Send Details
-                    </a>
-                    <a href="#" class="btn-secondary" onclick="showLeadMagnet(); trackConversion('lead_magnet_view', 0, {location: 'hero'});" style="background: transparent; border: 1px solid rgba(255,255,255,0.3); color: #cbd5e1; font-size: 0.95rem;">
-                        📄 Download: 5 Questions Landlords Will Ask
-                    </a>
-                </div>
+            <h1>I'll Connect You With Warehouse Owners in 72 Hours</h1>
+            <p class="subhead">I know which landlords have space TODAY and what they'll actually accept. Plus, I know which ones are flexible on credit requirements and what alternatives they'll accept.</p>
+            
+            <div class="value-props">
+                <div>Direct introductions to decision makers in West Palm Beach, Boynton Beach & Delray Beach</div>
+                <div>Flexible on credit requirements</div>
+                <div>No cost to you - landlords pay my commission</div>
             </div>
             
+            <div class="hero-cta">
+                <a href="tel:561-718-6725" class="btn-primary" id="hero-phone-giant" onclick="trackConversion('phone_click', 35000, {location: 'hero_giant'});">
+                    📞 561-718-6725
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Form Section -->
+    <section class="form-section">
+        <div class="container">
             <div class="form-card" id="form">
                 <h2>Get Matched This Week</h2>
                 <p class="subtitle">Tell me what you need. I'll find who has it.</p>
@@ -691,6 +685,10 @@
                         Get My Matches Today
                     </button>
                 </form>
+                
+                <p style="text-align: center; margin-top: 1rem; font-size: 14px; color: #6b7280;">
+                    Or <a href="#" onclick="showLeadMagnet(); trackConversion('lead_magnet_view', 0, {location: 'form'});" style="color: #dc2626; text-decoration: underline;">download: 5 Questions Landlords Will Ask</a>
+                </p>
             </div>
         </div>
     </section>
@@ -880,9 +878,12 @@
             document.getElementById('exit-text').href = `sms:${trackingNumber}?body=I need warehouse space`;
             document.getElementById('footer-phone').innerHTML = `📞 <a href="tel:${trackingNumber}" style="color: white;">${trackingNumber}</a>`;
             
-            // Update hero CTAs
-            const heroCTA = document.querySelector('.hero-cta .btn-primary');
-            heroCTA.href = `tel:${trackingNumber}`;
+            // Update hero giant phone button
+            const heroGiantPhone = document.getElementById('hero-phone-giant');
+            if (heroGiantPhone) {
+                heroGiantPhone.href = `tel:${trackingNumber}`;
+                heroGiantPhone.innerHTML = `📞 ${trackingNumber}`;
+            }
         }
         
         // Removed dynamic tour day function - using evergreen messaging
