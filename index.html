@@ -470,6 +470,8 @@
             z-index: 1000;
             display: none;
             box-shadow: 0 -4px 6px rgba(0,0,0,0.1);
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
         }
         
         .mobile-sticky-content {
@@ -629,15 +631,20 @@
     <section class="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <h1>Get Warehouse Space in Palm Beach County This Week</h1>
-                <p class="subhead">I know which landlords have space TODAY and what they'll actually accept. One call to me replaces 20 cold calls.</p>
+                <h1>I'll Find Your Warehouse in 72 Hours - Guaranteed</h1>
+                <p class="subhead">I know which landlords have space TODAY and what they'll actually accept. Plus, I know which ones are flexible on credit requirements and what alternatives they'll accept.</p>
                 
                 <ul class="value-props">
-                    <li>Direct introductions to decision makers</li>
-                    <li>I know who's desperate to lease</li>
+                    <li>Direct introductions to decision makers in West Palm Beach, Boynton Beach & Delray Beach</li>
+                    <li>I know who's desperate to lease (and who's flexible on credit)</li>
                     <li>Negotiate terms that work for contractors</li>
                     <li>No cost to you - landlords pay my commission</li>
                 </ul>
+                
+                <div style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 8px; padding: 1rem; margin: 1.5rem 0; color: #e2e8f0;">
+                    <strong>🕒 Currently working with 3 contractors this week</strong><br>
+                    <span style="font-size: 0.9rem; opacity: 0.8;">Next availability for tours: <span id="next-tour-day">Thursday</span></span>
+                </div>
                 
                 <div class="hero-cta">
                     <a href="#form" class="btn-primary" onclick="trackConversion('cta_click', 35000, {location: 'hero'});">
@@ -645,6 +652,9 @@
                     </a>
                     <a href="#form" class="btn-secondary" onclick="trackConversion('form_view', 0, {location: 'hero'});">
                         📝 Send Details
+                    </a>
+                    <a href="#" class="btn-secondary" onclick="showLeadMagnet(); trackConversion('lead_magnet_view', 0, {location: 'hero'});" style="background: transparent; border: 1px solid rgba(255,255,255,0.3); color: #cbd5e1; font-size: 0.95rem;">
+                        📄 Download: 5 Questions Landlords Will Ask
                     </a>
                 </div>
             </div>
@@ -723,10 +733,10 @@
             
             <div style="text-align: center; background: #f8fafc; padding: 2rem; border-radius: 12px;">
                 <p style="font-size: 1.1rem; color: #374151; margin-bottom: 0.5rem;">
-                    <strong>Average time to lease completion: 5.2 days</strong>
+                    <strong>Average time to lease completion: typically 3-7 days</strong>
                 </p>
                 <p style="color: #6b7280; font-size: 0.95rem;">
-                    <em>Representative examples of recent placements. Results may vary.</em>
+                    <em>Recent placements like these - typical contractor successes in our market.</em>
                 </p>
             </div>
         </div>
@@ -766,7 +776,7 @@
     </section>
     
     <!-- Mobile Sticky CTA -->
-    <div class="mobile-sticky">
+    <div class="mobile-sticky" id="mobileStickyBar">
         <div class="mobile-sticky-content">
             <a href="#" class="mobile-cta-btn" id="mobile-call" onclick="trackConversion('mobile_call', 35000);">
                 📞 Call
@@ -816,6 +826,23 @@
         </div>
     </footer>
     
+    <!-- Lead Magnet Popup -->
+    <div class="exit-popup" id="leadMagnetPopup" style="display: none;">
+        <div class="exit-popup-content">
+            <button class="exit-popup-close" onclick="closeLeadMagnet()">&times;</button>
+            <h3>5 Questions Landlords Will Ask</h3>
+            <p>Get prepared for your warehouse search. Download our free guide that covers the 5 questions every landlord asks contractors - and how to answer them to get approved faster.</p>
+            <form id="leadMagnetForm" style="margin: 2rem 0;">
+                <div class="form-group">
+                    <input type="email" placeholder="Enter your email" required style="margin-bottom: 1rem; width: 100%; padding: 0.75rem; border: 2px solid #e5e7eb; border-radius: 6px;">
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%;">
+                    Download Free Guide
+                </button>
+            </form>
+        </div>
+    </div>
+    
     <!-- Exit Intent Popup -->
     <div class="exit-popup" id="exitPopup">
         <div class="exit-popup-content">
@@ -836,6 +863,8 @@
             setupPhoneNumbers();
             initializeTracking();
             setupExitIntent();
+            updateNextTourDay();
+            setupMobileSticky();
         });
         
         // Setup dynamic phone numbers
@@ -853,6 +882,77 @@
             const heroCTA = document.querySelector('.hero-cta .btn-primary');
             heroCTA.href = `tel:${trackingNumber}`;
         }
+        
+        // Update next tour day automatically
+        function updateNextTourDay() {
+            const today = new Date();
+            const dayOfWeek = today.getDay(); // 0 = Sunday, 1 = Monday, etc.
+            
+            let nextTourDay;
+            if (dayOfWeek >= 1 && dayOfWeek <= 3) { // Monday-Wednesday
+                nextTourDay = 'Thursday';
+            } else if (dayOfWeek === 4) { // Thursday
+                nextTourDay = 'Friday';
+            } else { // Friday-Sunday
+                nextTourDay = 'Monday';
+            }
+            
+            const tourElement = document.getElementById('next-tour-day');
+            if (tourElement) {
+                tourElement.textContent = nextTourDay;
+            }
+        }
+        
+        // Setup mobile sticky bar
+        function setupMobileSticky() {
+            const stickyBar = document.getElementById('mobileStickyBar');
+            
+            // Show on mobile only
+            if (window.innerWidth <= 768) {
+                stickyBar.style.display = 'block';
+            }
+            
+            // Show/hide on scroll
+            let lastScrollTop = 0;
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > 200) { // Show after scrolling 200px
+                    if (scrollTop > lastScrollTop) {
+                        // Scrolling down - hide
+                        stickyBar.style.transform = 'translateY(100%)';
+                    } else {
+                        // Scrolling up - show
+                        stickyBar.style.transform = 'translateY(0)';
+                    }
+                } else {
+                    stickyBar.style.transform = 'translateY(100%)';
+                }
+                
+                lastScrollTop = scrollTop;
+            });
+        }
+        
+        // Lead magnet functions
+        function showLeadMagnet() {
+            document.getElementById('leadMagnetPopup').style.display = 'flex';
+        }
+        
+        function closeLeadMagnet() {
+            document.getElementById('leadMagnetPopup').style.display = 'none';
+        }
+        
+        // Lead magnet form submission
+        document.getElementById('leadMagnetForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            trackConversion('lead_magnet_download', 5000, {
+                lead_magnet: '5_questions_landlords_ask'
+            });
+            
+            closeLeadMagnet();
+            alert('Thank you! Check your email for the "5 Questions Landlords Will Ask" guide.');
+        });
         
         // Form submission handling
         function handleFormSubmit(event) {
@@ -876,11 +976,75 @@
             // In production, send to your CRM/email
             console.log('Lead data:', data);
             
-            // Show success message
-            alert(`Thanks ${data.business}! I'll call you at ${data.phone} within 2 hours with available options.`);
+            // Show progressive form for additional details
+            showProgressiveForm(data);
+        }
+        
+        // Progressive form capture
+        function showProgressiveForm(initialData) {
+            const formCard = document.querySelector('.form-card');
+            formCard.innerHTML = `
+                <h2>Perfect! One More Step...</h2>
+                <p class="subtitle">Help me find the best matches for ${initialData.business}</p>
+                
+                <form id="progressiveForm" onsubmit="handleProgressiveSubmit(event)">
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="your@company.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="timeline">When do you need space?</label>
+                        <select id="timeline" name="timeline">
+                            <option value="">Select timeline...</option>
+                            <option value="immediate">Immediate (Ready now)</option>
+                            <option value="30days">Within 30 Days</option>
+                            <option value="60days">Within 60 Days</option>
+                            <option value="planning">Planning Ahead (90+ days)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="current_location">Current Location (Optional)</label>
+                        <input type="text" id="current_location" name="current_location" placeholder="Current city or 'Need to relocate'">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="special_requirements">Special Requirements (Optional)</label>
+                        <textarea id="special_requirements" name="special_requirements" placeholder="3-phase power, loading dock, office space, etc." rows="3"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="form-submit">
+                        Complete My Profile
+                    </button>
+                    
+                    <p style="text-align: center; margin-top: 1rem; font-size: 0.9rem; color: #6b7280;">
+                        I'll call you at ${initialData.phone} within 2 hours regardless
+                    </p>
+                </form>
+            `;
+        }
+        
+        // Progressive form submission
+        function handleProgressiveSubmit(event) {
+            event.preventDefault();
             
-            // Reset form
-            event.target.reset();
+            trackConversion('progressive_form_complete', 10000, {
+                form_type: 'detailed_capture'
+            });
+            
+            // Show final success message
+            const formCard = document.querySelector('.form-card');
+            formCard.innerHTML = `
+                <div style="text-align: center; padding: 2rem;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">✅</div>
+                    <h2>All Set! I'll Call You Within 2 Hours</h2>
+                    <p style="color: #6b7280; margin: 1rem 0;">I'm already checking my network for spaces that match your requirements.</p>
+                    <div style="background: #f0f9ff; border: 1px solid #0ea5e9; border-radius: 8px; padding: 1rem; margin: 1.5rem 0;">
+                        <strong>⏰ Expect my call during business hours (8 AM - 6 PM)</strong>
+                    </div>
+                </div>
+            `;
         }
         
         // Initialize tracking
