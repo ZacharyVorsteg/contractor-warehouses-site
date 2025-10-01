@@ -631,19 +631,19 @@
     <section class="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <h1>I'll Find Your Warehouse in 72 Hours - Guaranteed</h1>
+                <h1>I'll Connect You With Warehouse Owners in 72 Hours</h1>
                 <p class="subhead">I know which landlords have space TODAY and what they'll actually accept. Plus, I know which ones are flexible on credit requirements and what alternatives they'll accept.</p>
                 
                 <ul class="value-props">
                     <li>Direct introductions to decision makers in West Palm Beach, Boynton Beach & Delray Beach</li>
-                    <li>I know who's desperate to lease (and who's flexible on credit)</li>
+                    <li>I know who's motivated to lease quickly (and who's flexible on credit)</li>
                     <li>Negotiate terms that work for contractors</li>
                     <li>No cost to you - landlords pay my commission</li>
                 </ul>
                 
                 <div style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 8px; padding: 1rem; margin: 1.5rem 0; color: #e2e8f0;">
-                    <strong>🕒 Currently working with 3 contractors this week</strong><br>
-                    <span style="font-size: 0.9rem; opacity: 0.8;">Next availability for tours: <span id="next-tour-day">Thursday</span></span>
+                    <strong>🕒 Limited availability for new clients this week</strong><br>
+                    <span style="font-size: 0.9rem; opacity: 0.8;">Tours available this week - call for scheduling</span>
                 </div>
                 
                 <div class="hero-cta">
@@ -808,17 +808,20 @@
                 </p>
             </div>
             
-            <div class="footer-section">
-                <h4>Service Areas</h4>
-                <p>
-                    West Palm Beach<br>
-                    Boynton Beach<br>
-                    Delray Beach<br>
-                    Boca Raton<br>
-                    Lake Worth<br>
-                    Wellington
-                </p>
-            </div>
+                <div class="footer-section">
+                    <h4>Service Areas</h4>
+                    <p>
+                        West Palm Beach<br>
+                        Boynton Beach<br>
+                        Delray Beach<br>
+                        Boca Raton<br>
+                        Lake Worth<br>
+                        Wellington
+                    </p>
+                    <p style="margin-top: 1rem; font-size: 0.85rem; opacity: 0.8;">
+                        Timeline estimates based on typical transactions. Actual timing depends on landlord response and application processing.
+                    </p>
+                </div>
         </div>
         
         <div class="footer-bottom">
@@ -863,7 +866,6 @@
             setupPhoneNumbers();
             initializeTracking();
             setupExitIntent();
-            updateNextTourDay();
             setupMobileSticky();
         });
         
@@ -883,25 +885,7 @@
             heroCTA.href = `tel:${trackingNumber}`;
         }
         
-        // Update next tour day automatically
-        function updateNextTourDay() {
-            const today = new Date();
-            const dayOfWeek = today.getDay(); // 0 = Sunday, 1 = Monday, etc.
-            
-            let nextTourDay;
-            if (dayOfWeek >= 1 && dayOfWeek <= 3) { // Monday-Wednesday
-                nextTourDay = 'Thursday';
-            } else if (dayOfWeek === 4) { // Thursday
-                nextTourDay = 'Friday';
-            } else { // Friday-Sunday
-                nextTourDay = 'Monday';
-            }
-            
-            const tourElement = document.getElementById('next-tour-day');
-            if (tourElement) {
-                tourElement.textContent = nextTourDay;
-            }
-        }
+        // Removed dynamic tour day function - using evergreen messaging
         
         // Setup mobile sticky bar
         function setupMobileSticky() {
