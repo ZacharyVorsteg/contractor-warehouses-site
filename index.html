@@ -335,6 +335,73 @@
             transform: translateY(-1px);
         }
         
+        /* Checkbox Styling */
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            background: #f8fafc;
+        }
+        
+        .checkbox-item:hover {
+            background-color: #f1f5f9;
+            border-color: #dc2626;
+        }
+        
+        .checkbox-item input[type="checkbox"] {
+            display: none;
+        }
+        
+        .checkbox-custom {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #9ca3af;
+            border-radius: 4px;
+            margin-right: 12px;
+            position: relative;
+            flex-shrink: 0;
+            transition: all 0.2s ease;
+        }
+        
+        .checkbox-item input[type="checkbox"]:checked + .checkbox-custom {
+            background-color: #dc2626;
+            border-color: #dc2626;
+        }
+        
+        .checkbox-item input[type="checkbox"]:checked + .checkbox-custom::after {
+            content: '✓';
+            color: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        .label-content {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 15px;
+            color: #374151;
+            font-weight: 500;
+        }
+        
+        .label-content .icon {
+            font-size: 16px;
+        }
+        
         /* Credentials */
         .credentials {
             background: #1f2937;
@@ -844,20 +911,35 @@
                         </div>
                     </div>
                     
-                    <div class="form-group">
-                        <label>Ready to Provide:</label>
-                        <div style="display: grid; grid-template-columns: 1fr; gap: 0.5rem; margin-top: 0.75rem;">
-                            <label style="display: flex; align-items: center; gap: 0.75rem; font-weight: 400; font-size: 14px; cursor: pointer; padding: 0.75rem; background: #f8fafc; border-radius: 6px;">
-                                <input type="checkbox" id="financial" name="docs" value="financial" style="margin: 0;">
-                                <span>📊 Financial Statements</span>
+                    <div class="ready-to-provide">
+                        <h3 style="font-size: 15px; font-weight: 600; color: #374151; margin-bottom: 1rem;">Ready to Provide:</h3>
+                        
+                        <div class="checkbox-group">
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="docs" value="financial">
+                                <span class="checkbox-custom"></span>
+                                <span class="label-content">
+                                    <i class="icon">📊</i>
+                                    Financial Statements
+                                </span>
                             </label>
-                            <label style="display: flex; align-items: center; gap: 0.75rem; font-weight: 400; font-size: 14px; cursor: pointer; padding: 0.75rem; background: #f8fafc; border-radius: 6px;">
-                                <input type="checkbox" id="insurance" name="docs" value="insurance" style="margin: 0;">
-                                <span>🛡️ General Liability Insurance</span>
+                            
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="docs" value="insurance">
+                                <span class="checkbox-custom"></span>
+                                <span class="label-content">
+                                    <i class="icon">🛡️</i>
+                                    General Liability Insurance
+                                </span>
                             </label>
-                            <label style="display: flex; align-items: center; gap: 0.75rem; font-weight: 400; font-size: 14px; cursor: pointer; padding: 0.75rem; background: #f8fafc; border-radius: 6px;">
-                                <input type="checkbox" id="references" name="docs" value="references" style="margin: 0;">
-                                <span>📋 Business References</span>
+                            
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="docs" value="references">
+                                <span class="checkbox-custom"></span>
+                                <span class="label-content">
+                                    <i class="icon">📋</i>
+                                    Business References
+                                </span>
                             </label>
                         </div>
                     </div>
