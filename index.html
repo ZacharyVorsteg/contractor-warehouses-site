@@ -691,13 +691,18 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h1>I'll Connect You With Warehouse Owners in 72 Hours</h1>
-            <p class="subhead">I know which landlords have space TODAY and what they'll actually accept. Plus, I know which ones are flexible on credit requirements and what alternatives they'll accept.</p>
+            <div style="margin-bottom: 1rem; color: #6b7280; font-size: 16px; font-weight: 500;">
+                Licensed FL Sales Associate #SL3603483 | Cornerstone Realty
+            </div>
+            
+            <h1>Exclusive Access to Premium Warehouse Inventory for Growing Contractors</h1>
+            <p class="subhead">Strategic property matching based on your business profile and growth trajectory. Direct access to pre-qualified properties suited for established contractors.</p>
             
             <div class="value-props">
-                <div>Direct introductions to decision makers in West Palm Beach, Boynton Beach & Delray Beach</div>
-                <div>Flexible on credit requirements</div>
-                <div>No cost to you - landlords pay my commission</div>
+                <div>Pre-screened inventory from trusted landlords</div>
+                <div>Multiple qualification pathways for businesses with documented operational history</div>
+                <div>Properties suited for businesses with proven track records</div>
+                <div>Landlord-paid commission structure upon successful lease execution</div>
             </div>
             
             <div class="hero-cta">
@@ -705,6 +710,10 @@
                     📞 561-718-6725
                 </a>
             </div>
+            
+            <p style="margin-top: 2rem; color: #6b7280; font-size: 16px; text-align: center;">
+                <strong>Connecting qualified contractors with 2,500-10,000 sq ft facilities</strong>
+            </p>
         </div>
     </section>
     
@@ -712,8 +721,13 @@
     <section class="form-section">
         <div class="container">
             <div class="form-card" id="form">
-                <h2>Get Matched This Week</h2>
-                <p class="subtitle">Tell me what you need. I'll find who has it.</p>
+                <h2>Priority Placement for Document-Ready Businesses</h2>
+                <p class="subtitle">Complete your business profile for strategic property matching.</p>
+                
+                <p class="qualify-text" style="background: #f0f9ff; border: 1px solid #0ea5e9; border-radius: 6px; padding: 1rem; margin-bottom: 2rem; font-size: 14px; color: #0c4a6e;">
+                    <strong>Best results for:</strong> Licensed contractors with 2+ years operating history • 
+                    Businesses ready to provide documentation • Companies scaling operations
+                </p>
                 
                 <form id="leadForm" onsubmit="handleFormSubmit(event)">
                     <div class="form-group">
@@ -724,7 +738,7 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="phone">Phone *</label>
+                        <label for="phone">Business Phone *</label>
                         <input type="tel" id="phone" name="phone" required 
                                placeholder="(561) 555-0123">
                     </div>
@@ -735,12 +749,65 @@
                             <option value="">Select size...</option>
                             <option value="under_2500">Under 2,500 sq ft</option>
                             <option value="2500_5000">2,500 - 5,000 sq ft</option>
-                            <option value="5000_plus">5,000+ sq ft</option>
+                            <option value="5000_10000">5,000 - 10,000 sq ft</option>
+                            <option value="10000_plus">10,000+ sq ft</option>
                         </select>
                     </div>
                     
+                    <div class="form-group">
+                        <label for="years_business">Years in Business *</label>
+                        <select id="years_business" name="years_business" required>
+                            <option value="">Select...</option>
+                            <option value="less-1">Less than 1 year</option>
+                            <option value="1-2">1-2 years</option>
+                            <option value="2-5">2-5 years</option>
+                            <option value="5-10">5-10 years</option>
+                            <option value="10+">10+ years</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="revenue">Annual Revenue *</label>
+                        <select id="revenue" name="revenue" required>
+                            <option value="">Select range...</option>
+                            <option value="under-250k">Under $250K</option>
+                            <option value="250-500k">$250K - $500K</option>
+                            <option value="500k-1m">$500K - $1M</option>
+                            <option value="1m+">$1M+</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="current_facility">Current Facility Type *</label>
+                        <select id="current_facility" name="current_facility" required>
+                            <option value="">Select...</option>
+                            <option value="home">Home-based</option>
+                            <option value="shared">Shared/Co-working</option>
+                            <option value="lease">Current Commercial Lease</option>
+                            <option value="owned">Owned Property</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Ready to Provide:</label>
+                        <div style="display: grid; grid-template-columns: 1fr; gap: 0.5rem; margin-top: 0.5rem;">
+                            <label style="display: flex; align-items: center; gap: 0.5rem; font-weight: 400; font-size: 14px;">
+                                <input type="checkbox" id="financial" name="docs" value="financial">
+                                Financial Statements
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem; font-weight: 400; font-size: 14px;">
+                                <input type="checkbox" id="insurance" name="docs" value="insurance">
+                                General Liability Insurance
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem; font-weight: 400; font-size: 14px;">
+                                <input type="checkbox" id="references" name="docs" value="references">
+                                Business References
+                            </label>
+                        </div>
+                    </div>
+                    
                     <button type="submit" class="form-submit">
-                        Get My Matches Today
+                        Submit Property Requirements
                     </button>
                 </form>
                 
@@ -759,40 +826,56 @@
         </div>
     </section>
     
-    <!-- Social Proof -->
+    <!-- Business Expansion Success Stories -->
     <section class="social-proof">
         <div class="social-proof-content">
-            <h2>Recent Successful Placements</h2>
+            <h2>Business Expansion Success Stories</h2>
             
             <div class="placements-grid">
                 <div class="placement-card">
-                    <div class="placement-size">4,200 sq ft</div>
-                    <div class="placement-business">HVAC Contractor</div>
-                    <div class="placement-details">3-phase power, grade-level access, month-to-month terms secured</div>
-                    <div class="placement-time">Completed in 5 days</div>
+                    <div class="placement-size">HVAC Contractor | Est. 2018</div>
+                    <div class="placement-business">From: 2,000 sq ft shared space</div>
+                    <div class="placement-details">To: 4,200 sq ft dedicated facility<br>3-phase power, grade-level access</div>
+                    <div class="placement-time">*5-day placement with complete documentation</div>
                 </div>
                 
                 <div class="placement-card">
-                    <div class="placement-size">2,800 sq ft</div>
-                    <div class="placement-business">Electrical Contractor</div>
-                    <div class="placement-details">Equipment yard included, flexible lease terms, near supplier hub</div>
-                    <div class="placement-time">Completed in 3 days</div>
+                    <div class="placement-size">Electrical Contractor | Est. 2016</div>
+                    <div class="placement-business">From: Home-based operations</div>
+                    <div class="placement-details">To: 2,800 sq ft with equipment yard<br>Near supplier hub, flexible terms</div>
+                    <div class="placement-time">*3-day placement with complete documentation</div>
                 </div>
                 
                 <div class="placement-card">
-                    <div class="placement-size">6,500 sq ft</div>
-                    <div class="placement-business">General Contractor</div>
-                    <div class="placement-details">Office build-out included, 400-amp service, dock access</div>
-                    <div class="placement-time">Completed in 7 days</div>
+                    <div class="placement-size">General Contractor | Est. 2015</div>
+                    <div class="placement-business">From: 4,000 sq ft lease expiring</div>
+                    <div class="placement-details">To: 6,500 sq ft with office build-out<br>400-amp service, dock access</div>
+                    <div class="placement-time">*7-day placement with complete documentation</div>
                 </div>
             </div>
             
-            <div style="text-align: center; background: #f8fafc; padding: 2rem; border-radius: 12px;">
-                <p style="font-size: 1.1rem; color: #374151; margin-bottom: 0.5rem;">
-                    <strong>Average time to lease completion: typically 3-7 days</strong>
-                </p>
-                <p style="color: #6b7280; font-size: 0.95rem;">
-                    <em>Recent placements like these - typical contractor successes in our market.</em>
+            <div class="trust-metrics" style="text-align: center; background: #f8fafc; padding: 2rem; border-radius: 12px; margin-top: 3rem;">
+                <h3 style="font-size: 24px; font-weight: 600; margin-bottom: 1.5rem; color: #1a1a1a;">Why Established Contractors Choose Us</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-bottom: 1.5rem;">
+                    <div>
+                        <div style="font-size: 28px; font-weight: 700; color: #dc2626;">50+</div>
+                        <div style="font-size: 14px; color: #6b7280;">Successful placements since 2020</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 28px; font-weight: 700; color: #dc2626;">5+</div>
+                        <div style="font-size: 14px; color: #6b7280;">Average client years in business</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 28px; font-weight: 700; color: #dc2626;">3+</div>
+                        <div style="font-size: 14px; color: #6b7280;">Year average tenant tenure</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 28px; font-weight: 700; color: #dc2626;">$500K-$2M</div>
+                        <div style="font-size: 14px; color: #6b7280;">Typical client revenue range</div>
+                    </div>
+                </div>
+                <p style="color: #6b7280; font-size: 0.9rem;">
+                    <em>*Timelines represent recent transactions for fully-documented, pre-qualified businesses and are not guaranteed.</em>
                 </p>
             </div>
         </div>
@@ -812,20 +895,20 @@
                 
                 <div class="process-step">
                     <div class="step-number">🔍</div>
-                    <div class="step-title">I Check My Network</div>
-                    <div class="step-description">I know which landlords have space and what they'll accept. No cold calling.</div>
+                    <div class="step-title">Access Pre-Qualified Properties</div>
+                    <div class="step-description">Access to pre-qualified properties matching established businesses. Direct landlord relationships.</div>
                 </div>
                 
                 <div class="process-step">
                     <div class="step-number">🤝</div>
-                    <div class="step-title">Direct Introductions</div>
-                    <div class="step-description">I connect you directly with decision makers. Skip the property managers.</div>
+                    <div class="step-title">Strategic Introductions</div>
+                    <div class="step-description">Professional introductions to decision makers for qualified businesses. Direct access to property owners.</div>
                 </div>
                 
                 <div class="process-step">
                     <div class="step-number">🏢</div>
-                    <div class="step-title">Negotiate & Close</div>
-                    <div class="step-description">I help negotiate terms that work for contractors. Move in this week.</div>
+                    <div class="step-title">Professional Negotiation</div>
+                    <div class="step-description">Professional lease negotiation for qualified businesses. Immediate occupancy available for document-ready companies*</div>
                 </div>
             </div>
         </div>
@@ -854,14 +937,20 @@
             </div>
             
             <div class="footer-section">
-                <h4>Legal Disclosures</h4>
-                <p>
-                    Zachary Vorsteg, Licensed FL Real Estate Sales Associate #SL3603483<br>
-                    Cornerstone Realty<br><br>
-                    All terms subject to landlord approval and credit verification.<br>
-                    Prices and availability subject to change without notice.<br>
-                    Commission paid by property owner/landlord.
-                </p>
+                <div class="legal-disclosure">
+                    <h4>Important Disclosures:</h4>
+                    <p style="font-size: 0.85rem; line-height: 1.4; margin-bottom: 1rem;">
+                        All property placements subject to landlord approval, credit verification, and standard commercial underwriting including but not limited to: business entity verification, financial review, insurance requirements, and commercial references. Timelines shown represent recent transactions for fully-documented, pre-qualified businesses and are not guaranteed. Individual results vary based on business credentials, financial standing, market conditions, and current property availability.
+                    </p>
+                    
+                    <p style="font-size: 0.85rem; line-height: 1.4; margin-bottom: 1rem;">
+                        Properties shown may require: minimum 2 years business operating history, general liability insurance, documented revenue, commercial bank references, personal guarantees, and security deposits as determined by individual landlords.
+                    </p>
+                    
+                    <p style="font-size: 0.85rem; line-height: 1.4;">
+                        Zachary Vorsteg, Licensed Florida Real Estate Sales Associate #SL3603483, operating under Cornerstone Realty. Agency relationship: Transaction broker unless single agency designated in writing. Full agency disclosure available upon request. Commission paid by landlord/property owner upon successful lease execution.
+                    </p>
+                </div>
             </div>
             
                 <div class="footer-section">
