@@ -790,6 +790,53 @@
             font-size: 1.5rem;
             cursor: pointer;
         }
+        
+        /* Audio Player Button */
+        .audio-player-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 48px;
+            height: 48px;
+            background: #dc2626;
+            color: white;
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+            cursor: pointer;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            z-index: 998;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            user-select: none;
+            transition: all 0.3s ease;
+            opacity: 0.9;
+        }
+        
+        .audio-player-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(220, 38, 38, 0.4);
+            opacity: 1;
+        }
+        
+        .audio-player-btn.playing {
+            background: #3b82f6;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+        }
+        
+        .audio-player-btn.playing:hover {
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+        }
+        
+        @media (max-width: 640px) {
+            .audio-player-btn {
+                bottom: 16px;
+                left: 16px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1377,6 +1424,87 @@
                 });
             }
         });
+        
+        // Audio Player Functionality
+        const audioPlayerBtn = document.getElementById('audioPlayerBtn');
+        const audioIcon = document.getElementById('audioIcon');
+        let audio = null;
+        let isPlaying = false;
+        let isLoading = false;
+
+        audioPlayerBtn.addEventListener('click', async function() {
+            // Prevent duplicate calls
+            if (isLoading) {
+                return;
+            }
+
+            // Pause if currently playing
+            if (isPlaying && audio) {
+                audio.pause();
+                return;
+            }
+
+            // Resume if paused
+            if (audio && audio.paused && audio.currentTime > 0) {
+                audio.play();
+                return;
+            }
+
+            // Create and play fresh audio
+            isLoading = true;
+            audioIcon.textContent = '⏳';
+            audioPlayerBtn.setAttribute('title', 'Loading...');
+            
+            try {
+                audio = new Audio('/warehouse-audio.wav');
+                audio.volume = 0.5;
+                
+                // Event listeners
+                audio.onended = () => {
+                    isPlaying = false;
+                    audioPlayerBtn.classList.remove('playing');
+                    audioIcon.textContent = '🎵';
+                    audioPlayerBtn.setAttribute('title', 'Play message');
+                    audioPlayerBtn.style.display = 'none'; // Hide after playing
+                };
+                
+                audio.onpause = () => {
+                    isPlaying = false;
+                    audioPlayerBtn.classList.remove('playing');
+                    audioIcon.textContent = '🎵';
+                    audioPlayerBtn.setAttribute('title', 'Play message');
+                };
+                
+                audio.onplay = () => {
+                    isPlaying = true;
+                    audioPlayerBtn.classList.add('playing');
+                    audioIcon.textContent = '⏸️';
+                    audioPlayerBtn.setAttribute('title', 'Pause message');
+                };
+                
+                audio.onerror = (err) => {
+                    console.log('Audio error:', err);
+                    isLoading = false;
+                    audioIcon.textContent = '🎵';
+                    audioPlayerBtn.setAttribute('title', 'Play message');
+                };
+                
+                // Play
+                await audio.play();
+                isLoading = false;
+                
+            } catch (error) {
+                console.log('Failed to play audio:', error.message);
+                isLoading = false;
+                audioIcon.textContent = '🎵';
+                audioPlayerBtn.setAttribute('title', 'Play message');
+            }
+        });
     </script>
+    
+    <!-- Audio Player Button -->
+    <button id="audioPlayerBtn" class="audio-player-btn" aria-label="Play message" title="Play message">
+        <span id="audioIcon">🎵</span>
+    </button>
 </body>
 </html>
