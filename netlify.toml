@@ -1,6 +1,7 @@
 # Static HTML site configuration
 [build]
   publish = "."
+  command = "npm install && node build-blog.js"
 
 # Headers for security and performance
 [[headers]]
