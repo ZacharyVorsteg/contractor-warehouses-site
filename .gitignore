@@ -47,3 +47,4 @@ pids
 
 # Netlify
 .netlify/
+node_modules/

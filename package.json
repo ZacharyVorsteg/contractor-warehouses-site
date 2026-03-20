@@ -1,0 +1,23 @@
+{
+  "name": "warehousesforcontractors",
+  "version": "1.0.0",
+  "description": "Warehouse space marketplace for contractors in Palm Beach County",
+  "main": "index.html",
+  "scripts": {
+    "build:blog": "node build-blog.js",
+    "dev": "npm run build:blog"
+  },
+  "keywords": [
+    "warehouse",
+    "contractor",
+    "real estate",
+    "palm beach",
+    "industrial"
+  ],
+  "author": "Zachary Vorsteg",
+  "license": "MIT",
+  "dependencies": {
+    "marked": "^12.0.0",
+    "js-yaml": "^4.1.0"
+  }
+}
