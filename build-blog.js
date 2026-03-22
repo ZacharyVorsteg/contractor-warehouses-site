@@ -87,7 +87,9 @@ async function buildBlog() {
             }
 
             // Parse markdown to HTML
-            const htmlContent = marked(markdown);
+            let htmlContent = marked(markdown);
+            // Wrap tables in scrollable container for mobile
+            htmlContent = htmlContent.replace(/<table>/g, '<div class="table-scroll"><table>').replace(/<\/table>/g, '</table></div>');
 
             // Calculate metadata
             const readTime = calculateReadTime(markdown);
