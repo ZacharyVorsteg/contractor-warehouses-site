@@ -48,3 +48,7 @@ pids
 # Netlify
 .netlify/
 node_modules/
+
+# Build artifacts and reports
+BUILD_REPORT.txt
+pipeline/

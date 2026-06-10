@@ -9,6 +9,9 @@
 
     <meta name="theme-color" content="#1a1a1a">
 
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/favicon.ico">
+
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://warehousesforcontractors.com/">
     <meta property="og:title" content="Contractor Warehouse Space Palm Beach County | Zachary Vorsteg">
@@ -1512,7 +1515,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 Zachary Vorsteg Commercial Real Estate</p>
+                <p>&copy; 2026 Zachary Vorsteg Commercial Real Estate</p>
                 <p class="footer-legal">Licensed Florida Real Estate Sales Associate #SL3603483. Operating under Cornerstone Realty. All placements subject to landlord approval and standard commercial underwriting. Commission paid by landlord upon successful lease execution.</p>
             </div>
         </div>
@@ -1532,9 +1535,13 @@
             <button class="popup-close" onclick="closeLeadMagnet()">&times;</button>
             <h3>5 Questions Landlords Will Ask</h3>
             <p>Get prepared for your warehouse search. This free guide covers the 5 questions every landlord asks contractors — and how to answer them to get approved faster.</p>
-            <form id="leadMagnetForm" onsubmit="handleLeadMagnetSubmit(event)">
+            <form id="leadMagnetForm" name="checklist-request" onsubmit="handleLeadMagnetSubmit(event)" method="POST" netlify>
+                <input type="hidden" name="form-name" value="checklist-request">
                 <div class="form-group">
-                    <input type="tel" placeholder="Your phone number" required style="margin-bottom: 1rem;">
+                    <input type="email" name="email" placeholder="Your email" required style="margin-bottom: 1rem;">
+                </div>
+                <div class="form-group">
+                    <input type="tel" name="phone" placeholder="Your phone number" required style="margin-bottom: 1rem;">
                 </div>
                 <button type="submit" class="btn-primary" style="width: 100%;">Send Me the Guide</button>
             </form>
@@ -1579,51 +1586,151 @@
             document.getElementById('leadMagnetPopup').style.display = 'none';
         }
 
-        function handleLeadMagnetSubmit(e) {
+        async function handleLeadMagnetSubmit(e) {
             e.preventDefault();
+            const formData = new FormData(e.target);
+            const phone = formData.get('phone');
+            const email = formData.get('email');
+
+            // Track conversion
             trackConversion('lead_magnet_download', 5000, { lead_magnet: '5_questions_landlords_ask' });
-            closeLeadMagnet();
-            alert('Check your phone for the guide!');
+
+            // Submit via form encoding (Netlify Forms standard)
+            try {
+                const payload = new URLSearchParams({
+                    'form-name': 'checklist-request',
+                    'phone': phone || '',
+                    'email': email || ''
+                });
+
+                const response = await fetch('/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: payload.toString()
+                });
+
+                if (response.ok) {
+                    closeLeadMagnet();
+                    alert('Thanks! Check your phone and email for the guide.');
+                } else {
+                    alert('There was an error. Please call 561-718-6725 directly.');
+                }
+            } catch (error) {
+                console.error('Lead magnet submission error:', error);
+                alert('There was an error. Please call 561-718-6725 directly.');
+            }
         }
 
-        function handleQuickFormSubmit(event) {
+        async function handleQuickFormSubmit(event) {
             event.preventDefault();
             const formData = new FormData(event.target);
+
+            // Map quick form fields to ingest-lead schema
+            const payload = {
+                tenant_id: 3,  // Zach's Trusenda user id (from get-public-form?slug=zacharyvorsteg)
+                name: formData.get('name') || '',
+                phone: formData.get('phone') || '',
+                company: formData.get('company') || '',
+                preferredArea: formData.get('location') || '',
+                propertyType: 'warehouse',  // Default for contractor-focused site
+                sizeMin: mapSizeToMin(formData.get('size')),
+                sizeMax: mapSizeToMax(formData.get('size')),
+                moveTiming: 'flexible'  // Not captured in quick form
+            };
+
             trackConversion('quick_form_submit', 35000, { size: formData.get('size') });
-            window.location.href = '/thank-you.html';
+
+            try {
+                const response = await fetch('/api/ingest-lead', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    const error = await response.json();
+                    alert('Error submitting form. Please call 561-718-6725 directly.');
+                    console.error('Form submission error:', error);
+                    return;
+                }
+
+                window.location.href = '/thank-you.html';
+            } catch (error) {
+                console.error('Form submission error:', error);
+                alert('Error submitting form. Please call 561-718-6725 directly.');
+            }
         }
 
         async function handleFormSubmit(event) {
             event.preventDefault();
             const formData = new FormData(event.target);
-            const data = {
-                name: formData.get('name'),
-                phone: formData.get('phone'),
-                company: formData.get('company'),
-                property_type: formData.get('property_type'),
-                size: formData.get('size'),
-                budget: formData.get('budget'),
-                timeline: formData.get('timeline'),
-                location: formData.get('location'),
-                industry: formData.get('industry'),
-                lease_term: formData.get('lease_term'),
-                notes: formData.get('notes'),
-                traffic_source: trafficSource,
-                timestamp: new Date().toISOString()
+
+            // Map form fields to ingest-lead schema
+            const payload = {
+                tenant_id: 3,  // Zach's Trusenda user id (from get-public-form?slug=zacharyvorsteg)
+                name: formData.get('name') || '',
+                email: formData.get('email'),  // Optional but captured if provided
+                phone: formData.get('phone') || '',
+                company: formData.get('company') || '',
+                propertyType: formData.get('property_type') || '',
+                sizeMin: mapSizeToMin(formData.get('size')),
+                sizeMax: mapSizeToMax(formData.get('size')),
+                budget: formData.get('budget') || '',
+                industry: formData.get('industry') || '',
+                leaseTerm: formData.get('lease_term') || '',
+                preferredArea: formData.get('location') || '',
+                moveTiming: formData.get('timeline') || '',
+                notes: formData.get('notes') || ''
             };
 
-            trackConversion('form_submit', 35000, { size: data.size });
+            trackConversion('form_submit', 35000, { size: formData.get('size') });
 
             try {
-                await fetch('https://trusenda.com/api/submit/zacharyvorsteg', {
+                const response = await fetch('/api/ingest-lead', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data)
+                    body: JSON.stringify(payload)
                 });
+
+                if (!response.ok) {
+                    const errorData = await response.json().catch(() => ({}));
+                    console.error('Form submission error:', errorData);
+                    alert('Error submitting form. Please call 561-718-6725 directly.');
+                    return;
+                }
+
+                window.location.href = '/thank-you.html';
             } catch (error) {
-                console.error('Form submission error:', error);
+                console.error('Form submission network error:', error);
+                alert('Error submitting form. Please call 561-718-6725 directly.');
             }
-            window.location.href = '/thank-you.html';
+        }
+
+        // Helper: Map size select options to min/max square feet
+        function mapSizeToMin(sizeOption) {
+            const map = {
+                'under_1000': 0,
+                '1000_2500': 1000,
+                '2500_5000': 2500,
+                '5000_10000': 5000,
+                '10000_20000': 10000,
+                '20000_50000': 20000,
+                '50000_plus': 50000
+            };
+            return map[sizeOption] || null;
+        }
+
+        function mapSizeToMax(sizeOption) {
+            const map = {
+                'under_1000': 1000,
+                '1000_2500': 2500,
+                '2500_5000': 5000,
+                '5000_10000': 10000,
+                '10000_20000': 20000,
+                '20000_50000': 50000,
+                '50000_plus': 999999
+            };
+            return map[sizeOption] || null;
         }
     </script>
 </body>

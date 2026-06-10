@@ -16,7 +16,7 @@ Allow: /*.svg
 Allow: /*.webp
 
 # Sitemap location
-Sitemap: https://contractorwarehouses.com/sitemap.xml
+Sitemap: https://warehousesforcontractors.com/sitemap.xml
 
 # Crawl delay for respectful crawling
 Crawl-delay: 1
