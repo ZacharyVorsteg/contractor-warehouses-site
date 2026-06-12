@@ -321,6 +321,14 @@
             font-weight: 700;
             color: var(--charcoal);
             font-size: 16px;
+            overflow: hidden;
+        }
+
+        .logo-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: 65% 30%;
         }
 
         .logo-text {
@@ -343,6 +351,8 @@
             display: flex;
             align-items: center;
             gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: flex-end;
         }
 
         .header-license {
@@ -504,6 +514,7 @@
             display: flex;
             gap: 1rem;
             flex-wrap: wrap;
+            align-items: center;
         }
 
         .btn-primary {
@@ -520,6 +531,7 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
+            white-space: nowrap;
         }
 
         .btn-primary:hover {
@@ -537,6 +549,7 @@
             font-weight: 600;
             text-decoration: none;
             transition: all 0.2s ease;
+            white-space: nowrap;
         }
 
         .btn-secondary:hover {
@@ -916,6 +929,15 @@
             font-weight: 700;
             color: var(--charcoal);
             font-size: 20px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .credentials-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: 65% 30%;
         }
 
         .credentials-text h3 {
@@ -1009,8 +1031,21 @@
             line-height: 1.5;
         }
 
-        /* Mobile */
+        /* Tablet / Medium */
         @media (max-width: 1024px) {
+            .header-content {
+                gap: 1rem;
+            }
+
+            .header-cta {
+                gap: 1rem;
+            }
+
+            .header-phone {
+                padding: 0.625rem 1.25rem;
+                font-size: 0.9rem;
+            }
+
             .hero-content {
                 grid-template-columns: 1fr;
                 gap: 3rem;
@@ -1189,6 +1224,9 @@
             justify-content: center;
             gap: 0.5rem;
             font-size: 0.95rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .mobile-cta-btn:nth-child(2) {
@@ -1214,7 +1252,9 @@
     <header class="header">
         <div class="header-content">
             <div class="logo">
-                <div class="logo-avatar">ZV</div>
+                <div class="logo-avatar">
+                    <img src="/images/zach-warehouse.jpg" alt="Zachary Vorsteg — industrial property specialist" width="44" height="44">
+                </div>
                 <div class="logo-text">
                     <div class="logo-name">Zachary Vorsteg</div>
                     <div class="logo-title">Industrial Property Specialist</div>
@@ -1530,7 +1570,9 @@
         <div class="section-container">
             <div class="credentials-content">
                 <div class="credentials-info">
-                    <div class="credentials-avatar">ZV</div>
+                    <div class="credentials-avatar">
+                        <img src="/images/zach-warehouse.jpg" alt="Zachary Vorsteg — Licensed Real Estate Sales Associate" width="64" height="64">
+                    </div>
                     <div class="credentials-text">
                         <h3>Zachary Vorsteg</h3>
                         <p>Licensed FL Real Estate Sales Associate #SL3603483 | Cornerstone Realty</p>
@@ -1551,7 +1593,9 @@
             <div class="footer-content">
                 <div class="footer-brand">
                     <div class="logo">
-                        <div class="logo-avatar">ZV</div>
+                        <div class="logo-avatar">
+                            <img src="/images/zach-warehouse.jpg" alt="Zachary Vorsteg — industrial property specialist" width="44" height="44">
+                        </div>
                         <div class="logo-text">
                             <div class="logo-name">Zachary Vorsteg</div>
                             <div class="logo-title">Industrial Property Specialist</div>
