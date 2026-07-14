@@ -15,6 +15,22 @@ Allow: /*.gif
 Allow: /*.svg
 Allow: /*.webp
 
+# AI Crawlers - Allowed
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
 # Sitemap location
 Sitemap: https://warehousesforcontractors.com/sitemap.xml
 
