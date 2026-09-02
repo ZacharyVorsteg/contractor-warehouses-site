@@ -83,7 +83,7 @@ Small-bay industrial construction is extremely limited: only about 23 million sq
 
 For contractors with crews, vehicles, and regular material deliveries, a 1,000 to 3,000 square foot warehouse lease is the sweet spot. You get a roll-up door, dedicated parking, room for racking, and often a small office area. Lease terms typically run one to three years, with NNN (triple net — tenant pays base rent plus property taxes, insurance, and common area maintenance) being the standard structure. Expect NNN charges to add $2.50 to $4.00 per square foot annually on top of your base rent.
 
-If you're looking for specifics on pricing in South Florida, our [guide to warehouse space in Palm Beach County](/blog/affordable-warehouse-space-palm-beach/) breaks down neighborhoods, rates, and negotiation strategies.
+If you're looking for specifics on pricing in South Florida, our [guide to warehouse space in Palm Beach County](https://warehousesforcontractors.com/blog/) breaks down neighborhoods, rates, and negotiation strategies.
 
 ### Flex Space
 
