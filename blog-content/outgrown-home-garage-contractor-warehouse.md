@@ -160,7 +160,7 @@ If you recognized yourself in two or more of the signs above, you're past the ga
 
 I work with trade contractors across South Florida who are making exactly this transition. Whether you need a 400-square-foot contractor bay or a 3,000-square-foot warehouse with office space, I can walk you through what's available, what it costs, and how to negotiate terms that protect you.
 
-**Get a free space-matching consultation.** Tell me your trade, your crew size, and your budget — I'll send you three to five options within 48 hours. Call [561-718-6725](tel:561-718-6725) or reach out through the [contact form](/) to get started.
+**Get a free space-matching consultation.** Tell me your trade, your crew size, and your budget — I'll send you three to five options within 48 hours. Call [561-718-6725](tel:561-718-6725) or reach out through the [contact form](/#form-section) to get started.
 
 ---
 

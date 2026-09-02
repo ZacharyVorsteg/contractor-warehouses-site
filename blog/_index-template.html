@@ -357,14 +357,69 @@
             color: rgba(255,255,255,0.6);
         }
 
+        /* Blog index CTA */
+        .blog-cta {
+            max-width: 1200px;
+            margin: 4rem auto 0;
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            background: #fafafa;
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+        }
+
+        .blog-cta h2 {
+            font-size: 26px;
+            margin-bottom: 0.75rem;
+            color: #171717;
+        }
+
+        .blog-cta p {
+            color: #525252;
+            max-width: 600px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .blog-cta a.cta-btn {
+            display: inline-block;
+            background: #dc2626;
+            color: #fff;
+            padding: 0.85rem 1.75rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0 0.5rem 0.5rem 0;
+        }
+
+        .blog-cta a.cta-btn-alt {
+            display: inline-block;
+            padding: 0.85rem 1.75rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            color: #dc2626;
+            border: 1px solid #dc2626;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .blog-hero h1 {
                 font-size: 32px;
             }
 
+            .header-content {
+                flex-wrap: wrap;
+                gap: 0.5rem 1rem;
+            }
+
             .nav-links {
-                display: none;
+                gap: 1rem;
+                font-size: 15px;
+            }
+
+            .header-phone {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
             }
 
             .articles-grid {
@@ -402,10 +457,18 @@
 
     <!-- Articles Section -->
     <section class="articles-section">
-        <div class="articles-count">{{ARTICLE_COUNT}} article(s)</div>
+        <div class="articles-count">{{ARTICLE_COUNT}} article{{ARTICLE_PLURAL}}</div>
         <div class="articles-grid">
             {{ARTICLE_CARDS}}
         </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="blog-cta">
+        <h2>Need contractor warehouse space in Palm Beach County?</h2>
+        <p>Tell me your trade, crew size, square footage, and budget. I'll send three to five real options that fit — no cost to you.</p>
+        <a href="/#form-section" class="cta-btn">Get Matched Free</a>
+        <a href="tel:561-718-6725" class="cta-btn-alt">Call 561-718-6725</a>
     </section>
 
     <!-- Footer -->
@@ -423,9 +486,9 @@
                 <div class="footer-section">
                     <h4>Services</h4>
                     <ul>
-                        <li><a href="/">Warehouse Space</a></li>
+                        <li><a href="/#form-section">Request Warehouse Space</a></li>
                         <li><a href="/">Industrial Real Estate</a></li>
-                        <li><a href="/">Contractor Services</a></li>
+                        <li><a href="/blog/">Contractor Guides</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -437,7 +500,8 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 Zachary Vorsteg - Commercial Real Estate Agent. All rights reserved.</p>
+                <p>&copy; 2026 Zachary Vorsteg Commercial Real Estate. All rights reserved.</p>
+                <p style="margin-top:0.5rem; font-size:13px; color:rgba(255,255,255,0.5);">Zachary Vorsteg, Licensed FL Real Estate Sales Associate #SL3603483, operating under Cornerstone Realty. Equal Housing Opportunity.</p>
             </div>
         </div>
     </footer>

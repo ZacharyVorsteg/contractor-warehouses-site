@@ -6,6 +6,10 @@
     <title>{{TITLE}} | Warehouse Blog | Zachary Vorsteg</title>
     <meta name="description" content="{{DESCRIPTION}}">
     <meta name="keywords" content="{{KEYWORDS}}">
+    <meta name="author" content="Zachary Vorsteg">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta property="article:published_time" content="{{DATE}}">
+    <meta property="article:author" content="Zachary Vorsteg">
 
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -55,9 +59,14 @@
             "name": "Zachary Vorsteg - Commercial Real Estate",
             "logo": {
                 "@type": "ImageObject",
-                "url": "https://warehousesforcontractors.com/logo.png"
+                "url": "https://warehousesforcontractors.com/images/warehouse-og.jpg"
             }
-        }
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://warehousesforcontractors.com/blog/{{SLUG}}/"
+        },
+        "inLanguage": "en-US"
     }
     </script>
 
@@ -277,6 +286,75 @@
 
         .article-content {
             min-width: 0;
+            max-width: 72ch;
+        }
+
+        .back-to-blog {
+            display: inline-block;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--gray-200);
+            color: var(--accent);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .back-to-blog:hover {
+            text-decoration: underline;
+        }
+
+        .cta-box a + a {
+            margin-top: 0.75rem;
+        }
+
+        .cta-box .cta-secondary {
+            background: transparent;
+            color: white;
+            border: 1px solid rgba(255,255,255,0.7);
+        }
+
+        .cta-inline {
+            margin: 3rem 0 0;
+            padding: 2rem;
+            border-radius: 8px;
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+        }
+
+        .cta-inline h2 {
+            margin: 0 0 0.75rem;
+            font-size: clamp(20px, 3vw, 26px);
+        }
+
+        .cta-inline p {
+            color: var(--gray-700);
+            margin-bottom: 1.25rem;
+        }
+
+        .cta-inline .cta-btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 0.85rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            border: none;
+            margin-right: 0.75rem;
+        }
+
+        .cta-inline .cta-btn:hover {
+            background: var(--accent-hover);
+        }
+
+        .cta-inline .cta-btn-alt {
+            display: inline-block;
+            padding: 0.85rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            color: var(--accent);
+            border: 1px solid var(--accent);
         }
 
         .article-content h2 {
@@ -627,8 +705,19 @@
                 position: static;
             }
 
+            .header-content {
+                flex-wrap: wrap;
+                gap: 0.5rem 1rem;
+            }
+
             .nav-links {
-                display: none;
+                gap: 1rem;
+                font-size: 15px;
+            }
+
+            .header-phone {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
             }
 
             .article-meta {
@@ -679,6 +768,9 @@
   <script src="https://customlab.ai/fleet-telemetry.js" defer></script>
 </head>
 <body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N3VQBQK"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
     <!-- Header -->
     <header class="header">
         <div class="header-content">
@@ -714,6 +806,15 @@
         <div class="article-container">
             <div class="article-content">
                 {{CONTENT}}
+
+                <section class="cta-inline">
+                    <h2>Looking for contractor warehouse space in Palm Beach County?</h2>
+                    <p>Send your trade, crew size, square footage, and budget. I'll come back with three to five real options — no cost to you.</p>
+                    <a href="/#form-section" class="cta-btn">Get Matched Free</a>
+                    <a href="tel:561-718-6725" class="cta-btn-alt">Call 561-718-6725</a>
+                </section>
+
+                <a href="/blog/" class="back-to-blog">&larr; Back to all articles</a>
             </div>
 
             <!-- Sidebar -->
@@ -721,8 +822,9 @@
                 <!-- CTA Box -->
                 <div class="cta-box">
                     <h3>Ready to find warehouse space?</h3>
-                    <p>Get connected with Zachary Vorsteg, your licensed commercial real estate agent in Palm Beach County.</p>
-                    <a href="tel:561-718-6725">Call Now: 561-718-6725</a>
+                    <p>Tell me your trade, crew size, and budget — I'll send matching Palm Beach County options.</p>
+                    <a href="/#form-section">Get Matched Free</a>
+                    <a href="tel:561-718-6725" class="cta-secondary">Call 561-718-6725</a>
                 </div>
 
                 <!-- Related Articles (will be populated by build script) -->
@@ -746,9 +848,9 @@
                 <div class="footer-section">
                     <h4>Services</h4>
                     <ul>
-                        <li><a href="/">Warehouse Space</a></li>
+                        <li><a href="/#form-section">Request Warehouse Space</a></li>
                         <li><a href="/">Industrial Real Estate</a></li>
-                        <li><a href="/">Contractor Services</a></li>
+                        <li><a href="/blog/">Contractor Guides</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -760,7 +862,8 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 Zachary Vorsteg - Commercial Real Estate Agent. All rights reserved.</p>
+                <p>&copy; 2026 Zachary Vorsteg Commercial Real Estate. All rights reserved.</p>
+                <p style="margin-top:0.5rem; font-size:13px; color:rgba(255,255,255,0.5);">Zachary Vorsteg, Licensed FL Real Estate Sales Associate #SL3603483, operating under Cornerstone Realty. Equal Housing Opportunity.</p>
             </div>
         </div>
     </footer>
