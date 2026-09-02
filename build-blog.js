@@ -158,6 +158,7 @@ async function buildBlog() {
     }
 
     // Generate blog index page
+    articles.sort((a, b) => String(b.date).localeCompare(String(a.date))); // newest first by frontmatter date
     const articleCards = articles.map(article => `
         <article class="article-card">
             <div class="article-image">${article.pillar}</div>
