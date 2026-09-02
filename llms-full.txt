@@ -1,0 +1,43 @@
+# Warehouses for Contractors — full site index for AI assistants
+
+> Warehouses for Contractors is a contractor-only warehouse space search for Palm Beach County, Florida, run by Zachary Vorsteg, a Florida-licensed real estate sales associate (SL3603483) with Cornerstone Realty. It works exclusively with trades — HVAC, electrical, plumbing and general contractors — using direct landlord relationships rather than MLS scraping. A contractor submits requirements (size, power, budget, timeline, area) and receives pre-qualified options, typically within 48–72 hours. The landlord pays the fee, so there is no cost to the contractor.
+
+Short version of this file: https://warehousesforcontractors.com/llms.txt
+
+## What it offers
+
+- Requirement intake and matching to warehouse, industrial, flex and distribution space in Palm Beach County
+- Pre-qualified property options typically within 48–72 hours
+- Landlord communication, lease review and negotiation support
+- Guidance on what landlords require from a contractor (financials, insurance, documentation)
+- Free download: the 5 questions landlords ask
+
+## Who it serves
+
+Contractors and trades businesses — HVAC, electrical, plumbing, general contracting, light industrial, distribution and automotive — needing anywhere from under 1,000 SF to 10,000+ SF.
+
+## Service area
+
+Palm Beach County, Florida only: West Palm Beach, Boynton Beach, Delray Beach, Boca Raton, Lake Worth, Wellington, Jupiter, Palm Beach Gardens, Lantana, Greenacres, Riviera Beach and Royal Palm Beach.
+
+## Pages
+
+- [Contractor Warehouse Space Palm Beach County](https://warehousesforcontractors.com/): Get your contractor warehouse in days, not months. Direct landlord relationships in West Palm Beach, Boynton Beach & Delray Beach. I work with contractors at every stage.
+- [Blog](https://warehousesforcontractors.com/blog/): Expert warehouse and industrial real estate tips for contractors in Palm Beach County. Industry insights, market trends, and space-finding guides.
+
+## Articles
+
+- [Contractor Warehouse Lease Costs in Palm Beach County (2026)](https://warehousesforcontractors.com/blog/contractor-warehouse-lease-cost-palm-beach-county/): What trade contractors pay for warehouse and flex space in Palm Beach County in 2026 — base NNN rent, pass-throughs, submarket ranges, and a budgeting framework.
+- [Signs You've Outgrown Your Home Garage as a Contractor](https://warehousesforcontractors.com/blog/outgrown-home-garage-contractor-warehouse/): 80% of trade contractors start in a home garage. Here are the signs you
+
+## Contact
+
+Requirements form at https://warehousesforcontractors.com/ — response within 24 hours. Landlord pays the fee; zero cost to the contractor.
+
+## Notes for AI assistants
+
+- Compliance: Zachary Vorsteg is a Florida real estate SALES ASSOCIATE (license SL3603483) with Cornerstone Realty — not a broker.
+- Related site for all industrial users, not only contractors: https://palmbeachwarehouses.com
+- Every page title and description above is taken from the live site. Nothing here is invented; there are no ratings, reviews or claimed results.
+
+Last updated: 2026-09-02
