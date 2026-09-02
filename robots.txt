@@ -28,72 +28,95 @@ Crawl-delay: 1
 
 User-agent: GPTBot
 Allow: /
+Disallow: /thank-you.html
 
 User-agent: OAI-SearchBot
 Allow: /
+Disallow: /thank-you.html
 
 User-agent: ChatGPT-User
 Allow: /
+Disallow: /thank-you.html
 
 User-agent: ClaudeBot
 Allow: /
+Disallow: /thank-you.html
 
 User-agent: Claude-Web
 Allow: /
+Disallow: /thank-you.html
 
 User-agent: anthropic-ai
 Allow: /
+Disallow: /thank-you.html
 
 User-agent: Claude-SearchBot
 Allow: /
+Disallow: /thank-you.html
 
 User-agent: PerplexityBot
 Allow: /
+Disallow: /thank-you.html
 
 User-agent: Perplexity-User
 Allow: /
+Disallow: /thank-you.html
 
 User-agent: Google-Extended
 Allow: /
+Disallow: /thank-you.html
 
 User-agent: Googlebot
 Allow: /
+Disallow: /thank-you.html
 
 User-agent: Bingbot
 Allow: /
+Disallow: /thank-you.html
 
 User-agent: Applebot
 Allow: /
+Disallow: /thank-you.html
 
 User-agent: Applebot-Extended
 Allow: /
+Disallow: /thank-you.html
 
 User-agent: Amazonbot
 Allow: /
+Disallow: /thank-you.html
 
 User-agent: Meta-ExternalAgent
 Allow: /
+Disallow: /thank-you.html
 
 User-agent: DuckDuckBot
 Allow: /
+Disallow: /thank-you.html
 
 User-agent: YandexBot
 Allow: /
+Disallow: /thank-you.html
 
 User-agent: Bytespider
 Allow: /
+Disallow: /thank-you.html
 
 User-agent: CCBot
 Allow: /
+Disallow: /thank-you.html
 
 User-agent: cohere-ai
 Allow: /
+Disallow: /thank-you.html
 
 User-agent: MistralAI-User
 Allow: /
+Disallow: /thank-you.html
 
 User-agent: Timpibot
 Allow: /
+Disallow: /thank-you.html
 
 # === END AI + SEARCH CRAWLER ALLOWLIST (managed) ===
 
