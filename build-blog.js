@@ -128,6 +128,7 @@ async function buildBlog() {
 
             // Parse markdown to HTML
             let htmlContent = marked(markdown);
+            htmlContent = htmlContent.replace(/^\s*<h1[^>]*>[\s\S]*?<\/h1>\s*/i, ''); // template renders the title; never print the body H1 twice
             // Wrap tables in scrollable container for mobile
             htmlContent = htmlContent.replace(/<table>/g, '<div class="table-scroll"><table>').replace(/<\/table>/g, '</table></div>');
 
