@@ -31,7 +31,7 @@ function calculateReadTime(content) {
 
 // Utility: Format date to human-readable
 function formatDate(dateString) {
-    const date = new Date(dateString);
+    const date = new Date(String(dateString).length === 10 ? dateString + 'T12:00:00' : dateString);
     return date.toLocaleDateString('en-US', {
         year: 'numeric',
         month: 'long',
