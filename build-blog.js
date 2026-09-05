@@ -76,6 +76,43 @@ function slugify(str) {
         .replace(/-+/g, '-');
 }
 
+// Utility: Truncate title to 65 chars max
+function truncateTitle(title) {
+    if (!title) return '';
+    if (title.length <= 65) return title;
+    return title.substring(0, 62) + '...';
+}
+
+// Utility: Generate RSS 2.0 feed
+function generateRssFeed(articles) {
+    const baseUrl = 'https://warehousesforcontractors.com';
+    const now = new Date().toUTCString();
+
+    const items = articles.map(article => `
+    <item>
+        <title>${safeText(article.title)}</title>
+        <link>${baseUrl}/blog/${article.slug}/</link>
+        <guid>${baseUrl}/blog/${article.slug}/</guid>
+        <pubDate>${new Date(article.date).toUTCString()}</pubDate>
+        <description>${safeText(article.description)}</description>
+        <category>${safeText(article.pillar)}</category>
+    </item>`).join('');
+
+    const rss = `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+    <channel>
+        <title>Warehouse for Contractors Blog</title>
+        <link>${baseUrl}/blog/</link>
+        <description>Expert warehouse and industrial real estate tips for contractors in Palm Beach County.</description>
+        <language>en-us</language>
+        <lastBuildDate>${now}</lastBuildDate>
+        ${items}
+    </channel>
+</rss>`;
+
+    return rss;
+}
+
 // Main: Build blog articles
 async function buildBlog() {
     console.log('🚀 Starting blog build...');
@@ -135,6 +172,7 @@ async function buildBlog() {
             articles.push({
                 file: file,
                 title: safeText(frontmatter.title),
+                titleSEO: truncateTitle(safeText(frontmatter.title)),
                 slug: String(frontmatter.slug).trim(),
                 description: safeText(frontmatter.description),
                 author: safeText(frontmatter.author || 'Zachary Vorsteg'),
@@ -183,6 +221,7 @@ async function buildBlog() {
         }
 
         const articleHtml = template
+            .replace(/{{TITLE_SEO}}/g, article.titleSEO)
             .replace(/{{TITLE}}/g, article.title)
             .replace(/{{DESCRIPTION}}/g, article.description)
             .replace(/{{KEYWORDS}}/g, article.keywords)
@@ -224,6 +263,12 @@ async function buildBlog() {
     const indexPath = path.join(OUTPUT_DIR, 'index.html');
     fs.writeFileSync(indexPath, indexHtml);
     console.log(`✅ Generated: /blog/`);
+
+    // Generate RSS feed
+    const rssFeed = generateRssFeed(articles);
+    const rssPath = path.join(OUTPUT_DIR, 'feed.xml');
+    fs.writeFileSync(rssPath, rssFeed);
+    console.log(`✅ Generated: /blog/feed.xml`);
 
     // Update sitemap
     updateSitemap(articles);

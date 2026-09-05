@@ -32,6 +32,12 @@
     <meta name="twitter:description" content="Expert warehouse and industrial real estate tips for contractors.">
     <meta name="twitter:image" content="https://warehousesforcontractors.com/images/warehouse-og.jpg">
 
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+    <!-- RSS Feed -->
+    <link rel="alternate" type="application/rss+xml" href="/blog/feed.xml">
+
     <!-- Canonical -->
     <link rel="canonical" href="https://warehousesforcontractors.com/blog/">
 
@@ -48,6 +54,28 @@
             "name": "Zachary Vorsteg",
             "url": "https://warehousesforcontractors.com"
         }
+    }
+    </script>
+
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://warehousesforcontractors.com"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Blog",
+                "item": "https://warehousesforcontractors.com/blog/"
+            }
+        ]
     }
     </script>
 
@@ -70,6 +98,42 @@
             line-height: 1.6;
             color: #1a1a1a;
             background-color: #ffffff;
+        }
+
+        /* Skip to main content link */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+
+        .sr-only:focus {
+            position: static;
+            width: auto;
+            height: auto;
+            overflow: visible;
+            clip: auto;
+            white-space: normal;
+            background: #dc2626;
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            display: inline-block;
+            z-index: 9999;
+        }
+
+        /* Focus styles */
+        a:focus-visible,
+        button:focus-visible,
+        [tabindex]:focus-visible {
+            outline: 3px solid #dc2626;
+            outline-offset: 2px;
         }
 
         /* Header */
@@ -435,6 +499,9 @@
   <script src="https://customlab.ai/fleet-telemetry.js" defer></script>
 </head>
 <body>
+    <!-- Skip to main content -->
+    <a href="#main" class="sr-only">Skip to main content</a>
+
     <!-- Header -->
     <header class="header">
         <div class="header-content">
@@ -456,12 +523,14 @@
     </section>
 
     <!-- Articles Section -->
+    <main id="main">
     <section class="articles-section">
         <div class="articles-count">{{ARTICLE_COUNT}} article{{ARTICLE_PLURAL}}</div>
         <div class="articles-grid">
             {{ARTICLE_CARDS}}
         </div>
     </section>
+    </main>
 
     <!-- CTA -->
     <section class="blog-cta">
