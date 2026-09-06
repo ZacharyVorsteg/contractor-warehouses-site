@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta name="msvalidate.01" content="F7E946E7778BC3AA35199DF736737A5D">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contractor Warehouse Space Palm Beach County | Zachary Vorsteg</title>
@@ -92,71 +94,6 @@
     }
     </script>
 
-    <!-- FAQPage Schema -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-            {
-                "@type": "Question",
-                "name": "How much does it cost to work with you?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Zero cost to you as the contractor or tenant. The landlord pays my commission upon successful lease execution. Your money goes toward your business, not broker fees."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "How fast can I get into a warehouse?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Document-ready contractors typically have keys in hand under a week. After you share your requirements, I deliver pre-qualified options within 48-72 hours, then handle landlord communication, lease review, and negotiation."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "What size warehouses do you place contractors into?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Anywhere from under 1,000 SF for small specialty trades up to 50,000+ SF for established contractors. Most contractor placements fall in the 1,000-10,000 SF range with appropriate power, loading, and office build-out."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Which cities in Palm Beach County do you cover?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "All of Palm Beach County: West Palm Beach, Boynton Beach, Delray Beach, Boca Raton, Lake Worth, Wellington, Jupiter, Palm Beach Gardens, Lantana, Greenacres, Riviera Beach, Royal Palm Beach. Palm Beach County exclusively — I know every industrial pocket and landlord preference."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "What types of contractors do you work with?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "HVAC, electrical, plumbing, general contractors, and other trades. I don't do retail, office, or residential — just warehouses for contractors. That's my entire practice, which is why I have direct landlord relationships in this niche."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "What documents do landlords require?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Typically: business financials (12-24 months), liability and workers' comp insurance certificates, proof of business license, and a personal guarantee for newer LLCs. If you're still organizing these, I'll guide you through what each landlord needs."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Do you scrape MLS or do you have direct landlord relationships?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Direct landlord relationships only. Many warehouse opportunities in Palm Beach County never hit MLS — landlords prefer working with brokers who pre-qualify tenants. That's why I can deliver options in 48-72 hours instead of weeks."
-                }
-            }
-        ]
-    }
-    </script>
 
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -1414,7 +1351,7 @@
                 <div class="diff-item">
                     <div class="diff-icon">🔧</div>
                     <h3 class="diff-title">Contractor-Only Focus</h3>
-                    <p class="diff-description">I don't do retail, office, or residential. Just warehouses for trades. HVAC, electrical, plumbing, general contractors — that's my entire practice.</p>
+                    <p class="diff-description">Warehouses for Contractors focuses on industrial space for trades, including HVAC, electrical, plumbing and general contractors. This is the contractor-focused part of my real estate practice.</p>
                 </div>
                 <div class="diff-item">
                     <div class="diff-icon">⚡</div>
@@ -1441,7 +1378,7 @@
             <div class="section-header">
                 <span class="section-label">Get Started</span>
                 <h2 class="section-title">Share Your Space Needs</h2>
-                <p class="section-subtitle">Complete the form below and I'll respond within 24 hours with pre-qualified options.</p>
+                <p class="section-subtitle">Share your requirements below. Consultations and property tours are by confirmed appointment only; no walk-ins. Submitting this form requests a follow-up and does not book a time.</p>
             </div>
 
             <div class="form-card-full">
@@ -1718,7 +1655,7 @@
                     'email': email || ''
                 });
 
-                const response = await fetch('/', {
+                const response = await fetch('/index.html', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                     body: payload.toString()
@@ -1726,7 +1663,7 @@
 
                 if (response.ok) {
                     closeLeadMagnet();
-                    alert('Thanks! Check your phone and email for the guide.');
+                    alert('Thanks! Your guide request was received. Please call 561-718-6725 if you need help.');
                 } else {
                     alert('There was an error. Please call 561-718-6725 directly.');
                 }
@@ -1762,8 +1699,9 @@
                     body: JSON.stringify(payload)
                 });
 
-                if (!response.ok) {
-                    const error = await response.json();
+                const result = await response.json().catch(() => ({}));
+                if (!response.ok || !result.success || !result.leadId) {
+                    const error = { status: response.status };
                     alert('Error submitting form. Please call 561-718-6725 directly.');
                     console.error('Form submission error:', error);
                     return;
@@ -1807,8 +1745,9 @@
                     body: JSON.stringify(payload)
                 });
 
-                if (!response.ok) {
-                    const errorData = await response.json().catch(() => ({}));
+                const result = await response.json().catch(() => ({}));
+                if (!response.ok || !result.success || !result.leadId) {
+                    const errorData = { status: response.status };
                     console.error('Form submission error:', errorData);
                     alert('Error submitting form. Please call 561-718-6725 directly.');
                     return;

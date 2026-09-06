@@ -1,7 +1,7 @@
 # Static HTML site configuration
 [build]
-  publish = "."
-  command = "npm install && node build-blog.js"
+  publish = "public"
+  command = "npm install && node build-blog.js && node stage-public.cjs"
 
 # Headers for security and performance
 [[headers]]
