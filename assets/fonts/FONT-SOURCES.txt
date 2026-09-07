@@ -1,0 +1,13 @@
+Existing brand font files from Google Fonts, retrieved September 7, 2026. Files and declared ranges are unchanged. Individual licenses are included.
+[
+  {
+    "source": "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap",
+    "stylesheet": "brand-8f029b73ef9f.css",
+    "font_files": 7
+  },
+  {
+    "source": "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap",
+    "stylesheet": "brand-343401950dbe.css",
+    "font_files": 7
+  }
+]

@@ -1,4 +1,6 @@
 ---
+seo_title: "Outgrown Your Garage? Contractor Warehouse Space Guide"
+seo_description: "Recognize when your contracting business needs more space. Compare warehouse, flex and contractor bay considerations before moving beyond your home garage."
 title: Signs You've Outgrown Your Home Garage as a Contractor
 slug: outgrown-home-garage-contractor-warehouse
 description: 80% of trade contractors start in a home garage. Here are the signs you've outgrown it and what warehouse, flex, or contractor bay options cost in 2026.

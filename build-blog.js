@@ -76,13 +76,6 @@ function slugify(str) {
         .replace(/-+/g, '-');
 }
 
-// Utility: Truncate title to 65 chars max
-function truncateTitle(title) {
-    if (!title) return '';
-    if (title.length <= 65) return title;
-    return title.substring(0, 62) + '...';
-}
-
 // Utility: Generate RSS 2.0 feed
 function generateRssFeed(articles) {
     const baseUrl = 'https://warehousesforcontractors.com';
@@ -172,9 +165,9 @@ async function buildBlog() {
             articles.push({
                 file: file,
                 title: safeText(frontmatter.title),
-                titleSEO: truncateTitle(safeText(frontmatter.title)),
+                titleSEO: safeText(frontmatter.seo_title || frontmatter.title),
                 slug: String(frontmatter.slug).trim(),
-                description: safeText(frontmatter.description),
+                description: safeText(frontmatter.seo_description || frontmatter.description),
                 author: safeText(frontmatter.author || 'Zachary Vorsteg'),
                 date: isoDate,
                 dateFormatted: formatDate(isoDate),

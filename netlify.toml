@@ -46,3 +46,9 @@
   [headers.values]
     Cache-Control = "public, max-age=3600"
 
+
+# Font filenames carry the upstream version; preserve brand fonts without another origin.
+[[headers]]
+  for = "/assets/fonts/*.woff2"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

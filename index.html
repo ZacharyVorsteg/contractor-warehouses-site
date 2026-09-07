@@ -5,32 +5,28 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contractor Warehouse Space Palm Beach County | Zachary Vorsteg</title>
-    <meta name="description" content="Get your contractor warehouse in days, not months. Direct landlord relationships in West Palm Beach, Boynton Beach & Delray Beach. I work with contractors at every stage.">
+    <title>Contractor Warehouse Space in Palm Beach County</title>
+    <meta name="description" content="Find warehouse, flex and contractor bay space in Palm Beach County. Share your trade, space needs and budget with Zachary Vorsteg to discuss your options.">
     <link rel="canonical" href="https://warehousesforcontractors.com/">
 
     <meta name="theme-color" content="#1a1a1a">
 
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="/favicon.ico">
-
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://warehousesforcontractors.com/">
-    <meta property="og:title" content="Contractor Warehouse Space Palm Beach County | Zachary Vorsteg">
-    <meta property="og:description" content="Direct landlord relationships across Palm Beach County. No MLS scraping. I work with contractors at every stage.">
+    <meta property="og:title" content="Contractor Warehouse Space in Palm Beach County">
+    <meta property="og:description" content="Find warehouse, flex and contractor bay space in Palm Beach County. Share your trade, space needs and budget with Zachary Vorsteg to discuss your options.">
     <meta property="og:image" content="https://warehousesforcontractors.com/images/warehouse-og.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:site_name" content="Warehouses for Contractors">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Contractor Warehouse Space Palm Beach County">
-    <meta name="twitter:description" content="Get your contractor warehouse in days, not months. Direct landlord relationships across Palm Beach County.">
+    <meta name="twitter:title" content="Contractor Warehouse Space in Palm Beach County">
+    <meta name="twitter:description" content="Find warehouse, flex and contractor bay space in Palm Beach County. Share your trade, space needs and budget with Zachary Vorsteg to discuss your options.">
     <meta name="twitter:image" content="https://warehousesforcontractors.com/images/warehouse-og.jpg">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="/assets/fonts/brand-343401950dbe.css" rel="stylesheet">
 
     <!-- Organization Schema -->
     <script type="application/ld+json">
@@ -39,7 +35,7 @@
   "@type": "ProfessionalService",
   "name": "Warehouses for Contractors — Zachary Vorsteg",
   "url": "https://warehousesforcontractors.com/",
-  "logo": "https://warehousesforcontractors.com/images/warehouse-og.jpg",
+  "logo": "https://warehousesforcontractors.com/images/zach-headshot.jpg",
   "founder": {
     "@type": "Person",
     "name": "Zachary Vorsteg",
@@ -332,7 +328,7 @@
             bottom: 0;
             background:
                 linear-gradient(135deg, rgba(26,26,26,0.95) 0%, rgba(26,26,26,0.7) 100%),
-                url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1920&q=80') center/cover;
+                url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&w=1920&q=80') center/cover;
             z-index: 1;
         }
 
@@ -1174,7 +1170,14 @@
                 padding-bottom: 80px;
             }
         }
-    </style>
+        .inquiry-status{margin:12px 0 0;font-size:14px;line-height:1.5;color:#334155}
+        .inquiry-error{padding:12px;border:1px solid #e7b8b8;border-radius:6px;background:#fff1f1;color:#842323}
+        .inquiry-status a{color:inherit;font-weight:700;text-decoration:underline}
+        .inquiry-status:focus{outline:2px solid #ff7518;outline-offset:3px}
+        form[aria-busy="true"] button[type="submit"]{cursor:wait;opacity:.75}
+
+        @media (max-width: 800px) { .hero::before { background-image: linear-gradient(135deg, rgba(26,26,26,0.95) 0%, rgba(26,26,26,0.7) 100%), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&w=960&q=80'); } }
+</style>
   <script src="https://customlab.ai/fleet-telemetry.js" defer></script>
 <script type="application/ld+json">
 {
@@ -1189,6 +1192,16 @@
   }
 }
 </script>
+
+<meta property="og:locale" content="en_US">
+
+<meta property="og:image:type" content="image/jpeg">
+
+<meta property="og:image:alt" content="Warehouses for Contractors — Industrial Space in Palm Beach County">
+
+<meta name="twitter:image:alt" content="Warehouses for Contractors — Industrial Space in Palm Beach County">
+
+<link rel="icon" type="image/jpeg" sizes="280x280" href="/images/zach-headshot.jpg">
 </head>
 <body>
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N3VQBQK"
@@ -1675,7 +1688,9 @@
 
         async function handleQuickFormSubmit(event) {
             event.preventDefault();
-            const formData = new FormData(event.target);
+            const form = event.target;
+            if (form.getAttribute('aria-busy') === 'true') return;
+            const formData = new FormData(form);
 
             // Map quick form fields to ingest-lead schema
             const payload = {
@@ -1687,13 +1702,27 @@
                 propertyType: 'warehouse',  // Default for contractor-focused site
                 sizeMin: mapSizeToMin(formData.get('size')),
                 sizeMax: mapSizeToMax(formData.get('size')),
-                moveTiming: 'flexible'  // Not captured in quick form
+                moveTiming: 'flexible',  // Not captured in quick form
+                notes: buildInquiryNotes(formData, 'Quick Property Match')
             };
 
-            trackConversion('quick_form_submit', 35000, { size: formData.get('size') });
+            if (payload.notes.length > 2000) {
+                showInquiryError(form, 'Please shorten your additional notes and try again. Your details are still in the form.');
+                return;
+            }
 
+            beginInquiry(form);
+            try {
+                trackConversion('quick_form_submit', 35000, { size: formData.get('size') });
+            } catch (analyticsError) {
+                console.warn('Optional inquiry tracking was unavailable.');
+            }
+
+            const controller = new AbortController();
+            const timeout = setTimeout(() => controller.abort(), 20000);
             try {
                 const response = await fetch('/api/ingest-lead', {
+                    signal: controller.signal,
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
@@ -1702,7 +1731,7 @@
                 const result = await response.json().catch(() => ({}));
                 if (!response.ok || !result.success || !result.leadId) {
                     const error = { status: response.status };
-                    alert('Error submitting form. Please call 561-718-6725 directly.');
+                    showInquiryError(form, 'We could not confirm your request. Your details are still here. Please try again or call ');
                     console.error('Form submission error:', error);
                     return;
                 }
@@ -1710,13 +1739,17 @@
                 window.location.href = '/thank-you.html';
             } catch (error) {
                 console.error('Form submission error:', error);
-                alert('Error submitting form. Please call 561-718-6725 directly.');
+                showInquiryError(form, 'We could not confirm your request. Your details are still here. Please try again or call ');
+            } finally {
+                clearTimeout(timeout);
             }
         }
 
         async function handleFormSubmit(event) {
             event.preventDefault();
-            const formData = new FormData(event.target);
+            const form = event.target;
+            if (form.getAttribute('aria-busy') === 'true') return;
+            const formData = new FormData(form);
 
             // Map form fields to ingest-lead schema
             const payload = {
@@ -1733,13 +1766,26 @@
                 leaseTerm: formData.get('lease_term') || '',
                 preferredArea: formData.get('location') || '',
                 moveTiming: formData.get('timeline') || '',
-                notes: formData.get('notes') || ''
+                notes: buildInquiryNotes(formData, 'Full requirements')
             };
 
-            trackConversion('form_submit', 35000, { size: formData.get('size') });
+            if (payload.notes.length > 2000) {
+                showInquiryError(form, 'Please shorten your additional notes and try again. Your details are still in the form.');
+                return;
+            }
 
+            beginInquiry(form);
+            try {
+                trackConversion('form_submit', 35000, { size: formData.get('size') });
+            } catch (analyticsError) {
+                console.warn('Optional inquiry tracking was unavailable.');
+            }
+
+            const controller = new AbortController();
+            const timeout = setTimeout(() => controller.abort(), 20000);
             try {
                 const response = await fetch('/api/ingest-lead', {
+                    signal: controller.signal,
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
@@ -1749,15 +1795,74 @@
                 if (!response.ok || !result.success || !result.leadId) {
                     const errorData = { status: response.status };
                     console.error('Form submission error:', errorData);
-                    alert('Error submitting form. Please call 561-718-6725 directly.');
+                    showInquiryError(form, 'We could not confirm your request. Your details are still here. Please try again or call ');
                     return;
                 }
 
                 window.location.href = '/thank-you.html';
             } catch (error) {
                 console.error('Form submission network error:', error);
-                alert('Error submitting form. Please call 561-718-6725 directly.');
+                showInquiryError(form, 'We could not confirm your request. Your details are still here. Please try again or call ');
+            } finally {
+                clearTimeout(timeout);
             }
+        }
+
+        function inquiryStatus(form) {
+            let status = form.querySelector('[data-inquiry-status]');
+            if (!status) {
+                status = document.createElement('p');
+                status.dataset.inquiryStatus = '';
+                status.className = 'inquiry-status';
+                status.tabIndex = -1;
+                form.querySelector('button[type="submit"]').insertAdjacentElement('afterend', status);
+            }
+            return status;
+        }
+
+        function beginInquiry(form) {
+            const button = form.querySelector('button[type="submit"]');
+            button.dataset.readyLabel = button.textContent;
+            button.disabled = true;
+            button.textContent = 'Sending...';
+            form.setAttribute('aria-busy', 'true');
+            const status = inquiryStatus(form);
+            status.className = 'inquiry-status';
+            status.setAttribute('role', 'status');
+            status.setAttribute('aria-live', 'polite');
+            status.textContent = 'Sending your request...';
+        }
+
+        function showInquiryError(form, message) {
+            form.removeAttribute('aria-busy');
+            const button = form.querySelector('button[type="submit"]');
+            button.disabled = false;
+            if (button.dataset.readyLabel) button.textContent = button.dataset.readyLabel;
+            const status = inquiryStatus(form);
+            status.className = 'inquiry-status inquiry-error';
+            status.setAttribute('role', 'alert');
+            status.setAttribute('aria-live', 'assertive');
+            status.textContent = message;
+            const call = document.createElement('a');
+            call.href = 'tel:561-718-6725';
+            call.textContent = '561-718-6725';
+            if (!message.endsWith('call ')) status.append(' You can also call ');
+            status.append(call, '.');
+            status.focus();
+        }
+
+        // The CRM persists notes, not top-level campaign parameters. Keep the
+        // form and campaign context with the inquiry, without copying click IDs.
+        function buildInquiryNotes(formData, formLabel) {
+            const notes = ['Source: warehousesforcontractors.com', 'Form: ' + formLabel];
+            const additional = String(formData.get('notes') || '').trim();
+            if (additional) notes.push('Notes: ' + additional);
+            const params = new URLSearchParams(window.location.search);
+            const attribution = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content']
+                .filter(key => params.get(key))
+                .map(key => key + ': ' + params.get(key).slice(0, 100));
+            if (attribution.length) notes.push('Attribution: ' + attribution.join('; '));
+            return notes.join('\n');
         }
 
         // Helper: Map size select options to min/max square feet

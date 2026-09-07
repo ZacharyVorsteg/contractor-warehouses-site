@@ -1,4 +1,6 @@
 ---
+seo_title: "Contractor Warehouse Lease Costs | Palm Beach County"
+seo_description: "Budget for contractor warehouse space in Palm Beach County. Review base rent, NNN expenses, location differences and total occupancy costs."
 title: "Contractor Warehouse Lease Costs in Palm Beach County (2026)"
 slug: contractor-warehouse-lease-cost-palm-beach-county
 description: "What trade contractors pay for warehouse and flex space in Palm Beach County in 2026 — base NNN rent, pass-throughs, submarket ranges, and a budgeting framework."
