@@ -108,10 +108,12 @@
         }
 
         const trafficSource = getTrafficSource();
-        sessionStorage.setItem('traffic_source', trafficSource);
+        try { sessionStorage.setItem('traffic_source', trafficSource); } catch (error) {}
 
         function getTrackingNumber() {
-            const source = sessionStorage.getItem('traffic_source') || 'default';
+            // Keep attribution-derived phone routing usable when storage is denied.
+            let source = trafficSource;
+            try { source = sessionStorage.getItem('traffic_source') || trafficSource; } catch (error) {}
             return window.CONFIG.TRACKING_NUMBERS[source] || window.CONFIG.TRACKING_NUMBERS.default;
         }
 
@@ -256,7 +258,7 @@
 
         .logo-title {
             font-size: 0.75rem;
-            color: var(--slate);
+            color: var(--silver);
             font-weight: 500;
         }
 
@@ -453,6 +455,7 @@
         }
 
         .btn-secondary {
+            font-family: inherit;
             background: transparent;
             color: var(--white);
             border: 2px solid var(--concrete);
@@ -879,6 +882,11 @@
             font-weight: 600;
         }
 
+        .header-blog { color: var(--silver); text-decoration: none; font-weight: 500; }
+        .header-blog:hover, .header-blog:focus-visible { color: var(--white); }
+        .footer-legal a { color: inherit; text-decoration: underline; }
+        .footer-legal a:hover, .footer-section a:focus-visible { color: var(--orange); }
+
         /* Footer */
         .footer {
             background: var(--charcoal);
@@ -893,7 +901,7 @@
         }
 
         .footer-brand p {
-            color: var(--slate);
+            color: var(--silver);
             font-size: 0.9rem;
             line-height: 1.6;
             margin-top: 1rem;
@@ -911,7 +919,7 @@
 
         .footer-section p,
         .footer-section a {
-            color: var(--slate);
+            color: var(--silver);
             font-size: 0.9rem;
             line-height: 2;
             text-decoration: none;
@@ -932,12 +940,12 @@
         }
 
         .footer-bottom p {
-            color: var(--slate);
+            color: var(--silver);
             font-size: 0.8rem;
         }
 
         .footer-legal {
-            color: var(--slate);
+            color: var(--silver);
             font-size: 0.75rem;
             max-width: 600px;
             text-align: right;
@@ -1049,10 +1057,14 @@
         /* Popup */
         .popup-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
+            inset: 0;
             width: 100%;
             height: 100%;
+            max-width: none;
+            max-height: none;
+            margin: 0;
+            padding: 0;
+            border: 0;
             background: rgba(0,0,0,0.85);
             z-index: 10000;
             display: none;
@@ -1060,7 +1072,12 @@
             justify-content: center;
         }
 
+        .popup-overlay[open] { display: flex; }
+        .popup-overlay::backdrop { background: transparent; }
         .popup-content {
+            width: calc(100% - 2rem);
+            max-height: calc(100dvh - 2rem);
+            overflow-y: auto;
             background: var(--white);
             padding: 2.5rem;
             border-radius: 12px;
@@ -1075,8 +1092,8 @@
             right: 1rem;
             background: var(--light);
             border: none;
-            width: 32px;
-            height: 32px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             cursor: pointer;
             font-size: 1.25rem;
@@ -1092,6 +1109,7 @@
         }
 
         .popup-content h3 {
+            padding-right: 2rem;
             font-size: 1.5rem;
             margin-bottom: 0.75rem;
             color: var(--charcoal);
@@ -1205,9 +1223,9 @@
                 </div>
             </div>
             <div class="header-cta">
-                <a href="/blog/" style="text-decoration: none; color: #4b5563; font-weight: 500; transition: color 0.3s ease;" onmouseover="this.style.color='#1a1a1a'" onmouseout="this.style.color='#4b5563'">Blog</a>
+                <a href="/blog/" class="header-blog">Blog</a>
                 <span class="header-license">FL License #SL3603483</span>
-                <a href="#" class="header-phone" id="header-phone">
+                <a href="tel:561-718-6725" class="header-phone" id="header-phone">
                     <span>Call Now</span>
                 </a>
             </div>
@@ -1239,9 +1257,9 @@
 
                 <div class="hero-cta">
                     <a href="#form-section" class="btn-primary">Share Your Requirements</a>
-                    <a href="#" class="btn-secondary" onclick="showLeadMagnet(); trackConversion('lead_magnet_view', 0, {location: 'hero'});">
-                        Download: 5 Questions Landlords Ask
-                    </a>
+                    <button type="button" class="btn-secondary" onclick="showLeadMagnet(this); trackConversion('lead_magnet_view', 0, {location: 'hero'});">
+                        Request: 5 Questions Landlords Ask
+                    </button>
                 </div>
             </div>
 
@@ -1549,7 +1567,7 @@
                 </div>
                 <div class="footer-section">
                     <h4>Contact</h4>
-                    <p id="footer-phone"></p>
+                    <p id="footer-phone"><a href="tel:561-718-6725">561-718-6725</a></p>
                     <p>Palm Beach County, FL</p>
                 </div>
                 <div class="footer-section">
@@ -1558,10 +1576,10 @@
                 </div>
                 <div class="footer-section">
                     <h4>Service Areas</h4>
-                    <a href="#">West Palm Beach</a>
-                    <a href="#">Boynton Beach</a>
-                    <a href="#">Delray Beach</a>
-                    <a href="#">Boca Raton</a>
+                    <a href="#quickForm" data-inquiry-city="west_palm_beach">West Palm Beach</a>
+                    <a href="#quickForm" data-inquiry-city="boynton_beach">Boynton Beach</a>
+                    <a href="#quickForm" data-inquiry-city="delray_beach">Delray Beach</a>
+                    <a href="#quickForm" data-inquiry-city="boca_raton">Boca Raton</a>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -1574,34 +1592,52 @@
     <!-- Mobile Sticky -->
     <div class="mobile-sticky" id="mobileStickyBar">
         <div class="mobile-sticky-content">
-            <a href="#" class="mobile-cta-btn" id="mobile-call">Call</a>
-            <a href="#" class="mobile-cta-btn" id="mobile-text">Text</a>
+            <a href="tel:561-718-6725" class="mobile-cta-btn" id="mobile-call">Call</a>
+            <a href="sms:561-718-6725?body=I%20need%20warehouse%20space%20in%20Palm%20Beach%20County" class="mobile-cta-btn" id="mobile-text">Text</a>
         </div>
     </div>
 
     <!-- Lead Magnet Popup -->
-    <div class="popup-overlay" id="leadMagnetPopup">
+    <dialog class="popup-overlay" id="leadMagnetPopup" aria-labelledby="guide-title" aria-describedby="guide-description">
         <div class="popup-content">
-            <button class="popup-close" onclick="closeLeadMagnet()">&times;</button>
-            <h3>5 Questions Landlords Will Ask</h3>
-            <p>Get prepared for your warehouse search. This free guide covers the 5 questions every landlord asks contractors — and how to answer them to get approved faster.</p>
+            <button type="button" class="popup-close" onclick="closeLeadMagnet()" aria-label="Close guide request">&times;</button>
+            <h3 id="guide-title">5 Questions Landlords Will Ask</h3>
+            <p id="guide-description">Request the free guide to prepare for your warehouse search. Share your email and phone below to request a copy.</p>
             <form id="leadMagnetForm" name="checklist-request" onsubmit="handleLeadMagnetSubmit(event)" method="POST" netlify>
                 <input type="hidden" name="form-name" value="checklist-request">
                 <div class="form-group">
-                    <input type="email" name="email" placeholder="Your email" required style="margin-bottom: 1rem;">
+                    <label for="guide-email">Email (required)</label>
+                    <input id="guide-email" type="email" name="email" autocomplete="email" placeholder="Your email" required>
                 </div>
                 <div class="form-group">
-                    <input type="tel" name="phone" placeholder="Your phone number" required style="margin-bottom: 1rem;">
+                    <label for="guide-phone">Phone (required)</label>
+                    <input id="guide-phone" type="tel" name="phone" autocomplete="tel" placeholder="Your phone number" required>
                 </div>
-                <button type="submit" class="btn-primary" style="width: 100%;">Send Me the Guide</button>
+                <button type="submit" class="btn-primary" style="width: 100%;">Request the Guide</button>
             </form>
         </div>
-    </div>
+    </dialog>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             setupPhoneNumbers();
             setupMobileSticky();
+            setupCityContext();
+            document.getElementById('leadMagnetPopup').addEventListener('close', function() {
+                if (leadMagnetTrigger && leadMagnetTrigger.isConnected) leadMagnetTrigger.focus();
+            });
+            document.getElementById('leadMagnetPopup').addEventListener('keydown', function(event) {
+                if (event.key !== 'Tab') return;
+                const controls = Array.from(this.querySelectorAll('a[href], button, input, select, textarea, [tabindex]'))
+                    .filter(el => !el.disabled && el.tabIndex >= 0 && el.getClientRects().length);
+                if (!controls.length) return;
+                // Explicit cycling also includes buttons when Safari's default
+                // Tab preference would otherwise skip them.
+                event.preventDefault();
+                const current = controls.indexOf(document.activeElement);
+                const next = current < 0 ? 0 : (current + (event.shiftKey ? -1 : 1) + controls.length) % controls.length;
+                controls[next].focus();
+            });
         });
 
         function setupPhoneNumbers() {
@@ -1609,7 +1645,7 @@
             document.getElementById('header-phone').href = `tel:${trackingNumber}`;
             document.getElementById('mobile-call').href = `tel:${trackingNumber}`;
             document.getElementById('mobile-text').href = `sms:${trackingNumber}?body=I need warehouse space in Palm Beach County`;
-            document.getElementById('footer-phone').innerHTML = `<a href="tel:${trackingNumber}" style="color: var(--slate);">${trackingNumber}</a>`;
+            document.getElementById('footer-phone').innerHTML = `<a href="tel:${trackingNumber}">${trackingNumber}</a>`;
         }
 
         function setupMobileSticky() {
@@ -1628,46 +1664,76 @@
             });
         }
 
-        function showLeadMagnet() {
-            document.getElementById('leadMagnetPopup').style.display = 'flex';
+        function setupCityContext() {
+            const quick = document.getElementById('quick_location');
+            const full = document.getElementById('location');
+            function pending() {
+                return quick.form.getAttribute('aria-busy') === 'true' || full.form.getAttribute('aria-busy') === 'true';
+            }
+            document.querySelectorAll('[data-inquiry-city]').forEach(function(link) {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    if (pending()) return;
+                    quick.value = full.value = link.dataset.inquiryCity;
+                    quick.focus({preventScroll: true});
+                    quick.scrollIntoView({block: 'center', behavior: 'auto'});
+                });
+            });
+            // The latest explicit city choice follows the visitor between forms.
+            quick.addEventListener('change', function() { if (!pending()) full.value = quick.value; });
+            full.addEventListener('change', function() { if (!pending()) quick.value = full.value; });
+        }
+
+        let leadMagnetTrigger = null;
+        function showLeadMagnet(trigger) {
+            const dialog = document.getElementById('leadMagnetPopup');
+            leadMagnetTrigger = trigger || document.activeElement;
+            if (!dialog.open) dialog.showModal();
+            document.getElementById('guide-email').focus();
         }
 
         function closeLeadMagnet() {
-            document.getElementById('leadMagnetPopup').style.display = 'none';
+            document.getElementById('leadMagnetPopup').close();
         }
 
         async function handleLeadMagnetSubmit(e) {
             e.preventDefault();
-            const formData = new FormData(e.target);
+            const form = e.target;
+            if (form.getAttribute('aria-busy') === 'true') return;
+            const formData = new FormData(form);
             const phone = formData.get('phone');
             const email = formData.get('email');
+            beginInquiry(form);
 
-            // Track conversion
-            trackConversion('lead_magnet_download', 5000, { lead_magnet: '5_questions_landlords_ask' });
+            // Preserve the existing event definition and pre-request placement.
+            try { trackConversion('lead_magnet_download', 5000, { lead_magnet: '5_questions_landlords_ask' }); }
+            catch (error) { console.warn('Optional guide tracking unavailable'); }
 
-            // Submit via form encoding (Netlify Forms standard)
+            const controller = new AbortController();
+            const timeout = setTimeout(() => controller.abort(), 20000);
             try {
                 const payload = new URLSearchParams({
                     'form-name': 'checklist-request',
                     'phone': phone || '',
                     'email': email || ''
                 });
-
                 const response = await fetch('/index.html', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: payload.toString()
+                    body: payload.toString(),
+                    signal: controller.signal
                 });
-
-                if (response.ok) {
-                    closeLeadMagnet();
-                    alert('Thanks! Your guide request was received. Please call 561-718-6725 if you need help.');
-                } else {
-                    alert('There was an error. Please call 561-718-6725 directly.');
-                }
+                if (!response.ok) throw new Error('Guide request not confirmed');
+                form.removeAttribute('aria-busy');
+                const button = form.querySelector('button[type="submit"]');
+                button.textContent = 'Request received';
+                const status = inquiryStatus(form);
+                status.textContent = 'Your guide request was received. For help, call 561-718-6725.';
+                if (document.getElementById('leadMagnetPopup').open) status.focus();
             } catch (error) {
-                console.error('Lead magnet submission error:', error);
-                alert('There was an error. Please call 561-718-6725 directly.');
+                showInquiryError(form, 'We could not confirm your guide request. Your details are still here. Please try again or call ');
+            } finally {
+                clearTimeout(timeout);
             }
         }
 
